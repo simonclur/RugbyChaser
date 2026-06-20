@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rugby Fixtures & Results</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #1a1a1a;
+            --card-bg: #ffffff;
+            --card-border: #e1e4e8;
+            --accent-color: #0056b3;
+            --live-color: #e02424;
+            --completed-color: #6b7280;
+            --muted-text: #4b5563;
+            --next-color: #10b981;
+            --next-bg: #ecfdf5;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --text-color: #f9fafb;
+            --card-bg: #1f2937;
+            --card-border: #374151;
+            --accent-color: #3b82f6;
+            --live-color: #ef4444;
+            --completed-color: #9ca3af;
+            --muted-text: #9ca3af;
+            --next-color: #34d399;
+            --next-bg: #064e3b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        select, button {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .spotlight {
+            background-color: var(--card-bg);
+            border: 2px solid var(--live-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .spotlight-title {
+            color: var(--live-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .spotlight-title::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--live-color);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .live-scoreline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .live-clock {
+            font-size: 0.8em;
+            background: var(--card-border);
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: var(--live-color);
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .live-stats {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 15px;
+            font-size: 0.9em;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .live-stat-row {
+            display: contents;
+        }
+
+        .stat-val-home { text-align: right; font-weight: bold; }
+        .stat-val-away { text-align: left; font-weight: bold; }
+        .stat-label { text-align: center; color: var(--muted-text); font-size: 0.85em; text-transform: uppercase; }
+
+        
+        .live-details {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .live-details { grid-template-columns: 1fr; }
+        }
+        .match-timeline-container {
+            font-size: 0.85em;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .timeline-event {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .timeline-event:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .timeline-time {
+            width: 45px;
+            font-weight: bold;
+            color: var(--live-color);
+        }
+        .timeline-content {
+            flex: 1;
+        }
+        .timeline-team {
+            font-size: 0.8em;
+            color: var(--muted-text);
+            text-transform: uppercase;
+        }
+        .live-lineups {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 0.85em;
+            text-align: left;
+        }
+
+        .lineup-team {
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .lineup-team h4 {
+            margin: 0 0 10px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 5px;
+        }
+
+        .player-row {
+            display: flex;
+            gap: 10px;
+            padding: 3px 0;
+        }
+        
+        .player-num {
+            width: 20px;
+            color: var(--muted-text);
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .competition-group {
+            margin-bottom: 25px;
+        }
+
+        .competition-header {
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 8px 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+        }
+
+        .match-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            /* Memory applied: compact match cards with reduced vertical space */
+            line-height: 1.3; 
+        }
+
+        .match-primary-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-basis: 100%;
+        }
+
+        .see-more-badge {
+            cursor: pointer;
+            padding: 2px 8px;
+            background: var(--bg-color);
+            border-radius: 4px;
+            font-size: 0.75em;
+            text-align: center;
+            color: var(--muted-text);
+            user-select: none;
+            display: inline-block;
+            margin-top: 8px;
+            border: 1px solid var(--card-border);
+        }
+        .see-more-badge:hover {
+            background: var(--card-border);
+        }
+        .extended-container {
+            flex-basis: 100%;
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--card-border);
+            font-size: 0.9em;
+        }
+
+        .match-card.live {
+            border-left: 4px solid var(--live-color);
+        }
+        
+        .match-card.upcoming {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .match-card.next-scheduled {
+            border-left: 4px solid var(--next-color);
+            background-color: var(--next-bg);
+        }
+
+        .match-card.completed {
+            opacity: 0.85;
+            border-left: 4px solid var(--completed-color);
+        }
+
+        .match-main {
+            flex: 1;
+        }
+
+        .match-meta {
+            font-size: 0.85em;
+            color: var(--muted-text);
+            margin-bottom: 4px;
+            /* Memory applied: left aligned, smaller */
+            text-align: left;
+        }
+
+        .match-teams {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .team-name {
+            /* Memory applied: readable full team names */
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .team-score {
+            font-weight: bold;
+            font-size: 1.1em;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        .match-status {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: 15px;
+        }
+
+        .status-badge.C { background-color: var(--completed-color); color: white; }
+        .status-badge.CC { background-color: var(--completed-color); color: white; opacity: 0.7; }
+        .status-badge.L { background-color: var(--live-color); color: white; }
+        .status-badge.U { background-color: var(--accent-color); color: white; }
+        .status-badge.N { background-color: var(--next-color); color: white; color: var(--bg-color); }
+
+        .date-divider {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--muted-text);
+            margin: 15px 0 5px 0;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 4px;
+        }
+
+        .scroll-target {
+            scroll-margin-top: 100px;
+        }
+        .match-card.highlighted-team {
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 8px var(--accent-color);
+            transform: scale(1.02);
+            z-index: 5;
+            position: relative;
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            align-items: center; justify-content: center;
+        }
+        .info-content {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            max-width: 90%;
+            border: 1px solid var(--card-border);
+        }
+        .info-icon {
+            cursor: pointer;
+            margin-left: 10px;
+            background: none; border: none; font-size: 1.2em;
+            padding: 0; color: inherit;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .settings-panel.active {
+            display: flex;
+        }
+
+        .settings-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .settings-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .settings-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            color: var(--muted-text);
+        }
+
+        select[multiple] {
+            height: 140px;
+            padding: 8px;
+            cursor: pointer;
+        }
+        
+        .settings-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>Rugby Internationals</h2>
+            <button onclick="toggleSettings()" id="settings-toggle" class="settings-btn">⚙️ Show Settings</button>
+        </div>
+
+        <div id="filter-summary" style="width: 100%; text-align: center; margin-bottom: 15px; font-size: 0.9em; font-weight: 500; color: var(--muted-text);"></div>
+
+        <div id="settings-panel" class="settings-panel">
+            <div class="settings-row">
+                <div class="settings-group">
+                    <label>Sport</label>
+                    <select id="sport-filter" onchange="handleSportChange()">
+                        <option value="ALL">All Sports</option>
+                        <option value="MRU" selected>Men's Rugby Union</option>
+                        <option value="WRU">Women's Rugby Union</option>
+                        <option value="MRS">Men's Rugby Sevens</option>
+                        <option value="WRS">Women's Rugby Sevens</option>
+                    </select>
+                </div>
+                <div class="settings-group">
+                    <label>Competitions</label>
+                    <select id="comp-filter" multiple onchange="handleCompChange()">
+                        <option value="ALL" selected>All Competitions</option>
+                    </select>
+                </div>
+                <div class="settings-group">
+                    <label>Highlight Teams</label>
+                    <select id="team-filter" multiple onchange="renderMatches(true)">
+                        <option value="ALL" selected>Highlight Team (None)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings-row" style="justify-content: flex-end; align-items: center;">
+                <div class="settings-group" style="flex: 0; min-width: auto; margin-right: 15px;">
+                    <label>Local Timezone</label>
+                    <select id="timezone-select" onchange="renderMatches(true)"></select>
+                </div>
+                <div class="settings-group" style="flex: 0; min-width: auto;">
+                    <label>Theme</label>
+                    <button onclick="toggleTheme()" id="theme-toggle">🌗 Toggle Mode</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="matches-container">Loading...</div>
+    </div>
+
+    <div id="info-modal" class="info-modal" onclick="closeInfoPanel()">
+        <div class="info-content" onclick="event.stopPropagation()">
+            <h3 style="margin-top:0">System Information</h3>
+            <p><strong>Last Refresh:</strong> <span id="info-last-refresh">Pending...</span></p>
+            <p><strong>API Status:</strong> <span id="info-api-status">Unknown</span></p>
+            <p><strong>Live Polling:</strong> Every 60s (Live Matches Only)</p>
+            <button onclick="closeInfoPanel()" style="margin-top:15px; width:100%">Close</button>
+        </div>
+    </div>
+
+    <script>
+
+        // Easy toggle for multiple selects without holding Cmd/Ctrl
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'OPTION' && e.target.closest('select[multiple]')) {
+                e.preventDefault();
+                
+                const select = e.target.closest('select[multiple]');
+                const isAllClick = e.target.value === 'ALL';
+                
+                if (isAllClick) {
+                    Array.from(select.options).forEach(opt => opt.selected = false);
+                    e.target.selected = true;
+                } else {
+                    const allOption = Array.from(select.options).find(opt => opt.value === 'ALL');
+                    if (allOption && e.target.selected === false) {
+                        allOption.selected = false;
+                    }
+                    e.target.selected = !e.target.selected;
+                    
+                    if (select.selectedOptions.length === 0 && allOption) {
+                        allOption.selected = true;
+                    }
+                }
+                
+                // Keep focus on select so people can scroll it with keyboard if needed
+                select.focus();
+                select.dispatchEvent(new Event('change'));
+            }
+        });
+        let allMatches = [];
+        function toggleSettings() {
+            const panel = document.getElementById('settings-panel');
+            const btn = document.getElementById('settings-toggle');
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                btn.textContent = '⚙️ Show Settings';
+            } else {
+                panel.classList.add('active');
+                btn.textContent = '⚙️ Hide Settings';
+            }
+        }
+
+        let liveRefreshIntervals = {};
+
+        function openInfoPanel() {
+            document.getElementById('info-modal').style.display = 'flex';
+        }
+
+        function closeInfoPanel() {
+            document.getElementById('info-modal').style.display = 'none';
+        }
+
+        const loadedMatchDetails = {};
+        let isInitialUI = true;
+        const preloadedMatchDetails = {};
+
+        async function prefetchMatchDetails(matchId) {
+            if (preloadedMatchDetails[matchId] || loadedMatchDetails[matchId]) return;
+            try {
+                const res = await fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/summary`);
+                if (res.ok) {
+                    preloadedMatchDetails[matchId] = await res.json();
+                }
+            } catch(e) {}
+        }
+
+        async function toggleMatchDetails(matchId) {
+            const badge = document.getElementById(`badge-${matchId}`);
+            const container = document.getElementById(`extended-${matchId}`);
+            
+            if (container.style.display === 'block') {
+                container.style.display = 'none';
+                badge.textContent = 'See more';
+                return;
+            }
+
+            container.style.display = 'block';
+            badge.textContent = 'See less';
+
+            if (loadedMatchDetails[matchId]) return;
+
+            try {
+                let summaryData = preloadedMatchDetails[matchId];
+                if (!summaryData) {
+                    const cacheBust = Date.now();
+                    const summaryRes = await fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/summary?t=${cacheBust}`);
+                    if (summaryRes.ok) {
+                        summaryData = await summaryRes.json();
+                    }
+                }
+
+                let timelineEvents = [];
+                try {
+                    const tlRes = await fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/timeline?t=${cacheBust}`);
+                    if (tlRes.ok) {
+                        const tlData = await tlRes.json();
+                        if (tlData && tlData.timeline) {
+                            timelineEvents = tlData.timeline.sort((a,b) => (a.time?.secs || 0) - (b.time?.secs || 0));
+                        }
+                    }
+                } catch(e) {}
+
+                if (summaryData && summaryData.teams && summaryData.teams.length > 0) {
+                    const playerMap = {};
+                    const teamNames = [];
+                    [0, 1].forEach(tIdx => {
+                        const tm = summaryData.teams[tIdx];
+                        if (tm) {
+                            teamNames[tIdx] = tm.name || 'Team ' + (tIdx+1);
+                            if (tm.teamList?.list) {
+                                tm.teamList.list.forEach(p => {
+                                    playerMap[p.player?.id] = p.player?.name?.display || 'Unknown Player';
+                                });
+                            }
+                        }
+                    });
+
+                    let html = `<div class="live-details"><div class="live-lineups">`;
+                    [0, 1].forEach(tIdx => {
+                        const tm = summaryData.teams[tIdx];
+                        html += `<div class="lineup-team"><h4>${tm ? tm.name || 'Team ' + (tIdx+1) : 'Team ' + (tIdx+1)}</h4>`;
+                        
+                        if (tm && tm.teamList && tm.teamList.list && tm.teamList.list.length > 0) {
+                            // Splitting into starting and reserves
+                            const starters = tm.teamList.list.filter(p => !p.player.isReplacement).sort((a,b) => parseInt(a.number||0) - parseInt(b.number||0));
+                            const reserves = tm.teamList.list.filter(p => p.player.isReplacement).sort((a,b) => parseInt(a.number||0) - parseInt(b.number||0));
+                            
+                            html += `<strong>Starting</strong>`;
+                            if (starters.length > 0) {
+                                starters.forEach(p => {
+                                    html += `<div class="player-row">
+                                        <div class="player-num">${p.number || ''}</div>
+                                        <div>${p.player.name.display}</div>
+                                    </div>`;
+                                });
+                            } else {
+                                html += `<div style="color: var(--muted-text);">Not announced</div>`;
+                            }
+
+                            html += `<strong style="display:block; margin-top:10px;">Reserves</strong>`;
+                            if (reserves.length > 0) {
+                                reserves.forEach(p => {
+                                    html += `<div class="player-row">
+                                        <div class="player-num">${p.number || ''}</div>
+                                        <div>${p.player.name.display}</div>
+                                    </div>`;
+                                });
+                            } else {
+                                html += `<div style="color: var(--muted-text);">Not announced</div>`;
+                            }
+
+                        } else {
+                            html += `<div style="text-align:center; color: var(--muted-text);">Lineup not available</div>`;
+                        }
+                        html += `</div>`;
+                    });
+                    html += `</div>`;
+                    
+                    // Build timeline DOM
+                    html += `<div class="match-timeline-container"><h4>Match Events</h4>`;
+                    if (timelineEvents.length > 0) {
+                        timelineEvents.forEach(ev => {
+                            const timeLabel = ev.time?.label || "00:00";
+                            const pName = ev.playerId ? (playerMap[ev.playerId] || 'Unknown Player') : '';
+                            const tName = (ev.teamIndex === 0 || ev.teamIndex === 1) ? teamNames[ev.teamIndex] : '';
+                            
+                            html += `<div class="timeline-event">
+                                <div class="timeline-time">${timeLabel}</div>
+                                <div class="timeline-content">
+                                    <strong>${ev.typeLabel || ev.type}</strong>
+                                    ${pName ? `<div>${pName}</div>` : ''}
+                                    ${tName ? `<div class="timeline-team">${tName}</div>` : ''}
+                                </div>
+                            </div>`;
+                        });
+                    } else {
+                        html += `<div style="color: var(--muted-text);">No events recorded yet.</div>`;
+                    }
+                    html += `</div></div>`; // close match-timeline-container and live-details
+                    
+                    container.innerHTML = html;
+                    loadedMatchDetails[matchId] = true;
+                } else {
+                    container.innerHTML = `<div style="text-align:center; color: var(--muted-text);">Match details not available</div>`;
+                    loadedMatchDetails[matchId] = true;
+                }
+
+            } catch (e) {
+                container.innerHTML = `<div style="text-align:center; color: var(--live-color);">Failed to load details</div>`;
+            }
+        }
+
+        // Initialize theme
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        // Initialize timezone dropdown
+        const tzSelect = document.getElementById('timezone-select');
+        for (let i = -12; i <= 14; i++) {
+            const option = document.createElement('option');
+            const sign = i > 0 ? '+' : '';
+            option.value = i;
+            option.textContent = `UTC${sign}${i}`;
+            tzSelect.appendChild(option);
+        }
+        // Set default to user's local offset (in hours)
+        const localOffsetHours = -(new Date().getTimezoneOffset() / 60);
+        tzSelect.value = Math.round(localOffsetHours); // closest rounded hour
+
+        function handleSportChange() {
+            populateCompFilter();
+            populateTeamFilter();
+            renderMatches(true);
+        }
+
+        function handleCompChange() {
+            populateTeamFilter();
+            renderMatches(true);
+        }
+
+        function populateCompFilter() {
+            const sportFilter = document.getElementById('sport-filter').value;
+            const compSelect = document.getElementById('comp-filter');
+            
+            // save current selection
+            const currentSelections = Array.from(compSelect.selectedOptions).map(o => o.value);
+            
+            compSelect.innerHTML = '<option value="ALL">All Competitions</option>'; // Reset
+            
+            const compSet = new Set();
+            allMatches.forEach(m => {
+                const s = m.sport ? m.sport.toUpperCase() : 'UNKNOWN';
+                if (sportFilter === 'ALL' || s === sportFilter) {
+                    compSet.add(m.events?.[0]?.label || m.competition || 'International Fixture');
+                }
+            });
+
+            const defaultComps = ["Men's Internationals", "Nations Championship", "Six Nations", "Bledisloe Cup", "World Cup", "World Rugby Nations Cup", "Rugby’s Greatest Rivalry"];
+            
+            Array.from(compSet).sort().forEach(c => {
+                const opt = new Option(c, c);
+                if (isInitialUI) {
+                    if (defaultComps.some(dc => c.includes(dc))) opt.selected = true;
+                } else {
+                    if (currentSelections.includes(c)) opt.selected = true;
+                }
+                compSelect.add(opt);
+            });
+            
+            if (isInitialUI) {
+                // Deselect ALL initially if we matched any defaults
+                if (compSelect.selectedOptions.length > 0) compSelect.options[0].selected = false;
+            } else {
+                if (compSelect.selectedOptions.length === 0) compSelect.options[0].selected = true;
+            }
+        }
+
+        function populateTeamFilter() {
+            const sportFilter = document.getElementById('sport-filter').value;
+            const compSelect = document.getElementById('comp-filter');
+            const selectedComps = Array.from(compSelect.selectedOptions).map(o => o.value);
+            const filterAllComps = selectedComps.includes('ALL') || selectedComps.length === 0;
+
+            const teamSelect = document.getElementById('team-filter');
+            const currentSelections = Array.from(teamSelect.selectedOptions).map(o => o.value);
+
+            teamSelect.innerHTML = '<option value="ALL">Highlight Team (None)</option>';
+
+            const teamSet = new Set();
+            allMatches.forEach(m => {
+                const s = m.sport ? m.sport.toUpperCase() : 'UNKNOWN';
+                if (sportFilter === 'ALL' || s === sportFilter) {
+                    const c = m.events?.[0]?.label || m.competition || 'International Fixture';
+                    if (filterAllComps || selectedComps.includes(c)) {
+                        m.teams.forEach(t => teamSet.add(t.name));
+                    }
+                }
+            });
+
+            Array.from(teamSet).sort().forEach(t => {
+                const opt = new Option(t, t);
+                if (isInitialUI) {
+                    if (t === "South Africa") opt.selected = true;
+                } else {
+                    if (currentSelections.includes(t)) opt.selected = true;
+                }
+                teamSelect.add(opt);
+            });
+            if (teamSelect.selectedOptions.length === 0) teamSelect.options[0].selected = true;
+        }
+
+        async function fetchFixtures() {
+            try {
+                const response = await fetch('fixtures.json');
+                const data = await response.json();
+                
+                // Sort ascending chronologically
+                allMatches = data.matches.sort((a, b) => a.time.millis - b.time.millis);
+                populateCompFilter();
+                populateTeamFilter();
+                isInitialUI = false;
+                renderMatches();
+            } catch (err) {
+                document.getElementById('matches-container').innerHTML = `<p>Error loading fixtures: ${err}</p>`;
+            }
+        }
+
+        function formatDateTime(millis, offsetH) {
+            const date = new Date(millis);
+            // Apply absolute UTC offset
+            const offsetMillis = offsetH * 60 * 60 * 1000;
+            const utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
+            const localDate = new Date(utcTime + offsetMillis);
+
+            const optionsDate = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+            const optionsTime = { hour: '2-digit', minute: '2-digit' };
+            
+            return {
+                dateString: localDate.toLocaleDateString(undefined, optionsDate),
+                timeString: localDate.toLocaleTimeString(undefined, optionsTime)
+            };
+        }
+
+        function getMatchStatus(match) {
+            let status = match.status;
+            // CC is Cancelled by PulseLive. Do not treat it as Cancelled/Live improperly.
+            if (status === 'CC') return 'CC'; 
+            
+            if (status !== 'C' && status !== 'U') {
+                return 'L'; 
+            }
+            // Fallback for API delays: if time is past but not strictly marked C or L.
+            const now = Date.now();
+            if (status === 'U') {
+                if (now > match.time.millis && now < (match.time.millis + 10800000)) {
+                    // Within 3 hours of start time and not completed -> probably Live
+                    return 'L';
+                } else if (now >= (match.time.millis + 10800000)) {
+                    // Over 3 hours past start time, so the match is definitely over
+                    // Treat it as Completed locally so it doesn't block 'Next'
+                    return 'C'; 
+                }
+            }
+            return status;
+        }
+
+        async function loadLiveMatchDetails(matchId, compName, venueName) {
+            const targetContainer = document.getElementById(`live-details-${matchId}`);
+            if (!targetContainer) return;
+
+            // Clear any existing poller
+            if (liveRefreshIntervals[matchId]) {
+                clearInterval(liveRefreshIntervals[matchId]);
+            }
+
+            const activeMatch = allMatches.find(m => m.matchId === matchId);
+            const { dateString, timeString } = formatDateTime(activeMatch.time.millis, parseFloat(document.getElementById('timezone-select').value));
+            const koDisplay = `${dateString} ${timeString}`;
+
+            // Show loading initially
+            targetContainer.innerHTML = `
+                <div class="spotlight" style="margin-bottom: 10px;">
+                    <div class="spotlight-title">LIVE MATCH <button class="info-icon" onclick="openInfoPanel()">ℹ️</button></div>
+                    <p>Loading live match data for ${compName}...</p>
+                </div>
+            `;
+
+            async function fetchDataAndUpdate() {
+                try {
+                    document.getElementById('info-api-status').textContent = 'Fetching...';
+                    document.getElementById('info-api-status').style.color = 'inherit';
+                    
+                    const cacheBust = Date.now();
+                    const [matchRes, statsRes, summaryRes] = await Promise.all([
+                        fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}?t=${cacheBust}`),
+                        fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/stats?t=${cacheBust}`).catch(() => null),
+                        fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/summary?t=${cacheBust}`).catch(() => null)
+                    ]);
+
+                    document.getElementById('info-last-refresh').textContent = new Date().toLocaleTimeString();
+                    if (matchRes.ok) {
+                        document.getElementById('info-api-status').textContent = 'OK';
+                        document.getElementById('info-api-status').style.color = 'var(--next-color)';
+                    } else {
+                        throw new Error('API Error');
+                    }
+
+                    const mData = await matchRes.json();
+                    let statsData = null, summaryData = null;
+                    
+                    if (statsRes && statsRes.ok) statsData = await statsRes.json();
+                    if (summaryRes && summaryRes.ok) summaryData = await summaryRes.json();
+
+                    const clock = mData.clock ? mData.clock.label : "00:00";
+                    const t1 = mData.teams[0];
+                    const t2 = mData.teams[1];
+                    
+                    let html = `
+                        <div class="spotlight" style="margin-bottom: 10px;">
+                            <div class="spotlight-title">LIVE MATCH <button class="info-icon" onclick="openInfoPanel()" title="System Info">ℹ️</button></div>
+                            <div class="match-meta" style="text-align: center;">
+                                ${compName} | ${venueName}
+                            </div>
+                            <div class="match-meta" style="text-align: center; margin-top: 5px; font-weight: bold; color: var(--live-color);">
+                                Kick-off: ${koDisplay}
+                            </div>
+                            <div class="live-clock">${clock}</div>
+                            <div class="live-scoreline">
+                                <div style="flex:1; text-align:right">${t1.name}</div>
+                                <div style="font-size: 1.2em; background: var(--bg-color); padding: 5px 15px; border-radius: 6px;">
+                                    ${mData.scores[0]} - ${mData.scores[1]}
+                                </div>
+                                <div style="flex:1; text-align:left">${t2.name}</div>
+                            </div>
+                    `;
+
+                    // Stats Section
+                    if (statsData && statsData.teamStats && statsData.teamStats.length > 0) {
+                        const st1 = statsData.teamStats[0].stats || {};
+                        const st2 = statsData.teamStats.length > 1 ? statsData.teamStats[1].stats || {} : {};
+                        
+                        const statKeys = [
+                            {key: 'Tries', label: 'Tries'},
+                            {key: 'PenaltiesConceded', label: 'Penalties'},
+                            {key: 'Carries', label: 'Carries'},
+                            {key: 'Tackles', label: 'Tackles'},
+                            {key: 'CleanBreaks', label: 'Clean Breaks'}
+                        ];
+
+                        html += `<div class="live-stats">`;
+                        statKeys.forEach(s => {
+                            const v1 = st1[s.key] ?? '-';
+                            const v2 = st2[s.key] ?? '-';
+                            html += `
+                                <div class="live-stat-row">
+                                    <div class="stat-val-home">${v1}</div>
+                                    <div class="stat-label">${s.label}</div>
+                                    <div class="stat-val-away">${v2}</div>
+                                </div>
+                            `;
+                        });
+                        html += `</div>`;
+                    }
+
+                    // Lineups Section
+                    if (summaryData && summaryData.teams && summaryData.teams.length > 0) {
+                        html += `<div class="live-lineups">`;
+                        [0, 1].forEach(tIdx => {
+                            const tm = summaryData.teams[tIdx];
+                            const tObj = tIdx === 0 ? t1 : t2;
+                            html += `<div class="lineup-team"><h4>${tObj.name}</h4>`;
+                            
+                            if (tm && tm.teamList && tm.teamList.list) {
+                                // Filter only starting 15 (position !== Rep)
+                                const starters = tm.teamList.list.filter(p => !p.player.isReplacement).sort((a,b) => parseInt(a.number||0) - parseInt(b.number||0));
+                                if (starters.length > 0) {
+                                    starters.forEach(p => {
+                                        html += `<div class="player-row">
+                                            <div class="player-num">${p.number || ''}</div>
+                                            <div>${p.player.name.display}</div>
+                                        </div>`;
+                                    });
+                                } else {
+                                    html += `<div style="text-align:center; color: var(--muted-text);">Lineup not available</div>`;
+                                }
+                            } else {
+                                html += `<div style="text-align:center; color: var(--muted-text);">Lineup not available</div>`;
+                            }
+                            html += `</div>`;
+                        });
+                        html += `</div>`;
+                    }
+
+                    html += `</div>`;
+                    targetContainer.innerHTML = html;
+                } catch(e) {
+                    document.getElementById('info-api-status').textContent = 'Failed';
+                    document.getElementById('info-api-status').style.color = 'var(--live-color)';
+                    targetContainer.innerHTML = `<div class="spotlight"><div class="spotlight-title">LIVE MATCH <button class="info-icon" onclick="openInfoPanel()" title="System Info">ℹ️</button></div><p>Failed to load live tracking data.</p></div>`;
+                }
+            }
+            
+            // Execute initially
+            await fetchDataAndUpdate();
+            // Then poll every 60s
+            liveRefreshIntervals[matchId] = setInterval(fetchDataAndUpdate, 60000);
+        }
+
+        function renderMatches(skipScroll = false) {
+            const container = document.getElementById('matches-container');
+            const offsetH = parseFloat(tzSelect.value);
+            const tzLabel = tzSelect.options[tzSelect.selectedIndex].text;
+            
+            const compSelect = document.getElementById('comp-filter');
+            const teamSelect = document.getElementById('team-filter');
+            const sportFilter = document.getElementById('sport-filter').value;
+            
+            // Collect all selected values into arrays
+            const selectedComps = Array.from(compSelect.selectedOptions).map(o => o.value);
+            const selectedTeams = Array.from(teamSelect.selectedOptions).map(o => o.value);
+            
+            const filterAllComps = selectedComps.includes('ALL') || selectedComps.length === 0;
+            const filterAllTeams = selectedTeams.includes('ALL') || selectedTeams.length === 0;
+
+            container.innerHTML = '';
+            
+            // Clear any active polling intervals before redrawing
+            for (let id in liveRefreshIntervals) {
+                clearInterval(liveRefreshIntervals[id]);
+            }
+            liveRefreshIntervals = {};
+
+            let liveHtml = '';
+            let nextMatchId = null;
+            let foundNext = false;
+            let html = '';
+
+            let currentComp = '';
+            let currentDate = '';
+            let foundNextUpcoming = false;
+            let liveMatchesToLoad = [];
+
+            let matchesToRender = allMatches;
+            
+            if (sportFilter !== 'ALL') {
+                matchesToRender = matchesToRender.filter(m => {
+                    const s = m.sport ? m.sport.toUpperCase() : 'UNKNOWN';
+                    return s === sportFilter;
+                });
+            }
+
+            if (!filterAllComps) {
+                matchesToRender = matchesToRender.filter(m => {
+                    const c = m.events?.[0]?.label || m.competition || 'International Fixture';
+                    return selectedComps.includes(c);
+                });
+            }
+
+            matchesToRender.forEach(match => {
+                const { dateString, timeString } = formatDateTime(match.time.millis, offsetH);
+                const venueOffset = match.time.gmtOffset || 0;
+                const venueDateTime = formatDateTime(match.time.millis, venueOffset);
+                const status = getMatchStatus(match);
+                const compName = match.events?.[0]?.label || match.competition || 'International Fixture';
+                
+                const isLive = status === 'L';
+                const isUpcoming = status === 'U';
+                const isComplete = status === 'C';
+
+                // If we cross into the first upcoming/live game, we want to anchor here
+                const anchorClass = (!foundNext && (isUpcoming || isLive)) ? 'scroll-target' : '';
+                if (anchorClass) {
+                    foundNext = true;
+                    // Inject a visual anchor div
+                    html += `<div id="auto-scroll-target" class="scroll-target"></div>`;
+                }
+
+                // Competition grouping check
+                if (compName !== currentComp) {
+                    if (currentComp !== '') {
+                        html += `</div>`; // Close previous comp group
+                    }
+                    html += `<div class="competition-group">`;
+                    html += `<div class="competition-header">${compName}</div>`;
+                    currentComp = compName;
+                    currentDate = ''; // Reset date grouping within competition
+                }
+
+                // Date grouping inside competition
+                if (dateString !== currentDate) {
+                    html += `<div class="date-divider">${dateString}</div>`;
+                    currentDate = dateString;
+                }
+
+                let isNextScheduled = false;
+                if (isUpcoming && !isLive && !foundNextUpcoming) {
+                    isNextScheduled = true;
+                    foundNextUpcoming = true;
+                }
+
+                const isCompletedOrCancelled = status === 'C' || status === 'CC';
+                const statusClass = isCompletedOrCancelled ? 'completed' : (status === 'L' ? 'live' : (isNextScheduled ? 'next-scheduled' : 'upcoming'));
+                const statusLabel = status === 'C' ? 'FT' : (status === 'CC' ? 'CANC' : (status === 'L' ? 'LIVE' : (isNextScheduled ? 'NEXT: ' + timeString : timeString)));
+                const badgeClass = isNextScheduled ? 'N' : status;
+
+                const involvesTeam = !filterAllTeams && (selectedTeams.includes(match.teams[0].name) || selectedTeams.includes(match.teams[1].name));
+                const highlightClass = involvesTeam ? 'highlighted-team' : '';
+
+                if (isLive) {
+                    const venueName = match.venue?.name || 'Venue TBA';
+                    html += `<div id="live-details-${match.matchId}"></div>`;
+                    liveMatchesToLoad.push({ id: match.matchId, compName, venueName });
+                } else {
+                    const involvesTeam = !filterAllTeams && (selectedTeams.includes(match.teams[0].name) || selectedTeams.includes(match.teams[1].name));
+                    const highlightClass = involvesTeam ? 'highlighted-team' : '';
+                    html += `
+                        <div class="match-card ${statusClass} ${highlightClass}">
+                            <div class="match-primary-content">
+                                <div class="match-main">
+                                    <div class="match-meta">
+                                        ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}<br>
+                                        <span style="font-size: 0.95em;">${timeString} (${tzLabel}) | <span style="opacity: 0.8">Local: ${venueDateTime.dateString} ${venueDateTime.timeString}</span></span>
+                                    </div>
+                                    <div class="match-teams">
+                                        <div class="team-row">
+                                            <div class="team-name">${match.teams[0].name}</div>
+                                            <div class="team-score">${isUpcoming && !isLive ? '-' : match.scores[0]}</div>
+                                        </div>
+                                        <div class="team-row">
+                                            <div class="team-name">${match.teams[1].name}</div>
+                                            <div class="team-score">${isUpcoming && !isLive ? '-' : match.scores[1]}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="match-status status-badge ${badgeClass}">
+                                    ${statusLabel}
+                                </div>
+                            </div>
+                            <div style="flex-basis: 100%;">
+                                <div class="see-more-badge" id="badge-${match.matchId}" onclick="toggleMatchDetails('${match.matchId}')">See more</div>
+                            </div>
+                            <div class="extended-container" id="extended-${match.matchId}">
+                                <div style="text-align:center; color: var(--muted-text);">Loading details...</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (currentComp !== '') {
+                html += `</div>`; // Close final group
+            }
+
+            container.innerHTML = html;
+
+            // Trigger async fetches for live matches after DOM is updated
+            liveMatchesToLoad.forEach(lm => loadLiveMatchDetails(lm.id, lm.compName, lm.venueName));
+
+            // Auto-scroll to the next/active fixture
+            if (!skipScroll) {
+                setTimeout(() => {
+                    const target = document.getElementById('auto-scroll-target');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100);
+            }
+
+            // Trigger prefetch for next 3 upcoming matches
+            let prefetchedCount = 0;
+            for (let match of matchesToRender) {
+                if (match.status === 'U' && getMatchStatus(match) !== 'L') {
+                    prefetchMatchDetails(match.matchId);
+                    prefetchedCount++;
+                    if (prefetchedCount >= 3) break;
+                }
+            }
+
+            // Update dynamically displayed summary information
+            const filterSummary = document.getElementById('filter-summary');
+            if (filterSummary) {
+                const visibleMatches = matchesToRender.length;
+                const activeComps = new Set();
+                matchesToRender.forEach(m => activeComps.add(m.events?.[0]?.label || m.competition || 'International Fixture'));
+                
+                let infoArr = [];
+                const teamSelectElem = document.getElementById('team-filter');
+                const selTeams = Array.from(teamSelectElem.selectedOptions).map(o => o.value);
+                const filtAllTeams = selTeams.includes('ALL') || selTeams.length === 0;
+
+                if (filterAllComps) {
+                    infoArr.push(`Showing <strong>${visibleMatches}</strong> matches across <strong>${activeComps.size}</strong> competitions`);
+                } else {
+                    infoArr.push(`Showing <strong>${visibleMatches}</strong> matches in <strong>${selectedComps.length}</strong> selected competition(s)`);
+                }
+
+                if (!filtAllTeams) {
+                    infoArr.push(`Highlighting <strong>${selTeams.length}</strong> team(s)`);
+                }
+                
+                filterSummary.innerHTML = infoArr.join(' | ');
+            }
+        }
+
+        // Run
+        fetchFixtures();
+    </script>
+</body>
+</html>
