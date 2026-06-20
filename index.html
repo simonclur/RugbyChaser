@@ -591,15 +591,16 @@
 
         async function toggleMatchDetails(matchId) {
             const badge = document.getElementById(`badge-${matchId}`);
+            const containerOuter = document.getElementById(`extended-outer-${matchId}`);
             const container = document.getElementById(`extended-${matchId}`);
             
-            if (container.style.display === 'block') {
-                container.style.display = 'none';
+            if (containerOuter.style.display === 'block') {
+                containerOuter.style.display = 'none';
                 badge.textContent = 'See more';
                 return;
             }
 
-            container.style.display = 'block';
+            containerOuter.style.display = 'block';
             badge.textContent = 'See less';
 
             if (loadedMatchDetails[matchId]) return;
@@ -1070,6 +1071,7 @@
                 const { dateString, timeString } = formatDateTime(match.time.millis, offsetH);
                 const venueOffset = match.time.gmtOffset || 0;
                 const venueDateTime = formatDateTime(match.time.millis, venueOffset);
+                const utcDateTime = formatDateTime(match.time.millis, 0);
                 const status = getMatchStatus(match);
                 const compName = match.events?.[0]?.label || match.competition || 'International Fixture';
                 
@@ -1125,12 +1127,12 @@
                     const highlightClass = involvesTeam ? 'highlighted-team' : '';
                     html += `
                         <div class="match-card ${statusClass} ${highlightClass}">
-                            <div class="local-date-badge">${venueDateTime.dateString}</div>
+                            <div class="local-date-badge">${dateString}</div>
                             <div class="match-primary-content">
                                 <div class="match-main">
                                     <div class="match-meta">
                                         ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}<br>
-                                        <span style="font-size: 0.95em;">${timeString} (${tzLabel}) | <span style="opacity: 0.8">Local: ${venueDateTime.timeString}</span></span>
+                                        <span style="font-size: 0.95em;">${timeString} (${tzLabel})</span>
                                     </div>
                                     <div class="match-teams">
                                         <div class="team-row">
@@ -1150,8 +1152,15 @@
                             <div style="flex-basis: 100%;">
                                 <div class="see-more-badge" id="badge-${match.matchId}" onclick="toggleMatchDetails('${match.matchId}')">See more</div>
                             </div>
-                            <div class="extended-container" id="extended-${match.matchId}">
-                                <div style="text-align:center; color: var(--muted-text);">Loading details...</div>
+                            <div class="extended-container" id="extended-outer-${match.matchId}">
+                                <div style="font-size: 0.85em; text-align: center; margin-bottom: 15px; color: var(--muted-text); padding-bottom: 10px; border-bottom: 1px dashed var(--card-border);">
+                                    <strong>Local:</strong> ${venueDateTime.dateString} ${venueDateTime.timeString} 
+                                    <br>
+                                    <strong>UTC:</strong> ${utcDateTime.dateString} ${utcDateTime.timeString}
+                                </div>
+                                <div id="extended-${match.matchId}">
+                                    <div style="text-align:center; color: var(--muted-text);">Loading details...</div>
+                                </div>
                             </div>
                         </div>
                     `;
