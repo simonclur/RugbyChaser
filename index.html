@@ -1068,10 +1068,20 @@
             }
 
             matchesToRender.forEach(match => {
-                const { dateString, timeString } = formatDateTime(match.time.millis, offsetH);
+                let { dateString, timeString } = formatDateTime(match.time.millis, offsetH);
                 const venueOffset = match.time.gmtOffset || 0;
-                const venueDateTime = formatDateTime(match.time.millis, venueOffset);
-                const utcDateTime = formatDateTime(match.time.millis, 0);
+                let venueDateTime = formatDateTime(match.time.millis, venueOffset);
+                let utcDateTime = formatDateTime(match.time.millis, 0);
+                
+                // Detect TBC matches (midnight UTC returning 0.0 offset from API)
+                const d = new Date(match.time.millis);
+                const isTbc = d.getUTCHours() === 0 && d.getUTCMinutes() === 0 && venueOffset === 0;
+                if (isTbc) {
+                    timeString = "TBC";
+                    venueDateTime.timeString = "TBC";
+                    utcDateTime.timeString = "TBC";
+                }
+
                 const status = getMatchStatus(match);
                 const compName = match.events?.[0]?.label || match.competition || 'International Fixture';
                 
