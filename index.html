@@ -250,8 +250,17 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            position: relative;
             /* Memory applied: compact match cards with reduced vertical space */
             line-height: 1.3; 
+        }
+
+        .local-date-badge {
+            position: absolute;
+            top: 5px;
+            right: 12px;
+            font-size: 0.75em;
+            color: var(--muted-text);
         }
 
         .match-primary-content {
@@ -1116,11 +1125,12 @@
                     const highlightClass = involvesTeam ? 'highlighted-team' : '';
                     html += `
                         <div class="match-card ${statusClass} ${highlightClass}">
+                            <div class="local-date-badge">${venueDateTime.dateString}</div>
                             <div class="match-primary-content">
                                 <div class="match-main">
                                     <div class="match-meta">
                                         ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}<br>
-                                        <span style="font-size: 0.95em;">${timeString} (${tzLabel}) | <span style="opacity: 0.8">Local: ${venueDateTime.dateString} ${venueDateTime.timeString}</span></span>
+                                        <span style="font-size: 0.95em;">${timeString} (${tzLabel}) | <span style="opacity: 0.8">Local: ${venueDateTime.timeString}</span></span>
                                     </div>
                                     <div class="match-teams">
                                         <div class="team-row">
