@@ -582,6 +582,7 @@
             }
         });
         let allMatches = [];
+        let teamLogos = {};
         function toggleSettings() {
             const panel = document.getElementById('settings-panel');
             const btn = document.getElementById('settings-toggle');
@@ -851,8 +852,17 @@
 
         async function fetchFixtures() {
             try {
-                const response = await fetch('fixtures.json');
-                const data = await response.json();
+                // Fetch logos mapping in parallel with fixtures
+                const [fixturesRes, logosRes] = await Promise.all([
+                    fetch('fixtures.json'),
+                    fetch('team_logos.json').catch(() => null)
+                ]);
+                
+                const data = await fixturesRes.json();
+                
+                if (logosRes && logosRes.ok) {
+                    teamLogos = await logosRes.json();
+                }
                 
                 // Sort ascending chronologically
                 allMatches = data.matches.sort((a, b) => a.time.millis - b.time.millis);
@@ -1096,6 +1106,18 @@
                 });
             }
 
+            // Helper to get either the generated avatar or scraped wikipedia logo
+            const getTeamLogoUrl = (teamName) => {
+                if (teamLogos && teamLogos[teamName]) {
+                    return teamLogos[teamName];
+                }
+                const nameWithout7s = teamName.replace(/ 7s$/, '');
+                if (teamLogos && teamLogos[nameWithout7s]) {
+                    return teamLogos[nameWithout7s];
+                }
+                return `https://ui-avatars.com/api/?name=${encodeURIComponent(teamName)}&background=random&color=fff&bold=true`;
+            };
+
             matchesToRender.forEach(match => {
                 let { dateString, timeString } = formatDateTime(match.time.millis, offsetH);
                 const venueOffset = match.time.gmtOffset || 0;
@@ -1187,7 +1209,7 @@
                                     </div>
                                     <div class="match-teams">
                                         <div class="team-block home-team">
-                                            <img class="team-flag-img" src="https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[0].name)}&background=random&color=fff&bold=true" alt="${match.teams[0].name} flag" loading="lazy">
+                                            <img class="team-flag-img" src="${getTeamLogoUrl(match.teams[0].name)}" alt="${match.teams[0].name} flag" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[0].name)}&background=random&color=fff&bold=true'">
                                             <div class="team-name">${match.teams[0].name}</div>
                                             <div class="team-score">${isUpcoming && !isLive ? '' : match.scores[0]}</div>
                                         </div>
@@ -1195,7 +1217,7 @@
                                         <div class="team-block away-team">
                                             <div class="team-score">${isUpcoming && !isLive ? '' : match.scores[1]}</div>
                                             <div class="team-name">${match.teams[1].name}</div>
-                                            <img class="team-flag-img" src="https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[1].name)}&background=random&color=fff&bold=true" alt="${match.teams[1].name} flag" loading="lazy">
+                                            <img class="team-flag-img" src="${getTeamLogoUrl(match.teams[1].name)}" alt="${match.teams[1].name} flag" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[1].name)}&background=random&color=fff&bold=true'">
                                         </div>
                                     </div>
                                 </div>
