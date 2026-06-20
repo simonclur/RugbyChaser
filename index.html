@@ -327,27 +327,56 @@
 
         .match-teams {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 8px;
+            width: 100%;
         }
 
-        .team-row {
+        .team-block {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            flex: 1;
+        }
+
+        .team-block.home-team {
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .team-block.away-team {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .match-vs {
+            font-weight: bold;
+            color: var(--muted-text);
+            padding: 0 12px;
+            font-size: 1.1em;
+        }
+
+        .team-flag-img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--card-border);
         }
 
         .team-name {
             /* Memory applied: readable full team names */
             font-weight: 500;
             font-size: 1.05em;
+            margin: 0 10px;
         }
 
         .team-score {
             font-weight: bold;
             font-size: 1.1em;
-            min-width: 30px;
-            text-align: right;
+            min-width: 20px;
+            text-align: center;
         }
 
         .match-status {
@@ -1115,14 +1144,26 @@
                 }
 
                 let isNextScheduled = false;
+                let countdownStr = '';
                 if (isUpcoming && !isLive && !foundNextUpcoming) {
                     isNextScheduled = true;
                     foundNextUpcoming = true;
+                    
+                    if (!isTbc) {
+                        const nowMillis = Date.now();
+                        const diff = match.time.millis - nowMillis;
+                        if (diff > 0) {
+                            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                            const m = Math.floor((diff / 1000 / 60) % 60);
+                            countdownStr = ` (in ${d}d ${h}h ${m}m)`;
+                        }
+                    }
                 }
 
                 const isCompletedOrCancelled = status === 'C' || status === 'CC';
                 const statusClass = isCompletedOrCancelled ? 'completed' : (status === 'L' ? 'live' : (isNextScheduled ? 'next-scheduled' : 'upcoming'));
-                const statusLabel = status === 'C' ? 'FT' : (status === 'CC' ? 'CANC' : (status === 'L' ? 'LIVE' : (isNextScheduled ? 'NEXT: ' + timeString : timeString)));
+                const statusLabel = status === 'C' ? 'FT' : (status === 'CC' ? 'CANC' : (status === 'L' ? 'LIVE' : (isNextScheduled ? 'NEXT: ' + timeString + countdownStr : timeString)));
                 const badgeClass = isNextScheduled ? 'N' : status;
 
                 const involvesTeam = !filterAllTeams && (selectedTeams.includes(match.teams[0].name) || selectedTeams.includes(match.teams[1].name));
@@ -1145,13 +1186,16 @@
                                         <span style="font-size: 0.95em;">${timeString} (${tzLabel})</span>
                                     </div>
                                     <div class="match-teams">
-                                        <div class="team-row">
+                                        <div class="team-block home-team">
+                                            <img class="team-flag-img" src="https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[0].name)}&background=random&color=fff&bold=true" alt="${match.teams[0].name} flag" loading="lazy">
                                             <div class="team-name">${match.teams[0].name}</div>
-                                            <div class="team-score">${isUpcoming && !isLive ? '-' : match.scores[0]}</div>
+                                            <div class="team-score">${isUpcoming && !isLive ? '' : match.scores[0]}</div>
                                         </div>
-                                        <div class="team-row">
+                                        <div class="match-vs">-</div>
+                                        <div class="team-block away-team">
+                                            <div class="team-score">${isUpcoming && !isLive ? '' : match.scores[1]}</div>
                                             <div class="team-name">${match.teams[1].name}</div>
-                                            <div class="team-score">${isUpcoming && !isLive ? '-' : match.scores[1]}</div>
+                                            <img class="team-flag-img" src="https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[1].name)}&background=random&color=fff&bold=true" alt="${match.teams[1].name} flag" loading="lazy">
                                         </div>
                                     </div>
                                 </div>
