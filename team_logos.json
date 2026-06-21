@@ -40,12 +40,12 @@
   "Banbury RUFC": "https://upload.wikimedia.org/wikipedia/en/0/06/Banbury_RUFC_logo.png",
   "Barbados": {
     "name": "Barbados",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BAR.png",
+    "source_url": "local_override",
     "local_path": "images/Barbados.png"
   },
   "Barbarians": {
     "name": "Barbarians",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/1/16/Barbarians.png",
+    "source_url": "local_override",
     "local_path": "images/Barbarians.png"
   },
   "Basingstoke R.F.C.": "https://upload.wikimedia.org/wikipedia/en/8/86/Basingstoke_R.F.C._logo.png",
@@ -76,7 +76,7 @@
   "Blackheath": "https://upload.wikimedia.org/wikipedia/en/2/20/Blackheath_rfc_logo.png",
   "Blues": {
     "name": "Blues",
-    "source_url": "https://content.sportslogos.net/logos/196/5772/thumbs/577222060.gif",
+    "source_url": "local_override",
     "local_path": "images/Blues.gif"
   },
   "Boston RFC (England)": "https://upload.wikimedia.org/wikipedia/en/2/26/Boston_RFC_%28England%29_logo.png",
@@ -90,7 +90,7 @@
   "Brothers rugby club": "https://upload.wikimedia.org/wikipedia/en/1/17/Brothers_rugby_club_logo.jpg",
   "Brumbies": {
     "name": "Brumbies",
-    "source_url": "https://content.sportslogos.net/logos/196/5779/thumbs/577938232005.gif",
+    "source_url": "local_override",
     "local_path": "images/Brumbies.gif"
   },
   "Bude": "https://upload.wikimedia.org/wikipedia/en/a/a8/Bude_RFC_logo.png",
@@ -214,7 +214,7 @@
   "European Rugby Cup": "https://upload.wikimedia.org/wikipedia/en/c/c0/European_Rugby_Cup_logo.svg",
   "Exeter Chiefs": {
     "name": "Exeter Chiefs",
-    "source_url": "https://content.sportslogos.net/logos/194/5689/thumbs/568968070.gif",
+    "source_url": "local_override",
     "local_path": "images/Exeter_Chiefs.gif"
   },
   "Extraliga ragby XV": "https://upload.wikimedia.org/wikipedia/en/5/58/Extraliga_ragby_XV_logo.png",
@@ -231,7 +231,7 @@
   "Footscray RUFC": "https://upload.wikimedia.org/wikipedia/en/c/c8/Footscray_RUFC_logo.png",
   "France": {
     "name": "France",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FRA.png",
+    "source_url": "local_override",
     "local_path": "images/France.png"
   },
   "French Guiana": "https://upload.wikimedia.org/wikipedia/en/1/1e/French_Guiana_Rugby.gif",
@@ -243,7 +243,7 @@
   "Gimnasia Esgrima Buenos Aires": "https://upload.wikimedia.org/wikipedia/en/7/7b/Gimnasia_Esgrima_Buenos_Aires_Crest.svg",
   "Glasgow Warriors": {
     "name": "Glasgow Warriors",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/0/06/Glasgow_Warriors_Logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Glasgow_Warriors.png"
   },
   "Global Rapid": "https://upload.wikimedia.org/wikipedia/en/7/72/Global_Rapid_Rugby_logo.png",
@@ -325,7 +325,7 @@
   "Limoges-Rugby": "https://upload.wikimedia.org/wikipedia/en/8/8a/Limoges-Rugby.jpg",
   "Lions": {
     "name": "Lions",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/b/ba/Lions_Badge.PNG",
+    "source_url": "local_override",
     "local_path": "images/Lions.png"
   },
   "Llanelli Scarlets": "https://upload.wikimedia.org/wikipedia/en/4/4f/Llanelli_Scarlets_logo.svg",
@@ -398,7 +398,7 @@
   "Nerfulogo": "https://upload.wikimedia.org/wikipedia/en/f/f7/Nerfulogo.png",
   "Netherlands": {
     "name": "Netherlands",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NED.png",
+    "source_url": "local_override",
     "local_path": "images/Netherlands.png"
   },
   "New Caledonia": "https://upload.wikimedia.org/wikipedia/en/a/a8/New_Caledonia_Rugby_logo.png",
@@ -421,7 +421,7 @@
   },
   "Newcastle Red Bulls": {
     "name": "Newcastle Red Bulls",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/8/80/Newcastle_Red_Bulls_logo.png",
+    "source_url": "local_override",
     "local_path": "images/Newcastle_Red_Bulls.png"
   },
   "Newcastle Thunder": "https://upload.wikimedia.org/wikipedia/en/8/8c/Newcastle_Thunder_logo.svg",
@@ -451,7 +451,7 @@
   "Old Georgian Club": "https://upload.wikimedia.org/wikipedia/en/d/db/Old_Georgian_Club_Crest.svg",
   "Old Glory DC": {
     "name": "Old Glory DC",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/3/38/Old_Glory_DC_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Old_Glory_DC.png"
   },
   "Old Halesonians": "https://upload.wikimedia.org/wikipedia/en/1/16/Old_Halesonians_RFC_logo.png",
@@ -550,7 +550,7 @@
   "SWD Eagles": "https://upload.wikimedia.org/wikipedia/en/4/44/SWD_Eagles_logo.jpg",
   "Sale Sharks": {
     "name": "Sale Sharks",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/5e/Sale_Sharks_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Sale_Sharks.png"
   },
   "Salisbury": "https://upload.wikimedia.org/wikipedia/en/8/81/Salisbury_RFC_logo.png",
@@ -571,7 +571,7 @@
   "Selby RUFC": "https://upload.wikimedia.org/wikipedia/en/0/0e/Selby_RUFC_logo.png",
   "Selknam": {
     "name": "Selknam",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/7/75/Selknam_Rugby.png",
+    "source_url": "local_override",
     "local_path": "images/Selknam.png"
   },
   "Sheffield tigers": "https://upload.wikimedia.org/wikipedia/en/8/84/Sheffield_tigers_logo.png",
@@ -588,7 +588,7 @@
   "SlaviaRugby": "https://upload.wikimedia.org/wikipedia/en/1/1c/SlaviaRugby.jpg",
   "South Africa": {
     "name": "South Africa",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/RSA.png",
+    "source_url": "local_override",
     "local_path": "images/South_Africa.png"
   },
   "South Africa women's": "https://upload.wikimedia.org/wikipedia/en/8/89/South_Africa_women%27s_national_rugby_sevens_team.svg",
@@ -608,7 +608,7 @@
   "Srfclogo": "https://upload.wikimedia.org/wikipedia/en/d/d0/Srfclogo.jpg",
   "Sri Lanka": {
     "name": "Sri Lanka",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SRI.png",
+    "source_url": "local_override",
     "local_path": "images/Sri_Lanka.png"
   },
   "St Albans": "https://upload.wikimedia.org/wikipedia/en/c/cc/St_Albans_RFC_logo.png",
@@ -618,7 +618,7 @@
   "Stiinta Baia Mare Rugby Union": "https://upload.wikimedia.org/wikipedia/en/e/e7/Stiinta_Baia_Mare_Rugby_Union_Logo.png",
   "Stormers": {
     "name": "Stormers",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/e/e3/Stormers_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Stormers.png"
   },
   "Stormers logo 1999": "https://upload.wikimedia.org/wikipedia/en/2/2e/Stormers_logo_1999.svg",
@@ -714,372 +714,357 @@
   "Zlinrugby": "https://upload.wikimedia.org/wikipedia/en/5/55/Zlinrugby.jpg",
   "Australia": {
     "name": "Australia",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/AUS.png",
+    "source_url": "local_override",
     "local_path": "images/Australia.png"
   },
   "Australia 7s": {
     "name": "Australia 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Wallabies_national_rugby_union_team_primary_crest.svg/100px-Wallabies_national_rugby_union_team_primary_crest.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Australia_7s.png"
   },
   "Australia U20": {
     "name": "Australia U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/AUS.png",
+    "source_url": "local_override",
     "local_path": "images/Australia_U20.png"
   },
   "Barbarians Women": {
     "name": "Barbarians Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/1/16/Barbarians.png",
+    "source_url": "local_override",
     "local_path": "images/Barbarians_Women.png"
   },
   "British & Irish Lions": {
     "name": "British & Irish Lions",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/c/c7/2013_British_and_Irish_Lions_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/British___Irish_Lions.png"
   },
   "Brumbies Women": {
     "name": "Brumbies Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/53/Brumbies_Rugby_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Brumbies_Women.png"
   },
   "Canada": {
     "name": "Canada",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CAN.png",
+    "source_url": "local_override",
     "local_path": "images/Canada.png"
   },
   "Canada 7s": {
     "name": "Canada 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/1/11/CanadaWEST.png",
+    "source_url": "local_override",
     "local_path": "images/Canada_7s.png"
   },
   "Castres Olympique": {
     "name": "Castres Olympique",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/b/bd/Castres_olympique_badge.png",
+    "source_url": "local_override",
     "local_path": "images/Castres_Olympique.png"
   },
   "Chicago Hounds": {
     "name": "Chicago Hounds",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/f/f7/Chicago_hounds_logo.png",
+    "source_url": "local_override",
     "local_path": "images/Chicago_Hounds.png"
   },
   "Exeter Chiefs Women": {
     "name": "Exeter Chiefs Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/c/cc/Exeter_Chiefs_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Exeter_Chiefs_Women.png"
   },
   "France 7s": {
     "name": "France 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Logo_XV_de_France_masculin_2019.svg/100px-Logo_XV_de_France_masculin_2019.svg.png",
+    "source_url": "local_override",
     "local_path": "images/France_7s.png"
   },
   "France A": {
     "name": "France A",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/4/4e/France_Rugby_logo.png",
+    "source_url": "local_override",
     "local_path": "images/France_A.png"
   },
   "France U20": {
     "name": "France U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FRA.png",
+    "source_url": "local_override",
     "local_path": "images/France_U20.png"
   },
   "Gloucester Rugby": {
     "name": "Gloucester Rugby",
-    "source_url": "https://content.sportslogos.net/logos/194/5691/thumbs/569161900.gif",
+    "source_url": "local_override",
     "local_path": "images/Gloucester_Rugby.gif"
   },
   "Gloucester-Hartpury Women": {
     "name": "Gloucester-Hartpury Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/4/43/Gloucester%E2%80%93Hartpury_Logo_Red_%28PWR%29.png",
+    "source_url": "local_override",
     "local_path": "images/Gloucester_Hartpury_Women.png"
-  },
-  "Great Britain 7s": {
-    "name": "Great Britain 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Great_Britain_national_rugby_sevens_team.png/120px-Great_Britain_national_rugby_sevens_team.png",
-    "local_path": null
   },
   "Harlequins": {
     "name": "Harlequins",
-    "source_url": "https://content.sportslogos.net/logos/194/5685/thumbs/568548680.gif",
+    "source_url": "local_override",
     "local_path": "images/Harlequins.gif"
   },
   "Hong Kong China": {
     "name": "Hong Kong China",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/HKG.png",
+    "source_url": "local_override",
     "local_path": "images/Hong_Kong_China.png"
   },
   "Kenya 7s": {
     "name": "Kenya 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/2/2b/Kenya_Rugby_logo.png",
+    "source_url": "local_override",
     "local_path": "images/Kenya_7s.png"
   },
   "Kenya U20": {
     "name": "Kenya U20",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/2/2b/Kenya_Rugby_logo.png",
+    "source_url": "local_override",
     "local_path": "images/Kenya_U20.png"
   },
   "Loughborough Lightning": {
     "name": "Loughborough Lightning",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/58/Loughborough_RFC_logo.png",
+    "source_url": "local_override",
     "local_path": "images/Loughborough_Lightning.png"
   },
   "Mexico": {
     "name": "Mexico",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MEX.png",
+    "source_url": "local_override",
     "local_path": "images/Mexico.png"
   },
   "Provence Rugby": {
     "name": "Provence Rugby",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/3/32/Petrovicerugby.jpg",
+    "source_url": "local_override",
     "local_path": "images/Provence_Rugby.png"
   },
   "Sale Sharks Women": {
     "name": "Sale Sharks Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/5e/Sale_Sharks_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Sale_Sharks_Women.png"
   },
   "Saracens": {
     "name": "Saracens",
-    "source_url": "https://content.sportslogos.net/logos/194/5686/thumbs/568624810.gif",
+    "source_url": "local_override",
     "local_path": "images/Saracens.gif"
   },
   "Saracens Women": {
     "name": "Saracens Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/5a/Saracens_FC_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Saracens_Women.png"
   },
   "Scotland": {
     "name": "Scotland",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SCO.png",
+    "source_url": "local_override",
     "local_path": "images/Scotland.png"
   },
   "Seattle Seawolves": {
     "name": "Seattle Seawolves",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/b/be/Seattle_Seawolves_primary_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Seattle_Seawolves.png"
   },
   "Section Paloise": {
     "name": "Section Paloise",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/d/d0/Section_paloise_badge.png",
+    "source_url": "local_override",
     "local_path": "images/Section_Paloise.png"
   },
   "Sharks": {
     "name": "Sharks",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/5e/Sale_Sharks_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Sharks.png"
   },
   "South Africa 7s": {
     "name": "South Africa 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/South_Africa_national_rugby_union_team.svg/100px-South_Africa_national_rugby_union_team.svg.png",
+    "source_url": "local_override",
     "local_path": "images/South_Africa_7s.png"
   },
   "South Africa A": {
     "name": "South Africa A",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/b/bf/South_Africa_national_rugby_sevens_team.svg",
+    "source_url": "local_override",
     "local_path": "images/South_Africa_A.png"
   },
   "South Africa U20": {
     "name": "South Africa U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/RSA.png",
+    "source_url": "local_override",
     "local_path": "images/South_Africa_U20.png"
   },
   "US Montauban": {
     "name": "US Montauban",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/3/3f/Us_montauban.png",
+    "source_url": "local_override",
     "local_path": "images/US_Montauban.png"
   },
   "Argentina": {
     "name": "Argentina",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ARG.png",
+    "source_url": "local_override",
     "local_path": "images/Argentina.png"
   },
   "Argentina 7s": {
     "name": "Argentina 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Argentine_Rugby_Union_logo_2023.svg/100px-Argentine_Rugby_Union_logo_2023.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Argentina_7s.png"
   },
   "Argentina U20": {
     "name": "Argentina U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ARG.png",
+    "source_url": "local_override",
     "local_path": "images/Argentina_U20.png"
   },
   "Bath Rugby": {
     "name": "Bath Rugby",
-    "source_url": "https://media-cdn.incrowdsports.com/f4d9a293-9086-41bf-aa1b-c98d1c62fe3b.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/Bath_Rugby.png"
-  },
-  "Black Ferns XV": {
-    "name": "Black Ferns XV",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/120px-New_Zealand_All_Blacks.svg.png",
-    "local_path": null
   },
   "Blues Women": {
     "name": "Blues Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/5/53/Brumbies_Rugby_logo.svg",
+    "source_url": "local_override",
     "local_path": "images/Blues_Women.png"
   },
   "Bristol Bears": {
     "name": "Bristol Bears",
-    "source_url": "https://media-cdn.incrowdsports.com/714ab764-0396-4c96-80df-4013a723d172.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/Bristol_Bears.png"
   },
   "Chiefs": {
     "name": "Chiefs",
-    "source_url": "https://content.sportslogos.net/logos/196/5777/thumbs/577718011996.gif",
+    "source_url": "local_override",
     "local_path": "images/Chiefs.gif"
   },
   "Chile": {
     "name": "Chile",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CHI.png",
+    "source_url": "local_override",
     "local_path": "images/Chile.png"
   },
   "Crusaders": {
     "name": "Crusaders",
-    "source_url": "https://content.sportslogos.net/logos/196/5771/thumbs/577149300.gif",
+    "source_url": "local_override",
     "local_path": "images/Crusaders.gif"
   },
   "England": {
     "name": "England",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ENG.png",
+    "source_url": "local_override",
     "local_path": "images/England.png"
   },
   "Fiji": {
     "name": "Fiji",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FIJ.png",
+    "source_url": "local_override",
     "local_path": "images/Fiji.png"
   },
   "Fiji 7s": {
     "name": "Fiji 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Logo_Fiji_Rugby_2019.svg/100px-Logo_Fiji_Rugby_2019.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Fiji_7s.png"
   },
   "Georgia": {
     "name": "Georgia",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GEO.png",
+    "source_url": "local_override",
     "local_path": "images/Georgia.png"
   },
   "Hurricanes": {
     "name": "Hurricanes",
-    "source_url": "https://content.sportslogos.net/logos/196/5769/thumbs/576923781996.gif",
+    "source_url": "local_override",
     "local_path": "images/Hurricanes.gif"
   },
   "Ireland": {
     "name": "Ireland",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/IRE.png",
+    "source_url": "local_override",
     "local_path": "images/Ireland.png"
   },
   "Ireland U20": {
     "name": "Ireland U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/IRE.png",
+    "source_url": "local_override",
     "local_path": "images/Ireland_U20.png"
   },
   "Italy": {
     "name": "Italy",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ITA.png",
+    "source_url": "local_override",
     "local_path": "images/Italy.png"
   },
   "Japan": {
     "name": "Japan",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/JPN.png",
+    "source_url": "local_override",
     "local_path": "images/Japan.png"
-  },
-  "Maori All Blacks": {
-    "name": "Maori All Blacks",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/120px-New_Zealand_All_Blacks.svg.png",
-    "local_path": null
   },
   "New Zealand": {
     "name": "New Zealand",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NZL.png",
+    "source_url": "local_override",
     "local_path": "images/New_Zealand.png"
   },
   "New Zealand 7s": {
     "name": "New Zealand 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/100px-New_Zealand_All_Blacks.svg.png",
+    "source_url": "local_override",
     "local_path": "images/New_Zealand_7s.png"
   },
   "New Zealand U20": {
     "name": "New Zealand U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NZL.png",
+    "source_url": "local_override",
     "local_path": "images/New_Zealand_U20.png"
   },
   "Portugal": {
     "name": "Portugal",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/POR.png",
+    "source_url": "local_override",
     "local_path": "images/Portugal.png"
   },
   "Romania": {
     "name": "Romania",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ROU.png",
+    "source_url": "local_override",
     "local_path": "images/Romania.png"
   },
   "Samoa": {
     "name": "Samoa",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SAM.png",
+    "source_url": "local_override",
     "local_path": "images/Samoa.png"
   },
   "Scotland U20": {
     "name": "Scotland U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SCO.png",
+    "source_url": "local_override",
     "local_path": "images/Scotland_U20.png"
   },
   "Spain": {
     "name": "Spain",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ESP.png",
+    "source_url": "local_override",
     "local_path": "images/Spain.png"
   },
   "USA": {
     "name": "USA",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/USA.png",
+    "source_url": "local_override",
     "local_path": "images/USA.png"
   },
   "Uruguay": {
     "name": "Uruguay",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/URU.png",
+    "source_url": "local_override",
     "local_path": "images/Uruguay.png"
   },
   "Wales": {
     "name": "Wales",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/WAL.png",
+    "source_url": "local_override",
     "local_path": "images/Wales.png"
   },
   "England U20": {
     "name": "England U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ENG.png",
+    "source_url": "local_override",
     "local_path": "images/England_U20.png"
   },
   "England XV": {
     "name": "England XV",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/100px-Flag_of_England.svg.png",
+    "source_url": "local_override",
     "local_path": "images/England_XV.png"
   },
   "Wales U20": {
     "name": "Wales U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/WAL.png",
+    "source_url": "local_override",
     "local_path": "images/Wales_U20.png"
   },
   "Fiji U20": {
     "name": "Fiji U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FIJ.png",
+    "source_url": "local_override",
     "local_path": "images/Fiji_U20.png"
   },
   "Japan 7s": {
     "name": "Japan 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Japan_Rugby_Football_Union.svg/100px-Japan_Rugby_Football_Union.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Japan_7s.png"
   },
   "Japan U20": {
     "name": "Japan U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/JPN.png",
+    "source_url": "local_override",
     "local_path": "images/Japan_U20.png"
   },
   "Japan XV": {
     "name": "Japan XV",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Japan_Rugby_Football_Union.svg/100px-Japan_Rugby_Football_Union.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Japan_XV.png"
   },
   "Georgia U20": {
     "name": "Georgia U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GEO.png",
+    "source_url": "local_override",
     "local_path": "images/Georgia_U20.png"
   },
   "Hong Kong Flag": {
@@ -1089,7 +1074,7 @@
   },
   "Italy U20": {
     "name": "Italy U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ITA.png",
+    "source_url": "local_override",
     "local_path": "images/Italy_U20.png"
   },
   "Ivory Coast Flag": {
@@ -1109,12 +1094,12 @@
   },
   "Spain 7s": {
     "name": "Spain 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/100px-Flag_of_Spain.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Spain_7s.png"
   },
   "Spain U20": {
     "name": "Spain U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ESP.png",
+    "source_url": "local_override",
     "local_path": "images/Spain_U20.png"
   },
   "Tonga Flag": {
@@ -1124,7 +1109,7 @@
   },
   "Tonga": {
     "name": "Tonga",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TGA.png",
+    "source_url": "local_override",
     "local_path": "images/Tonga.png"
   },
   "United States Flag": {
@@ -1134,12 +1119,12 @@
   },
   "Uruguay 7s": {
     "name": "Uruguay 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Uruguayan_Rugby_Union.svg/100px-Uruguayan_Rugby_Union.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Uruguay_7s.png"
   },
   "Uruguay U20": {
     "name": "Uruguay U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/URU.png",
+    "source_url": "local_override",
     "local_path": "images/Uruguay_U20.png"
   },
   "Zimbabwe Flag": {
@@ -1149,12 +1134,12 @@
   },
   "Zimbabwe": {
     "name": "Zimbabwe",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ZIM.png",
+    "source_url": "local_override",
     "local_path": "images/Zimbabwe.png"
   },
   "Zimbabwe U20": {
     "name": "Zimbabwe U20",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Flag_of_Zimbabwe.svg/100px-Flag_of_Zimbabwe.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Zimbabwe_U20.png"
   },
   "Edinburgh Flag": {
@@ -1339,7 +1324,7 @@
   },
   "Germany 7s": {
     "name": "Germany 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/100px-Flag_of_Germany.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Germany_7s.png"
   },
   "Jamaica Flag": {
@@ -1374,7 +1359,7 @@
   },
   "Tunisia U20": {
     "name": "Tunisia U20",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Tunisia.svg/100px-Flag_of_Tunisia.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Tunisia_U20.png"
   },
   "Uganda Flag": {
@@ -1384,7 +1369,7 @@
   },
   "Uganda U20": {
     "name": "Uganda U20",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Flag_of_Uganda.svg/100px-Flag_of_Uganda.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Uganda_U20.png"
   },
   "United Arab Emirates Flag": {
@@ -1399,12 +1384,12 @@
   },
   "Brazil": {
     "name": "Brazil",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BRA.png",
+    "source_url": "local_override",
     "local_path": "images/Brazil.png"
   },
   "Brazil 7s": {
     "name": "Brazil 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/100px-Flag_of_Brazil.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Brazil_7s.png"
   },
   "China Flag": {
@@ -1419,7 +1404,7 @@
   },
   "Madagascar U20": {
     "name": "Madagascar U20",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Madagascar.svg/100px-Flag_of_Madagascar.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Madagascar_U20.png"
   },
   "Thailand Flag": {
@@ -1429,37 +1414,37 @@
   },
   "Bristol Bears Women": {
     "name": "Bristol Bears Women",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/a/ab/Old_Bristolians_RFC_logo.png",
+    "source_url": "local_override",
     "local_path": "images/Bristol_Bears_Women.png"
   },
   "Hurricanes Poua": {
     "name": "Hurricanes Poua",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/8/87/Chiefs_rugby_union_logo.jpg",
+    "source_url": "local_override",
     "local_path": "images/Hurricanes_Poua.png"
   },
   "USA 7s": {
     "name": "USA 7s",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/United_States_Rugby.svg/120px-United_States_Rugby.svg.png",
-    "local_path": null
+    "source_url": "local_override",
+    "local_path": "images/USA.png"
   },
   "Zambia U20": {
     "name": "Zambia U20",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Flag_of_Zimbabwe.svg/100px-Flag_of_Zimbabwe.svg.png",
+    "source_url": "local_override",
     "local_path": "images/Zambia_U20.png"
   },
   "Leicester Tigers": {
     "name": "Leicester Tigers",
-    "source_url": "https://content.sportslogos.net/logos/194/5693/thumbs/569353720.gif",
+    "source_url": "local_override",
     "local_path": "images/Leicester_Tigers.gif"
   },
   "Stade Toulousain": {
     "name": "Stade Toulousain",
-    "source_url": "https://media-cdn.incrowdsports.com/9b827a29-a5b1-4752-b312-477492f2819a.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/Stade_Toulousain.png"
   },
   "USA U20": {
     "name": "USA U20",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/USA.png",
+    "source_url": "local_override",
     "local_path": "images/USA_U20.png"
   },
   "Russia": {
@@ -1499,7 +1484,7 @@
   },
   "Korea": {
     "name": "Korea",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/KOR.png",
+    "source_url": "local_override",
     "local_path": "images/Korea.png"
   },
   "Morocco": {
@@ -1514,7 +1499,7 @@
   },
   "Cayman Islands": {
     "name": "Cayman Islands",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CAY.png",
+    "source_url": "local_override",
     "local_path": "images/Cayman_Islands.png"
   },
   "Malta": {
@@ -1544,7 +1529,7 @@
   },
   "Trinidad & Tobago": {
     "name": "Trinidad & Tobago",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TTO.png",
+    "source_url": "local_override",
     "local_path": "images/Trinidad___Tobago.png"
   },
   "Philippines": {
@@ -1634,7 +1619,7 @@
   },
   "Guyana": {
     "name": "Guyana",
-    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GUY.png",
+    "source_url": "local_override",
     "local_path": "images/Guyana.png"
   },
   "Nigeria": {
@@ -1814,7 +1799,7 @@
   },
   "Northampton Saints": {
     "name": "Northampton Saints",
-    "source_url": "https://content.sportslogos.net/logos/194/5684/thumbs/568473960.gif",
+    "source_url": "local_override",
     "local_path": "images/Northampton_Saints.gif"
   },
   "Bath": {
@@ -1839,12 +1824,12 @@
   },
   "Queensland Reds": {
     "name": "Queensland Reds",
-    "source_url": "https://content.sportslogos.net/logos/196/5784/thumbs/578479660.gif",
+    "source_url": "local_override",
     "local_path": "images/Queensland_Reds.gif"
   },
   "Bulls": {
     "name": "Bulls",
-    "source_url": "https://content.sportslogos.net/logos/196/5776/thumbs/577647971997.gif",
+    "source_url": "local_override",
     "local_path": "images/Bulls.gif"
   },
   "Highlanders": {
@@ -1934,7 +1919,7 @@
   },
   "ASM Clermont Auvergne": {
     "name": "ASM Clermont Auvergne",
-    "source_url": "https://media-cdn.incrowdsports.com/95849879-7088-4036-940b-50f597d3d0cb.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/ASM_Clermont_Auvergne.png"
   },
   "Cardiff Rugby": {
@@ -1949,7 +1934,7 @@
   },
   "Racing 92": {
     "name": "Racing 92",
-    "source_url": "https://media-cdn.incrowdsports.com/3cc066e0-e7e0-4116-ae7f-1c6c45618165.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/Racing_92.png"
   },
   "Stade Français Paris": {
@@ -1959,7 +1944,7 @@
   },
   "Stade Rochelais": {
     "name": "Stade Rochelais",
-    "source_url": "https://media-cdn.incrowdsports.com/19efa570-22bf-40d1-b8ad-2abb7818c31f.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/Stade_Rochelais.png"
   },
   "Vodacom Bulls": {
@@ -1969,7 +1954,7 @@
   },
   "California Legion": {
     "name": "California Legion",
-    "source_url": "https://www.ultimaterugby.com/images/entities/355067-7bffaec86c-5/LEGION-Master.png",
+    "source_url": "local_override",
     "local_path": "images/California_Legion.png"
   },
   "Kingswood College": {
@@ -1984,7 +1969,7 @@
   },
   "Queensland Reds Women": {
     "name": "Queensland Reds Women",
-    "source_url": "https://www.ultimaterugby.com/images/entities/276966-de72b4b1a0-5/image.png",
+    "source_url": "local_override",
     "local_path": "images/Queensland_Reds_Women.png"
   },
   "Fijiana Drua Women": {
@@ -1994,12 +1979,12 @@
   },
   "Western Force Women": {
     "name": "Western Force Women",
-    "source_url": "https://www.ultimaterugby.com/images/entities/276968-83076110fb-5/image.png",
+    "source_url": "local_override",
     "local_path": "images/Western_Force_Women.png"
   },
   "NSW Waratahs Women": {
     "name": "NSW Waratahs Women",
-    "source_url": "https://www.ultimaterugby.com/images/entities/276919-50900422b0-5/image.png",
+    "source_url": "local_override",
     "local_path": "images/NSW_Waratahs_Women.png"
   },
   "Argentina U20's": {
@@ -2084,7 +2069,7 @@
   },
   "New England Free Jacks": {
     "name": "New England Free Jacks",
-    "source_url": "https://statics-maker.llt-services.com/mlr/images/2025/06/24/original/1dceff6e-070d-42e2-a6a4-aabf8d9a60fe-678.png",
+    "source_url": "local_override",
     "local_path": "images/New_England_Free_Jacks.png"
   },
   "URAYASU D-Rocks": {
@@ -2119,7 +2104,7 @@
   },
   "Kubota Spears": {
     "name": "Kubota Spears",
-    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/5_200x200_61a5e73d2fe9a.png",
+    "source_url": "local_override",
     "local_path": "images/Kubota_Spears.png"
   },
   "KOBELCO KOBE STEELERS": {
@@ -2224,7 +2209,7 @@
   },
   "Stade Francais Paris": {
     "name": "Stade Francais Paris",
-    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25921.png",
+    "source_url": "local_override",
     "local_path": "images/Stade_Francais_Paris.png"
   },
   "Bordeaux Begles": {
@@ -2256,5 +2241,15 @@
     "name": "Brive",
     "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25915.png",
     "local_path": "images/Brive.png"
+  },
+  "Cote D'Ivoire U20": {
+    "name": "Cote D'Ivoire U20",
+    "source_url": "local_override",
+    "local_path": "images/Cote_D_Ivoire.png"
+  },
+  "Leicester Tigers Women": {
+    "name": "Leicester Tigers Women",
+    "source_url": "local_override",
+    "local_path": "images/Leicester_Tigers.gif"
   }
 }
