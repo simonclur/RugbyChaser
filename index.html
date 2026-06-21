@@ -509,6 +509,52 @@
             align-items: center;
             gap: 8px;
         }
+
+        /* Bottom Tab Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            overflow-x: auto;
+            z-index: 1000;
+            padding: 8px 5px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .bottom-nav::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .nav-tab {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            margin: 0 5px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .nav-tab:hover, .nav-tab:active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* Padding adjustment for the bottom nav bar */
+        body {
+            padding-bottom: 70px;
+        }
     </style>
 </head>
 <body>
@@ -561,42 +607,42 @@
         <div id="matches-container">Loading...</div>
 
         <div id="extra-sections-container">
-            <div class="competition-group" style="margin-top: 40px;">
+            <div id="rankings-section" class="competition-group" style="margin-top: 40px;">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">World Rugby Rankings</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     Men's & Women's live rugby rankings data loading...
                 </div>
             </div>
 
-            <div class="competition-group">
+            <div id="countdown-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Countdown</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     Men's Rugby World Cup 2027 countdown timer pending...
                 </div>
             </div>
 
-            <div class="competition-group">
+            <div id="groups-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Group Tables</div>
                 <div id="rwc-pools-container" class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     World cup group standing tables configuration pending...
                 </div>
             </div>
 
-            <div class="competition-group">
+            <div id="knockout-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 Knockout</div>
                 <div class="match-card" style="padding: 10px; overflow-x: auto; text-align: center;">
                     <img src="https://resources.worldrugby-rims.pulselive.com/photo-resources/2026/03/09/1b9b34b6-6291-429a-b784-f3bf69ff7dda/RWC27_KO_Bracket.png?width=1667" alt="RWC 2027 Ladder" style="max-width: 100%; height: auto; border-radius: 4px;">
                 </div>
             </div>
 
-            <div class="competition-group">
+            <div id="points-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 - Top Points Scorer</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     RWC27 live tournament points scorer leaderboard pending...
                 </div>
             </div>
 
-            <div class="competition-group">
+            <div id="all-time-points-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC All Time Points Scorer</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     Historical RWC top points scorer leaderboard data...
@@ -614,6 +660,17 @@
             <button onclick="closeInfoPanel()" style="margin-top:15px; width:100%">Close</button>
         </div>
     </div>
+
+    <!-- Bottom Tab Navigation -->
+    <nav class="bottom-nav">
+        <a href="javascript:void(0)" onclick="document.getElementById('auto-scroll-target')?.scrollIntoView({behavior: 'smooth', block: 'start'})" class="nav-tab">Live/Next</a>
+        <a href="#rankings-section" class="nav-tab">Rankings</a>
+        <a href="#countdown-section" class="nav-tab">Countdown</a>
+        <a href="#groups-section" class="nav-tab">Pools</a>
+        <a href="#knockout-section" class="nav-tab">Knockout</a>
+        <a href="#points-section" class="nav-tab">Top Scorers</a>
+        <a href="#all-time-points-section" class="nav-tab">All Time</a>
+    </nav>
 
     <script>
 
