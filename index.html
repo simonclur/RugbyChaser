@@ -14,8 +14,8 @@
             --live-color: #e02424;
             --completed-color: #6b7280;
             --muted-text: #4b5563;
-            --next-color: #10b981;
-            --next-bg: #ecfdf5;
+            --next-color: #f59e0b; /* Amber/Yellow for next match */
+            --next-bg: #fffbeb;
         }
 
         [data-theme="dark"] {
@@ -27,8 +27,8 @@
             --live-color: #ef4444;
             --completed-color: #9ca3af;
             --muted-text: #9ca3af;
-            --next-color: #34d399;
-            --next-bg: #064e3b;
+            --next-color: #fce588; /* Lighter yellow for dark mode */
+            --next-bg: rgba(251, 191, 36, 0.15); /* Soft transparent yellow background */
         }
 
         body {
@@ -384,6 +384,21 @@
             text-align: center;
         }
 
+        .score-haze {
+            filter: blur(6px);
+            opacity: 0.7;
+            cursor: pointer;
+            user-select: none;
+            transition: filter 0.2s ease, opacity 0.2s ease;
+            background-color: rgba(128, 128, 128, 0.1);
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+
+        .score-haze:hover {
+            opacity: 0.9;
+        }
+
         .match-status {
             font-size: 0.8em;
             text-transform: uppercase;
@@ -544,6 +559,50 @@
         </div>
 
         <div id="matches-container">Loading...</div>
+
+        <div id="extra-sections-container">
+            <div class="competition-group" style="margin-top: 40px;">
+                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">World Rugby Rankings</div>
+                <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
+                    Men's & Women's live rugby rankings data loading...
+                </div>
+            </div>
+
+            <div class="competition-group">
+                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Countdown</div>
+                <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
+                    Men's Rugby World Cup 2027 countdown timer pending...
+                </div>
+            </div>
+
+            <div class="competition-group">
+                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Group Tables</div>
+                <div id="rwc-pools-container" class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
+                    World cup group standing tables configuration pending...
+                </div>
+            </div>
+
+            <div class="competition-group">
+                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 Knockout</div>
+                <div class="match-card" style="padding: 10px; overflow-x: auto; text-align: center;">
+                    <img src="https://resources.worldrugby-rims.pulselive.com/photo-resources/2026/03/09/1b9b34b6-6291-429a-b784-f3bf69ff7dda/RWC27_KO_Bracket.png?width=1667" alt="RWC 2027 Ladder" style="max-width: 100%; height: auto; border-radius: 4px;">
+                </div>
+            </div>
+
+            <div class="competition-group">
+                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 - Top Points Scorer</div>
+                <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
+                    RWC27 live tournament points scorer leaderboard pending...
+                </div>
+            </div>
+
+            <div class="competition-group">
+                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC All Time Points Scorer</div>
+                <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
+                    Historical RWC top points scorer leaderboard data...
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="info-modal" class="info-modal" onclick="closeInfoPanel()">
@@ -586,6 +645,19 @@
                 select.dispatchEvent(new Event('change'));
             }
         });
+        
+        // Helper to get either the generated avatar or scraped wikipedia logo
+        const getTeamLogoUrl = (teamName) => {
+            if (teamLogos && teamLogos[teamName] && teamLogos[teamName].local_path) {
+                return teamLogos[teamName].local_path;
+            }
+            const baseName = teamName.replace(/ (7s|XV|U20|A|Women)$/, '');
+            if (teamLogos && teamLogos[baseName] && teamLogos[baseName].local_path) {
+                return teamLogos[baseName].local_path;
+            }
+            return `https://ui-avatars.com/api/?name=${encodeURIComponent(teamName)}&background=random&color=fff&bold=true`;
+        };
+
         let allMatches = [];
         let teamLogos = {};
         function toggleSettings() {
@@ -855,18 +927,94 @@
             if (teamSelect.selectedOptions.length === 0) teamSelect.options[0].selected = true;
         }
 
+        function renderRWCPools() {
+            const container = document.getElementById('rwc-pools-container');
+            if (!container || !rwcPoolsData) return;
+
+            let html = '';
+            for (const [poolName, teams] of Object.entries(rwcPoolsData)) {
+                html += `
+                    <div style="margin-bottom: 25px;">
+                        <div style="font-weight: 600; text-align: left; padding-bottom: 8px; border-bottom: 2px solid var(--card-border); margin-bottom: 10px; color: var(--text-color); font-size: 1.1em;">${poolName}</div>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em; table-layout: fixed;">
+                                <colgroup>
+                                    <col style="width: 8%;">
+                                    <col style="width: 44%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                    <col style="width: 8%;">
+                                </colgroup>
+                                <thead>
+                                    <tr style="color: var(--muted-text); font-size: 0.85em; text-align: center;">
+                                        <th style="text-align: left; padding: 4px;">#</th>
+                                        <th style="text-align: left; padding: 4px;">Team</th>
+                                        <th style="padding: 4px;">P</th>
+                                        <th style="padding: 4px;">W</th>
+                                        <th style="padding: 4px;">D</th>
+                                        <th style="padding: 4px;">L</th>
+                                        <th style="padding: 4px;">PD</th>
+                                        <th style="padding: 4px; font-weight: bold;">Pts</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `;
+                
+                teams.forEach(teamData => {
+                    const rowBg = parseInt(teamData.position) <= 2 ? 'background-color: rgba(16, 185, 129, 0.05);' : '';
+                    const idxBold = parseInt(teamData.position) <= 2 ? 'font-weight: bold; color: var(--next-color);' : '';
+                    html += `
+                        <tr style="border-bottom: 1px solid var(--card-border); text-align: center; ${rowBg}">
+                            <td style="text-align: left; padding: 8px 6px; ${idxBold}">${teamData.position}</td>
+                            <td style="text-align: left; padding: 8px 6px; font-weight: 500; display: flex; align-items: center;">
+                                <img src="${getTeamLogoUrl(teamData.team)}" style="width: 24px; height: 24px; object-fit: contain; margin-right: 8px; border-radius: 50%; background-color: #fff; padding: 2px; border: 1px solid var(--card-border);" onerror="this.style.display='none'">
+                                ${teamData.team}
+                            </td>
+                            <td style="padding: 8px 6px; color: var(--muted-text);">${teamData.played}</td>
+                            <td style="padding: 8px 6px; color: var(--muted-text);">${teamData.won}</td>
+                            <td style="padding: 8px 6px; color: var(--muted-text);">${teamData.drawn}</td>
+                            <td style="padding: 8px 6px; color: var(--muted-text);">${teamData.lost}</td>
+                            <td style="padding: 8px 6px; color: var(--muted-text);">${teamData.points_diff}</td>
+                            <td style="padding: 8px 6px; font-weight: bold;">${teamData.points}</td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+            container.style.padding = "10px";
+            container.style.textAlign = "left";
+        }
+
+        let rwcPoolsData = null;
+
         async function fetchFixtures() {
             try {
-                // Fetch logos mapping in parallel with fixtures
-                const [fixturesRes, logosRes] = await Promise.all([
+                // Fetch logos mapping in parallel with fixtures and pools
+                const [fixturesRes, logosRes, poolsRes] = await Promise.all([
                     fetch('fixtures.json'),
-                    fetch('team_logos.json').catch(() => null)
+                    fetch('team_logos.json').catch(() => null),
+                    fetch('rwc_pools.json').catch(() => null)
                 ]);
                 
                 const data = await fixturesRes.json();
                 
                 if (logosRes && logosRes.ok) {
                     teamLogos = await logosRes.json();
+                }
+
+                if (poolsRes && poolsRes.ok) {
+                    rwcPoolsData = await poolsRes.json();
+                    renderRWCPools();
                 }
                 
                 // Sort ascending chronologically
@@ -1111,18 +1259,6 @@
                 });
             }
 
-            // Helper to get either the generated avatar or scraped wikipedia logo
-            const getTeamLogoUrl = (teamName) => {
-                if (teamLogos && teamLogos[teamName] && teamLogos[teamName].local_path) {
-                    return teamLogos[teamName].local_path;
-                }
-                const baseName = teamName.replace(/ (7s|XV|U20|A|Women)$/, '');
-                if (teamLogos && teamLogos[baseName] && teamLogos[baseName].local_path) {
-                    return teamLogos[baseName].local_path;
-                }
-                return `https://ui-avatars.com/api/?name=${encodeURIComponent(teamName)}&background=random&color=fff&bold=true`;
-            };
-
             matchesToRender.forEach(match => {
                 let { dateString, timeString } = formatDateTime(match.time.millis, offsetH);
                 const venueOffset = match.time.gmtOffset || 0;
@@ -1203,31 +1339,36 @@
                 } else {
                     const involvesTeam = !filterAllTeams && (selectedTeams.includes(match.teams[0].name) || selectedTeams.includes(match.teams[1].name));
                     const highlightClass = involvesTeam ? 'highlighted-team' : '';
+                    const daysSinceMatch = (Date.now() - match.time.millis) / (1000 * 60 * 60 * 24);
+                    const hazeClass = (!isUpcoming || isLive) && daysSinceMatch <= 5 ? 'score-haze' : '';
                     html += `
-                        <div class="match-card ${statusClass} ${highlightClass}">
-                            <div class="local-date-badge">${dateString}</div>
-                            <div class="match-primary-content">
-                                <div class="match-main">
-                                    <div class="match-meta">
-                                        ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}<br>
-                                        <span style="font-size: 0.95em;">${timeString} (${tzLabel})</span>
-                                    </div>
+                        <div class="match-card ${statusClass} ${highlightClass}" style="flex-direction: column; align-items: stretch;">
+                            <div style="display: flex; justify-content: space-between; width: 100%; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 12px;">
+                                <div style="flex: 0 0 50%; padding-right: 10px; font-size: 0.85em; color: var(--muted-text); align-content: center;">
+                                    ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}
+                                </div>
+                                <div style="flex: 0 0 50%; text-align: right; display: flex; flex-direction: column; justify-content: center;">
+                                    <div style="font-size: 0.9em; font-weight: 500; color: var(--text-color); margin-bottom: 3px;">${dateString}</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-bottom: 12px;">
+                                <div class="status-badge ${badgeClass}" style="position: static; display: inline-block; padding: 4px 12px; font-size: 1.05em; font-weight: 600; border-radius: 4px;">${statusLabel}${tzLabel !== 'UTC' && status !== 'C' && status !== 'CC' && status !== 'L' ? '<sup style="font-size: 0.65em; font-weight: normal; margin-left: 3px;">(' + tzLabel + ')</sup>' : ''}</div>
+                            </div>
+                            <div class="match-primary-content" style="flex-basis: auto;">
+                                <div class="match-main" style="width: 100%;">
                                     <div class="match-teams">
                                         <div class="team-block home-team">
+                                            <div class="team-name" style="text-align: right;">${match.teams[0].name}</div>
                                             <img class="team-flag-img" src="${getTeamLogoUrl(match.teams[0].name)}" alt="${match.teams[0].name} flag" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[0].name)}&background=random&color=fff&bold=true'">
-                                            <div class="team-name">${match.teams[0].name}</div>
-                                            <div class="team-score">${isUpcoming && !isLive ? '' : match.scores[0]}</div>
+                                            <div class="team-score ${hazeClass}" onclick="this.classList.toggle('score-haze')" title="Click to reveal/hide score" style="margin-left: 12px; font-size: 1.25em;">${isUpcoming && !isLive ? '' : match.scores[0]}</div>
                                         </div>
                                         <div class="match-vs">-</div>
                                         <div class="team-block away-team">
-                                            <div class="team-score">${isUpcoming && !isLive ? '' : match.scores[1]}</div>
-                                            <div class="team-name">${match.teams[1].name}</div>
+                                            <div class="team-score ${hazeClass}" onclick="this.classList.toggle('score-haze')" title="Click to reveal/hide score" style="margin-right: 12px; font-size: 1.25em;">${isUpcoming && !isLive ? '' : match.scores[1]}</div>
                                             <img class="team-flag-img" src="${getTeamLogoUrl(match.teams[1].name)}" alt="${match.teams[1].name} flag" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(match.teams[1].name)}&background=random&color=fff&bold=true'">
+                                            <div class="team-name" style="text-align: left;">${match.teams[1].name}</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="match-status status-badge ${badgeClass}">
-                                    ${statusLabel}
                                 </div>
                             </div>
                             <div style="flex-basis: 100%;">
