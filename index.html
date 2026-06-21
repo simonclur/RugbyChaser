@@ -357,15 +357,17 @@
         }
 
         .team-flag-img {
-            width: 24px;
-            height: 24px;
+            /* Responsive logo sizes matching match-card height allowance */
+            width: clamp(36px, 8vw, 56px);
+            height: clamp(36px, 8vw, 56px);
             border-radius: 50%;
             object-fit: contain;
             background-color: #ffffff;
             box-sizing: border-box;
-            padding: 2px;
+            padding: 3px;
             flex-shrink: 0;
             border: 1px solid var(--card-border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .team-name {
