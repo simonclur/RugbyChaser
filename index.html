@@ -1108,12 +1108,12 @@
 
             // Helper to get either the generated avatar or scraped wikipedia logo
             const getTeamLogoUrl = (teamName) => {
-                if (teamLogos && teamLogos[teamName]) {
-                    return teamLogos[teamName];
+                if (teamLogos && teamLogos[teamName] && teamLogos[teamName].local_path) {
+                    return teamLogos[teamName].local_path;
                 }
-                const baseName = teamName.replace(/ (7s|XV|U20|A)$/, '');
-                if (teamLogos && teamLogos[baseName]) {
-                    return teamLogos[baseName];
+                const baseName = teamName.replace(/ (7s|XV|U20|A|Women)$/, '');
+                if (teamLogos && teamLogos[baseName] && teamLogos[baseName].local_path) {
+                    return teamLogos[baseName].local_path;
                 }
                 return `https://ui-avatars.com/api/?name=${encodeURIComponent(teamName)}&background=random&color=fff&bold=true`;
             };
