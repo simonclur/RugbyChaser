@@ -2251,5 +2251,50 @@
     "name": "Leicester Tigers Women",
     "source_url": "local_override",
     "local_path": "images/Leicester_Tigers.gif"
+  },
+  "Aviron Bayonnais": {
+    "name": "Aviron Bayonnais",
+    "source_url": "https://media-cdn.incrowdsports.com/90ba8743-d118-416e-9b4a-fda68eff85cd.png?format=webp&width=125",
+    "local_path": "images/Aviron_Bayonnais.png"
+  },
+  "Benetton Rugby": {
+    "name": "Benetton Rugby",
+    "source_url": "https://media-cdn.incrowdsports.com/4747375d-38be-471b-a933-a26e5e4f6617.png?format=webp&width=125",
+    "local_path": "images/Benetton_Rugby.png"
+  },
+  "Dragons RFC": {
+    "name": "Dragons RFC",
+    "source_url": "https://media-cdn.incrowdsports.com/93e79117-17bf-4cd0-83be-66ab2db787c0.png?format=webp&width=125",
+    "local_path": "images/Dragons_RFC.png"
+  },
+  "Hollywoodbets Sharks": {
+    "name": "Hollywoodbets Sharks",
+    "source_url": "https://media-cdn.incrowdsports.com/3fd8048b-5ebd-4d7d-83a2-6556854bbf8f.png?format=webp&width=125",
+    "local_path": "images/Hollywoodbets_Sharks.png"
+  },
+  "LOU Rugby": {
+    "name": "LOU Rugby",
+    "source_url": "https://media-cdn.incrowdsports.com/d75d294b-70bd-4716-abf6-c701dd77e5a6.png?format=webp&width=125",
+    "local_path": "images/LOU_Rugby.png"
+  },
+  "RC Toulon": {
+    "name": "RC Toulon",
+    "source_url": "https://media-cdn.incrowdsports.com/c460bc92-ecd2-48d5-9f8e-ae8e12a2ebf4.png?format=webp&width=125",
+    "local_path": "images/RC_Toulon.png"
+  },
+  "RC Vannes": {
+    "name": "RC Vannes",
+    "source_url": "https://media-cdn.incrowdsports.com/08047783-883a-40ae-9f31-744e4bdcad0b.svg?format=webp&width=125",
+    "local_path": "images/RC_Vannes.svg"
+  },
+  "USAP": {
+    "name": "USAP",
+    "source_url": "https://media-cdn.incrowdsports.com/b41121d6-ede2-451b-a33b-07125128356d.png?format=webp&width=125",
+    "local_path": "images/USAP.png"
+  },
+  "Zebre Parma": {
+    "name": "Zebre Parma",
+    "source_url": "https://media-cdn.incrowdsports.com/33156f52-4069-4bf3-9205-9ca18e8b9a7b.png?format=webp&width=125",
+    "local_path": "images/Zebre_Parma.png"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T10:57:18.188992+00:00",
+  "lastUpdated": "2026-06-21T09:38:50.253242+00:00",
   "totalMatches": 401,
   "matches": [
     {
@@ -11824,16 +11824,16 @@
         }
       ],
       "scores": [
-        0,
-        0
+        26,
+        17
       ],
       "kc": null,
-      "status": "U",
+      "status": "C",
       "clock": {
         "secs": 0,
         "label": "00:00"
       },
-      "outcome": "N",
+      "outcome": "A",
       "events": [
         {
           "id": "65f66693-9ccb-4784-bc3c-7b5b3cabecc3",
@@ -11994,16 +11994,16 @@
         }
       ],
       "scores": [
-        0,
-        0
+        25,
+        15
       ],
       "kc": null,
-      "status": "U",
+      "status": "C",
       "clock": {
         "secs": 0,
         "label": "00:00"
       },
-      "outcome": "N",
+      "outcome": "A",
       "events": [
         {
           "id": "d72547e0-d76e-4612-9f1c-a3f60d320074",
@@ -12079,16 +12079,16 @@
         }
       ],
       "scores": [
-        0,
-        0
+        15,
+        18
       ],
       "kc": null,
-      "status": "U",
+      "status": "C",
       "clock": {
         "secs": 0,
         "label": "00:00"
       },
-      "outcome": "N",
+      "outcome": "B",
       "events": [
         {
           "id": "2c313ef8-0eda-4553-baf8-098b25614efa",

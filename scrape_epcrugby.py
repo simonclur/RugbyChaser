@@ -4,7 +4,10 @@ import os
 import json
 import time
 
-url = "https://www.epcrugby.com/champions-cup/clubs"
+urls = [
+    "https://www.epcrugby.com/champions-cup/clubs",
+    "https://www.epcrugby.com/challenge-cup/clubs"
+]
 
 if not os.path.exists('images'):
     os.makedirs('images')
@@ -12,30 +15,32 @@ if not os.path.exists('images'):
 with open('team_logos.json', 'r') as f:
     logos = json.load(f)
 
-print(f"Scanning {url}...")
-req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-try:
-    res = urllib.request.urlopen(req)
-    html = res.read().decode('utf-8')
-except Exception as e:
-    print(f"Failed to scan {url}: {e}")
-    exit(1)
-
-# The HTML uses lazy loading, alt text has team name, and src has incrowdsports URLs
-matches = re.finditer(r'<img[^>]+src=\"([^\"]+)\"[^>]*alt=\"([^\"]+)\"[^>]*>', html, re.IGNORECASE)
-
 extracted_clubs = {}
-for m in matches:
-    img_url = m.group(1).replace("&amp;", "&")
-    alt_text = m.group(2).strip()
 
-    # Skip generic site SVGs
-    if alt_text in ["Champions cup", "Challenge cup", "EPCR", "Champions Cup logo", "incrowd-logo"]:
+for url in urls:
+    print(f"Scanning {url}...")
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    try:
+        res = urllib.request.urlopen(req)
+        html = res.read().decode('utf-8')
+    except Exception as e:
+        print(f"Failed to scan {url}: {e}")
         continue
-    if not img_url.startswith("https://media-cdn.incrowdsports.com"):
-        continue
-        
-    extracted_clubs[alt_text] = img_url
+
+    # The HTML uses lazy loading, alt text has team name, and src has incrowdsports URLs
+    matches = re.finditer(r'<img[^>]+src=\"([^\"]+)\"[^>]*alt=\"([^\"]+)\"[^>]*>', html, re.IGNORECASE)
+
+    for m in matches:
+        img_url = m.group(1).replace("&amp;", "&")
+        alt_text = m.group(2).strip()
+
+        # Skip generic site SVGs
+        if alt_text in ["Champions cup", "Challenge cup", "Challenge Cup", "EPCR", "Champions Cup logo", "Challenge Cup logo", "incrowd-logo"]:
+            continue
+        if not img_url.startswith("https://media-cdn.incrowdsports.com"):
+            continue
+            
+        extracted_clubs[alt_text] = img_url
 
 print(f"Found {len(extracted_clubs)} team logos on EPCRugby.")
 
