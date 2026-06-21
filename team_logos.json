@@ -308,7 +308,11 @@
   "LatviaRFLogo": "https://upload.wikimedia.org/wikipedia/en/8/8d/LatviaRFLogo.jpg",
   "Launceston Rugby Club": "https://upload.wikimedia.org/wikipedia/en/1/1c/Launceston_Rugby_Club_logo.png",
   "Le Havre AC": "https://upload.wikimedia.org/wikipedia/en/f/fc/Le_Havre_AC_logo.svg",
-  "LeRIRO Fukuoka": "https://upload.wikimedia.org/wikipedia/en/c/c6/LeRIRO_Fukuoka_logo.png",
+  "LeRIRO Fukuoka": {
+    "name": "LeRIRO Fukuoka",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11208_200x200_670ee8ea484d4.png",
+    "local_path": "images/LeRIRO_Fukuoka.png"
+  },
   "Leeds Tykes": "https://upload.wikimedia.org/wikipedia/en/2/2b/Leeds_Tykes_Logo.png",
   "Leeds carnegie": "https://upload.wikimedia.org/wikipedia/en/9/93/Leeds_carnegie_badge.png",
   "Leek RUFC": "https://upload.wikimedia.org/wikipedia/en/b/bf/Leek_RUFC_logo.png",
@@ -700,7 +704,11 @@
   "Worcester Wanderers": "https://upload.wikimedia.org/wikipedia/en/5/52/Worcester_Wanderers_logo.png",
   "Worcester Warriors": "https://upload.wikimedia.org/wikipedia/en/f/f2/Worcester_Warriors_logo.svg",
   "Yakare XV": "https://upload.wikimedia.org/wikipedia/en/4/4c/Yakare_XV_logo.png",
-  "Yakult Levins Toda": "https://upload.wikimedia.org/wikipedia/en/c/cd/Yakult_Levins_Toda_logo.png",
+  "Yakult Levins Toda": {
+    "name": "Yakult Levins Toda",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11207_200x200_670ee89d22206.png",
+    "local_path": "images/Yakult_Levins_Toda.png"
+  },
   "York RUFC": "https://upload.wikimedia.org/wikipedia/en/d/d2/York_RUFC_logo.png",
   "Zimbabwe rugby team": "https://upload.wikimedia.org/wikipedia/en/9/92/Zimbabwe_rugby_team_logo.PNG",
   "Zlinrugby": "https://upload.wikimedia.org/wikipedia/en/5/55/Zlinrugby.jpg",
@@ -2078,5 +2086,130 @@
     "name": "New England Free Jacks",
     "source_url": "https://statics-maker.llt-services.com/mlr/images/2025/06/24/original/1dceff6e-070d-42e2-a6a4-aabf8d9a60fe-678.png",
     "local_path": "images/New_England_Free_Jacks.png"
+  },
+  "URAYASU D-Rocks": {
+    "name": "URAYASU D-Rocks",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11184_200x200_670e70ccbfbc7.png",
+    "local_path": "images/URAYASU_D_Rocks.png"
+  },
+  "SAITAMA WILD KNIGHTS": {
+    "name": "SAITAMA WILD KNIGHTS",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/3309_200x200_62df6d0cce7e7.png",
+    "local_path": "images/SAITAMA_WILD_KNIGHTS.png"
+  },
+  "SHIZUOKA BlueRevs": {
+    "name": "SHIZUOKA BlueRevs",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/10_200x200_61a5e7888e229.png",
+    "local_path": "images/SHIZUOKA_BlueRevs.png"
+  },
+  "TOSHIBA BRAVE LUPUS TOKYO": {
+    "name": "TOSHIBA BRAVE LUPUS TOKYO",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/12_200x200_61a5e7aec8aca.png",
+    "local_path": "images/TOSHIBA_BRAVE_LUPUS_TOKYO.png"
+  },
+  "Mitsubishi Sagamihara Dynaboars": {
+    "name": "Mitsubishi Sagamihara Dynaboars",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/20_200x200_61a5e838a8b8e.png",
+    "local_path": "images/Mitsubishi_Sagamihara_Dynaboars.png"
+  },
+  "YOKOHAMA CANON EAGLES": {
+    "name": "YOKOHAMA CANON EAGLES",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/8_200x200_61a5e7666bc71.png",
+    "local_path": "images/YOKOHAMA_CANON_EAGLES.png"
+  },
+  "Kubota Spears": {
+    "name": "Kubota Spears",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/5_200x200_61a5e73d2fe9a.png",
+    "local_path": "images/Kubota_Spears.png"
+  },
+  "KOBELCO KOBE STEELERS": {
+    "name": "KOBELCO KOBE STEELERS",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/6_200x200_61a5e74da146d.png",
+    "local_path": "images/KOBELCO_KOBE_STEELERS.png"
+  },
+  "TOKYO SUNGOLIATH": {
+    "name": "TOKYO SUNGOLIATH",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/11_200x200_61a5e799b8a58.png",
+    "local_path": "images/TOKYO_SUNGOLIATH.png"
+  },
+  "TOYOTA VERBLITZ": {
+    "name": "TOYOTA VERBLITZ",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/13_200x200_61a5e7d81568f.png",
+    "local_path": "images/TOYOTA_VERBLITZ.png"
+  },
+  "MIE Honda HEAT": {
+    "name": "MIE Honda HEAT",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/19_200x200_61a5e829b23ed.png",
+    "local_path": "images/MIE_Honda_HEAT.png"
+  },
+  "BlackRams Tokyo": {
+    "name": "BlackRams Tokyo",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11194_200x200_670e765eedceb.png",
+    "local_path": "images/BlackRams_Tokyo.png"
+  },
+  "GREEN ROCKETS TOKATSU": {
+    "name": "GREEN ROCKETS TOKATSU",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/79_200x200_61ad522b19000.png",
+    "local_path": "images/GREEN_ROCKETS_TOKATSU.png"
+  },
+  "Kyushudenryoku KyudenVoltex": {
+    "name": "Kyushudenryoku KyudenVoltex",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/21_200x200_61a5e87791a23.png",
+    "local_path": "images/Kyushudenryoku_KyudenVoltex.png"
+  },
+  "SHIMIZU KOTO BLUE SHARKS": {
+    "name": "SHIMIZU KOTO BLUE SHARKS",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11197_200x200_670e7d35c4bf2.png",
+    "local_path": "images/SHIMIZU_KOTO_BLUE_SHARKS.png"
+  },
+  "Toyota Industries Corporation Shuttles Aichi": {
+    "name": "Toyota Industries Corporation Shuttles Aichi",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/1170_200x200_61c96ccf2304a.png",
+    "local_path": "images/Toyota_Industries_Corporation_Shuttles_Aichi.png"
+  },
+  "NIPPON STEEL KAMAISHI SEAWAVES": {
+    "name": "NIPPON STEEL KAMAISHI SEAWAVES",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11199_200x200_670e81f2650a2.png",
+    "local_path": "images/NIPPON_STEEL_KAMAISHI_SEAWAVES.png"
+  },
+  "HANAZONO KINTETSU LINERS": {
+    "name": "HANAZONO KINTETSU LINERS",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/16_200x200_61a5e7f956806.png",
+    "local_path": "images/HANAZONO_KINTETSU_LINERS.png"
+  },
+  "HINO RED DOLPHINS": {
+    "name": "HINO RED DOLPHINS",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/17_200x200_61a5e8077b2a2.png",
+    "local_path": "images/HINO_RED_DOLPHINS.png"
+  },
+  "RedHurricanes Osaka": {
+    "name": "RedHurricanes Osaka",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/9_200x200_61a5e776b4a4e.png",
+    "local_path": "images/RedHurricanes_Osaka.png"
+  },
+  "Kurita Water Gush Akishima": {
+    "name": "Kurita Water Gush Akishima",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/22_200x200_61a5e88530385.png",
+    "local_path": "images/Kurita_Water_Gush_Akishima.png"
+  },
+  "SAYAMA SECOM RUGGUTs": {
+    "name": "SAYAMA SECOM RUGGUTs",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/image/team_info/11204_200x200_670ee7072a21b.png",
+    "local_path": "images/SAYAMA_SECOM_RUGGUTs.png"
+  },
+  "Chugoku Electric Power Red Regulions": {
+    "name": "Chugoku Electric Power Red Regulions",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/24_200x200_61a5e8aa5e2b2.png",
+    "local_path": "images/Chugoku_Electric_Power_Red_Regulions.png"
+  },
+  "SKYACTIVS HIROSHIMA": {
+    "name": "SKYACTIVS HIROSHIMA",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/18_200x200_61a5e81bbef95.png",
+    "local_path": "images/SKYACTIVS_HIROSHIMA.png"
+  },
+  "KAMAISHI SEAWAVES": {
+    "name": "KAMAISHI SEAWAVES",
+    "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/15_200x200_61a5e7ef1e2c8.png",
+    "local_path": "images/KAMAISHI_SEAWAVES.png"
   }
 }
