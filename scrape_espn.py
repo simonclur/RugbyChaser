@@ -32,18 +32,16 @@ extracted_clubs = {}
 
 def find_teams(obj):
     if isinstance(obj, dict):
-        if 'logos' in obj and isinstance(obj['logos'], list) and len(obj['logos']) > 0:
-            if 'displayName' in obj:
-                name = obj['displayName']
-            elif 'name' in obj:
-                name = obj['name']
-            else:
-                name = None
-                
+        if 'logo' in obj and isinstance(obj['logo'], str) and ('displayName' in obj or 'name' in obj):
+            name = obj.get('displayName') or obj.get('name')
             if name:
-                logo_list = obj['logos']
-                if len(logo_list) > 0 and 'href' in logo_list[0]:
-                    extracted_clubs[name] = logo_list[0]['href']
+                extracted_clubs[name] = obj['logo']
+                
+        # Also check list of logos if it exists
+        if 'logos' in obj and isinstance(obj['logos'], list) and len(obj['logos']) > 0:
+            name = obj.get('displayName') or obj.get('name')
+            if name and isinstance(obj['logos'][0], dict) and 'href' in obj['logos'][0]:
+                extracted_clubs[name] = obj['logos'][0]['href']
 
         for k, v in obj.items():
             find_teams(v)
@@ -59,7 +57,18 @@ success_count = 0
 for name, source_url in extracted_clubs.items():
     if not source_url: continue
     
-    # Strip ESPN url params like &w=100&h=100
+    if 'rugby' not in source_url.lower():
+        continue
+
+    # Fix ESPN combiner paths to get original high-res logo
+    if "combiner/i" in source_url or "combiner" in source_url:
+        import urllib.parse
+        parsed = urllib.parse.urlparse(source_url)
+        query = urllib.parse.parse_qs(parsed.query)
+        if 'img' in query:
+            source_url = "https://a.espncdn.com" + query['img'][0]
+    
+    # Strip any trailing dimension query params
     source_url = source_url.split('&')[0].split('?')[0]
     
     safe_name = re.sub(r'[^a-zA-Z0-9]', '_', name)

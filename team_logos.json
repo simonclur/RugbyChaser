@@ -2211,5 +2211,50 @@
     "name": "KAMAISHI SEAWAVES",
     "source_url": "https://league-one.s3.ap-northeast-1.amazonaws.com/testing_image/team_info/15_200x200_61a5e7ef1e2c8.png",
     "local_path": "images/KAMAISHI_SEAWAVES.png"
+  },
+  "La Rochelle": {
+    "name": "La Rochelle",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/119318.png",
+    "local_path": "images/La_Rochelle.png"
+  },
+  "Lyon": {
+    "name": "Lyon",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/143736.png",
+    "local_path": "images/Lyon.png"
+  },
+  "Stade Francais Paris": {
+    "name": "Stade Francais Paris",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25921.png",
+    "local_path": "images/Stade_Francais_Paris.png"
+  },
+  "Bordeaux Begles": {
+    "name": "Bordeaux Begles",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/143737.png",
+    "local_path": "images/Bordeaux_Begles.png"
+  },
+  "Toulon": {
+    "name": "Toulon",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25986.png",
+    "local_path": "images/Toulon.png"
+  },
+  "Clermont Auvergne": {
+    "name": "Clermont Auvergne",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25917.png",
+    "local_path": "images/Clermont_Auvergne.png"
+  },
+  "Montpellier Herault": {
+    "name": "Montpellier Herault",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25918.png",
+    "local_path": "images/Montpellier_Herault.png"
+  },
+  "Pau": {
+    "name": "Pau",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/270567.png",
+    "local_path": "images/Pau.png"
+  },
+  "Brive": {
+    "name": "Brive",
+    "source_url": "https://a.espncdn.com/i/teamlogos/rugby/teams/500/25915.png",
+    "local_path": "images/Brive.png"
   }
 }
