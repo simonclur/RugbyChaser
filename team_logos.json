@@ -2068,5 +2068,15 @@
     "name": "Pampas XV",
     "source_url": "https://www.ultimaterugby.com/images/entities/335639-534a1961e6-14/PampasRugby.png",
     "local_path": "images/Pampas_XV.png"
+  },
+  "Anthem RC": {
+    "name": "Anthem RC",
+    "source_url": "https://statics-maker.llt-services.com/mlr/images/2025/06/24/original/b71a8348-5820-4f68-9855-0bca8da3ff05-819.png",
+    "local_path": "images/Anthem_RC.png"
+  },
+  "New England Free Jacks": {
+    "name": "New England Free Jacks",
+    "source_url": "https://statics-maker.llt-services.com/mlr/images/2025/06/24/original/1dceff6e-070d-42e2-a6a4-aabf8d9a60fe-678.png",
+    "local_path": "images/New_England_Free_Jacks.png"
   }
 }
