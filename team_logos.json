@@ -60,7 +60,11 @@
   },
   "Belgium-Rugby-logo": "https://upload.wikimedia.org/wikipedia/en/6/69/Belgium-Rugby-logo.png",
   "Belsize Park": "https://upload.wikimedia.org/wikipedia/en/e/e1/Belsize_Park_RFC_logo.png",
-  "Benetton": "https://upload.wikimedia.org/wikipedia/en/a/ac/Benetton_rugby.svg",
+  "Benetton": {
+    "name": "Benetton",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/5b3edbba-bfa9-4aba-afb9-3bd3bb68882e/large.png",
+    "local_path": "images/Benetton.png"
+  },
   "BeraBera RT": "https://upload.wikimedia.org/wikipedia/en/0/0c/BeraBera_RT.jpg",
   "Berry Hill": "https://upload.wikimedia.org/wikipedia/en/3/3a/Berry_Hill_RFC_logo.png",
   "Biarritz olympique": "https://upload.wikimedia.org/wikipedia/en/e/e7/Biarritz_olympique_badge.png",
@@ -117,7 +121,11 @@
   "Canberra Kookaburras": "https://upload.wikimedia.org/wikipedia/en/b/b6/Canberra_Kookaburras_logo.png",
   "Canberra Kookaburras logo 1995": "https://upload.wikimedia.org/wikipedia/en/9/9d/Canberra_Kookaburras_logo_1995.png",
   "Canberra Vikings": "https://upload.wikimedia.org/wikipedia/en/3/34/Canberra_Vikings_logo.png",
-  "Cardiff": "https://upload.wikimedia.org/wikipedia/en/a/a8/Cardiff_rfc_badge.png",
+  "Cardiff": {
+    "name": "Cardiff",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/def4ca59-fdad-429b-9910-9cbb9832efdb/large.png",
+    "local_path": "images/Cardiff.png"
+  },
   "Cardiff Rugby logo (2021)": "https://upload.wikimedia.org/wikipedia/en/1/1f/Cardiff_Rugby_logo_%282021%29.jpg",
   "Carlow": "https://upload.wikimedia.org/wikipedia/en/7/76/Carlow_rugby.PNG",
   "Carrasco Polo Club": "https://upload.wikimedia.org/wikipedia/en/f/f6/Carrasco_Polo_Club_Crest.svg",
@@ -662,7 +670,11 @@
   "US Rugby Super League": "https://upload.wikimedia.org/wikipedia/en/1/11/US_Rugby_Super_League_Logo.png",
   "USAFalcons": "https://upload.wikimedia.org/wikipedia/en/2/29/USAFalcons.png",
   "UStours": "https://upload.wikimedia.org/wikipedia/en/5/5d/UStours.png",
-  "Ulster": "https://upload.wikimedia.org/wikipedia/en/c/c0/Ulster_Rugby_logo.svg",
+  "Ulster": {
+    "name": "Ulster",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/08c83263-adff-448f-a0b8-843657696a6c/large.png",
+    "local_path": "images/Ulster.png"
+  },
   "UnidareCrest": "https://upload.wikimedia.org/wikipedia/en/2/29/UnidareCrest.jpg",
   "United": "https://upload.wikimedia.org/wikipedia/en/1/1b/United_Rugby_logo.png",
   "United Services Portsmouth": "https://upload.wikimedia.org/wikipedia/en/d/d3/United_Services_Portsmouth_RFC_logo.jpg",
@@ -2254,7 +2266,7 @@
   },
   "Aviron Bayonnais": {
     "name": "Aviron Bayonnais",
-    "source_url": "https://media-cdn.incrowdsports.com/90ba8743-d118-416e-9b4a-fda68eff85cd.png?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/Aviron_Bayonnais.png"
   },
   "Benetton Rugby": {
@@ -2284,7 +2296,7 @@
   },
   "RC Vannes": {
     "name": "RC Vannes",
-    "source_url": "https://media-cdn.incrowdsports.com/08047783-883a-40ae-9f31-744e4bdcad0b.svg?format=webp&width=125",
+    "source_url": "local_override",
     "local_path": "images/RC_Vannes.svg"
   },
   "USAP": {
@@ -2296,5 +2308,45 @@
     "name": "Zebre Parma",
     "source_url": "https://media-cdn.incrowdsports.com/33156f52-4069-4bf3-9205-9ca18e8b9a7b.png?format=webp&width=125",
     "local_path": "images/Zebre_Parma.png"
+  },
+  "Connacht": {
+    "name": "Connacht",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/99c487df-9c7f-4108-9e6d-c084d776f68b/large.png",
+    "local_path": "images/Connacht.png"
+  },
+  "Black Lion": {
+    "name": "Black Lion",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/9ecea3c7-d44d-43fd-9aeb-46b3977b2df6/large.png",
+    "local_path": "images/Black_Lion.png"
+  },
+  "Newcastle": {
+    "name": "Newcastle",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/ab05b0a9-b59d-4cdb-bf85-ded89f5be803/large.png",
+    "local_path": "images/Newcastle.png"
+  },
+  "Dragons": {
+    "name": "Dragons",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/e4b99d38-cccc-4a2f-91e7-14e648464f84/large.png",
+    "local_path": "images/Dragons.png"
+  },
+  "Perpignan": {
+    "name": "Perpignan",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/09bce6ab-25db-4837-971f-e18f84512fe9/large.png",
+    "local_path": "images/Perpignan.png"
+  },
+  "Fidelity SecureDrive Lions": {
+    "name": "Fidelity SecureDrive Lions",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/2534f3e3-523f-41b4-b107-2a5563580863/large.png",
+    "local_path": "images/Fidelity_SecureDrive_Lions.png"
+  },
+  "Exeter": {
+    "name": "Exeter",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/343df512-545d-4bf0-9e0f-6bc42d6dfc2c/large.png",
+    "local_path": "images/Exeter.png"
+  },
+  "Toyota Cheetahs": {
+    "name": "Toyota Cheetahs",
+    "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/26dec522-2aeb-4f73-aaa8-ae538c1d1410/large.png",
+    "local_path": "images/Toyota_Cheetahs.png"
   }
 }
