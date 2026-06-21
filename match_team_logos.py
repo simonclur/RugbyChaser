@@ -38,12 +38,38 @@ def main():
     matched_count = 0
     
     aliases = {
+        # SRA
         "Dogos": "Dogos de Cordoba",
         "Tarucas": "Tarucas Rugby",
         "Pampas": "Pampas XV",
         "Peñarol": "Penarol Rugby",
         "Yacare XV": "Yacare",
-        "Cobras": "Cobras Brasil Rugby"
+        "Cobras": "Cobras Brasil Rugby",
+        
+        # Internationals & Regions
+        "Black Ferns XV": "New Zealand",
+        "Maori All Blacks": "New Zealand",
+        "New Zealand Invitation XV": "New Zealand",
+        "Great Britain 7s": "Great Britain",
+        
+        # Club Aliases
+        "Anthem Rugby Carolina": "Anthem RC",
+        "Chiefs Manawa": "Chiefs",
+        "Matatu": "Crusaders", # Super Rugby Aupiki
+        "Kobelco Kobe Steelers": "KOBELCO KOBE STEELERS",
+        "Saitama Wild Knights": "SAITAMA WILD KNIGHTS",
+        "Tokyo Sungoliath": "TOKYO SUNGOLIATH",
+        "Leinster": "Leinster Rugby",
+        "Lyon Olympique Universitaire": "Lyon",
+        "Montpellier Herault Rugby": "Montpellier Herault",
+        "Montpellier Herault Rugby Club": "Montpellier Herault",
+        "RC Toulonnais": "Toulon",
+        "Rugby Club Toulon Provence Mediterranee": "Toulon",
+        "USA Perpignan": "USAP",
+        "Union Bordeaux-Begles": "Bordeaux Begles",
+        "Fijian Drua Women": "Fijiana Drua Women",
+        "Fijian Drua": "Fijiana Drua Women", # Generic fallback since they use the same shield
+        "Fijiana Drua": "Fijiana Drua Women"
     }
 
     for team in unique_teams:

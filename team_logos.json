@@ -2363,5 +2363,95 @@
     "name": "Dogos",
     "source_url": "local_override",
     "local_path": "images/Dogos_de_Cordoba.png"
+  },
+  "USA Perpignan": {
+    "name": "USA Perpignan",
+    "source_url": "local_override",
+    "local_path": "images/USAP.png"
+  },
+  "Chiefs Manawa": {
+    "name": "Chiefs Manawa",
+    "source_url": "local_override",
+    "local_path": "images/Chiefs.gif"
+  },
+  "RC Toulonnais": {
+    "name": "RC Toulonnais",
+    "source_url": "local_override",
+    "local_path": "images/Toulon.png"
+  },
+  "Fijian Drua Women": {
+    "name": "Fijian Drua Women",
+    "source_url": "local_override",
+    "local_path": "images/Fijiana_Drua_Women.png"
+  },
+  "Anthem Rugby Carolina": {
+    "name": "Anthem Rugby Carolina",
+    "source_url": "local_override",
+    "local_path": "images/Anthem_RC.png"
+  },
+  "New Zealand Invitation XV": {
+    "name": "New Zealand Invitation XV",
+    "source_url": "local_override",
+    "local_path": "images/New_Zealand.png"
+  },
+  "Matatu": {
+    "name": "Matatu",
+    "source_url": "local_override",
+    "local_path": "images/Crusaders.gif"
+  },
+  "Kobelco Kobe Steelers": {
+    "name": "Kobelco Kobe Steelers",
+    "source_url": "local_override",
+    "local_path": "images/KOBELCO_KOBE_STEELERS.png"
+  },
+  "Union Bordeaux-Begles": {
+    "name": "Union Bordeaux-Begles",
+    "source_url": "local_override",
+    "local_path": "images/Bordeaux_Begles.png"
+  },
+  "Saitama Wild Knights": {
+    "name": "Saitama Wild Knights",
+    "source_url": "local_override",
+    "local_path": "images/SAITAMA_WILD_KNIGHTS.png"
+  },
+  "Black Ferns XV": {
+    "name": "Black Ferns XV",
+    "source_url": "local_override",
+    "local_path": "images/New_Zealand.png"
+  },
+  "Tokyo Sungoliath": {
+    "name": "Tokyo Sungoliath",
+    "source_url": "local_override",
+    "local_path": "images/TOKYO_SUNGOLIATH.png"
+  },
+  "Montpellier Herault Rugby": {
+    "name": "Montpellier Herault Rugby",
+    "source_url": "local_override",
+    "local_path": "images/Montpellier_Herault.png"
+  },
+  "Montpellier Herault Rugby Club": {
+    "name": "Montpellier Herault Rugby Club",
+    "source_url": "local_override",
+    "local_path": "images/Montpellier_Herault.png"
+  },
+  "Lyon Olympique Universitaire": {
+    "name": "Lyon Olympique Universitaire",
+    "source_url": "local_override",
+    "local_path": "images/Lyon.png"
+  },
+  "Leinster": {
+    "name": "Leinster",
+    "source_url": "local_override",
+    "local_path": "images/Leinster_Rugby.gif"
+  },
+  "Rugby Club Toulon Provence Mediterranee": {
+    "name": "Rugby Club Toulon Provence Mediterranee",
+    "source_url": "local_override",
+    "local_path": "images/Toulon.png"
+  },
+  "Maori All Blacks": {
+    "name": "Maori All Blacks",
+    "source_url": "local_override",
+    "local_path": "images/New_Zealand.png"
   }
 }
