@@ -1,5 +1,4 @@
 import json
-import difflib
 
 def main():
     with open('fixtures.json', 'r') as f:
@@ -12,114 +11,112 @@ def main():
                 unique_teams.add(t['name'].strip())
                 
     with open('team_logos.json', 'r') as f:
-        scraped_logos = json.load(f)
+        logos = json.load(f)
+
+    # Clean exact hardcoded dictionary overriding buggy fuzzy searches
+    exact_map = {
+        "Argentina": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Argentine_Rugby_Union_logo_2023.svg/100px-Argentine_Rugby_Union_logo_2023.svg.png",
+        "Argentina 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Argentine_Rugby_Union_logo_2023.svg/100px-Argentine_Rugby_Union_logo_2023.svg.png",
+        "Argentina U20": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Argentine_Rugby_Union_logo_2023.svg/100px-Argentine_Rugby_Union_logo_2023.svg.png",
+
+        "South Africa": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/South_Africa_national_rugby_union_team.svg/100px-South_Africa_national_rugby_union_team.svg.png",
+        "South Africa 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/South_Africa_national_rugby_union_team.svg/100px-South_Africa_national_rugby_union_team.svg.png",
+        "South Africa U20": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/South_Africa_national_rugby_union_team.svg/100px-South_Africa_national_rugby_union_team.svg.png",
+
+        "New Zealand": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/100px-New_Zealand_All_Blacks.svg.png",
+        "New Zealand 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/100px-New_Zealand_All_Blacks.svg.png",
+        "New Zealand U20": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/100px-New_Zealand_All_Blacks.svg.png",
+        "Maori All Blacks": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/100px-New_Zealand_All_Blacks.svg.png",
+        "Black Ferns XV": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/New_Zealand_All_Blacks.svg/100px-New_Zealand_All_Blacks.svg.png",
+
+        "France": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Logo_XV_de_France_masculin_2019.svg/100px-Logo_XV_de_France_masculin_2019.svg.png",
+        "France 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Logo_XV_de_France_masculin_2019.svg/100px-Logo_XV_de_France_masculin_2019.svg.png",
+        "France U20": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Logo_XV_de_France_masculin_2019.svg/100px-Logo_XV_de_France_masculin_2019.svg.png",
+
+        "Ireland": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Irish_Rugby_Football_Union.svg/100px-Irish_Rugby_Football_Union.svg.png",
+        "Ireland 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Irish_Rugby_Football_Union.svg/100px-Irish_Rugby_Football_Union.svg.png",
+        "Ireland U20": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Irish_Rugby_Football_Union.svg/100px-Irish_Rugby_Football_Union.svg.png",
+
+        "Australia": "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Wallabies_national_rugby_union_team_primary_crest.svg/100px-Wallabies_national_rugby_union_team_primary_crest.svg.png",
+        "Australia 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Wallabies_national_rugby_union_team_primary_crest.svg/100px-Wallabies_national_rugby_union_team_primary_crest.svg.png",
+        "Australia A": "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Wallabies_national_rugby_union_team_primary_crest.svg/100px-Wallabies_national_rugby_union_team_primary_crest.svg.png",
+        "Australia U20": "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Wallabies_national_rugby_union_team_primary_crest.svg/100px-Wallabies_national_rugby_union_team_primary_crest.svg.png",
+
+        "Wales": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Welsh_Rugby_Union_logo.svg/100px-Welsh_Rugby_Union_logo.svg.png",
+        "Wales 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Welsh_Rugby_Union_logo.svg/100px-Welsh_Rugby_Union_logo.svg.png",
+
+        "England": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/England_Rugby.svg/100px-England_Rugby.svg.png",
+        "England 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/England_Rugby.svg/100px-England_Rugby.svg.png",
+
+        "Scotland": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Scottish_Rugby_Union.svg/100px-Scottish_Rugby_Union.svg.png",
+        "Scotland 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Scottish_Rugby_Union.svg/100px-Scottish_Rugby_Union.svg.png",
+
+        "Italy": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Federazione_Italiana_Rugby.svg/100px-Federazione_Italiana_Rugby.svg.png",
+        "Italy 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Federazione_Italiana_Rugby.svg/100px-Federazione_Italiana_Rugby.svg.png",
         
-    logo_keys = list(scraped_logos.keys())
-    
-    # We will build a clean, new dictionary mapping exactly Fixture Team Name -> URL
-    final_mapping = {}
-    
-    # Custom hardcoded mapping for teams that don't fuzzy-match well
-    custom_map = {
-        "Argentina": "Argentine Rugby Union logo 2023",
-        "Argentina 7s": "Argentine Rugby Union logo 2023",
-        "Argentina U20": "Argentine Rugby Union logo 2023",
-        "Ireland": "Irish Rugby Football Union",
-        "Ireland 7s": "Irish Rugby Football Union",
-        "Ireland U20": "Irish Rugby Football Union",
-        "France": "Logo XV de France masculin 2019",
-        "France 7s": "Logo XV de France masculin 2019",
-        "New Zealand": "New Zealand All Blacks",
-        "New Zealand 7s": "New Zealand All Blacks",
-        "New Zealand U20": "New Zealand All Blacks",
-        "Maori All Blacks": "New Zealand All Blacks",
-        "Black Ferns XV": "New Zealand women's national rugby union team",
-        "Australia": "Wallabies",
-        "Australia A": "Wallabies",
-        "Australia U20": "Wallabies",
-        "South Africa": "South Africa",
-        "South Africa 7s": "South Africa",
-        "South Africa U20": "South Africa",
-        "Wales": "Welsh Rugby Union logo",
-        "Wales 7s": "Welsh Rugby Union logo",
-        "Scotland": "Scottish Rugby Union",
-        "Scotland 7s": "Scottish Rugby Union",
-        "England": "England Rugby",
-        "England 7s": "England Rugby",
-        "Italy": "Federazione Italiana Rugby",
-        "Italy 7s": "Federazione Italiana Rugby",
-        "Fiji": "Logo Fiji Rugby 2019",
-        "Fiji 7s": "Logo Fiji Rugby 2019",
-        "Samoa": "Samoa Rugby Union",
-        "Samoa 7s": "Samoa Rugby Union",
-        "Uruguay": "Uruguayan Rugby Union",
-        "Japan": "Japan Rugby Football Union",
-        "USA": "United States Rugby",
-        "Georgia": "Federation Georgian Rugby",
-        "Portugal": "Romanian Rugby Federation",  # wait, no
-        "Romania": "Romanian Rugby Federation",
-        "Spain": "Spanish Rugby Federation",
-        "Chile": "Chile Rugby",
-        "Canada": "Rugby Canada",
-        "Ospreys": "Ospreys (rugby union)",
-        "Chiefs": "Chiefs (rugby union)",
-        "Crusaders": "Crusaders (rugby union)",
-        "Hurricanes": "Hurricanes (rugby union)",
-        "Highlanders": "Highlanders (rugby union)",
-        "Blues": "Blues (Super Rugby)",
-        "Brumbies": "ACT Brumbies",
-        "Reds": "Queensland Reds",
-        "Waratahs": "Queensland Reds",
-        "Bath Rugby": "Bath Rugby",
-        "Bristol Bears": "Bristol Bears",
-        "Saracens": "Saracens F.C."
+        "Fiji": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Logo_Fiji_Rugby_2019.svg/100px-Logo_Fiji_Rugby_2019.svg.png",
+        "Fiji 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Logo_Fiji_Rugby_2019.svg/100px-Logo_Fiji_Rugby_2019.svg.png",
+        "Fijian Drua": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Fijian_drua.png/100px-Fijian_drua.png",
+        
+        "Samoa": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Samoa_Rugby_Union.svg/100px-Samoa_Rugby_Union.svg.png",
+        "Samoa 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Samoa_Rugby_Union.svg/100px-Samoa_Rugby_Union.svg.png",
+
+        "Uruguay": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Uruguayan_Rugby_Union.svg/100px-Uruguayan_Rugby_Union.svg.png",
+        "Uruguay 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Uruguayan_Rugby_Union.svg/100px-Uruguayan_Rugby_Union.svg.png",
+
+        "Japan": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Japan_Rugby_Football_Union.svg/100px-Japan_Rugby_Football_Union.svg.png",
+        "Japan 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Japan_Rugby_Football_Union.svg/100px-Japan_Rugby_Football_Union.svg.png",
+        "Japan XV": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Japan_Rugby_Football_Union.svg/100px-Japan_Rugby_Football_Union.svg.png",
+
+        "USA": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/United_States_Rugby.svg/100px-United_States_Rugby.svg.png",
+        "USA 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/United_States_Rugby.svg/100px-United_States_Rugby.svg.png",
+        
+        "Georgia": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2f/Federation_Georgian_Rugby.svg/100px-Federation_Georgian_Rugby.svg.png",
+        "Romania": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Romanian_Rugby_Federation.svg/100px-Romanian_Rugby_Federation.svg.png",
+        "Spain": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Spanish_Rugby_Federation.svg/100px-Spanish_Rugby_Federation.svg.png",
+        "Great Britain 7s": "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Great_Britain_national_rugby_sevens_team.png/100px-Great_Britain_national_rugby_sevens_team.png",
+        
+        "Ospreys": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c9/Ospreys_%28rugby_union%29_logo.svg/100px-Ospreys_%28rugby_union%29_logo.svg.png",
+        "Chiefs": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Chiefs_logo.svg/100px-Chiefs_logo.svg.png",
+        "Crusaders": "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Crusaders_logo_2022.svg/100px-Crusaders_logo_2022.svg.png",
+        "Hurricanes": "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Hurricanes_Rugby_Union_logo.svg/100px-Hurricanes_Rugby_Union_logo.svg.png",
+        "Highlanders": "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Highlanders_Logo.png/100px-Highlanders_Logo.png",
+        "Blues": "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Blues_%28Super_Rugby%29_logo.svg/100px-Blues_%28Super_Rugby%29_logo.svg.png",
+        "Brumbies": "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/ACT_Brumbies_logo.svg/100px-ACT_Brumbies_logo.svg.png",
+        "Waratahs": "https://upload.wikimedia.org/wikipedia/en/thumb/4/42/W_Logo_-_Primary_Navy_2024.png/100px-W_Logo_-_Primary_Navy_2024.png",
+        "Reds": "https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Queensland_Reds_Logo.svg/100px-Queensland_Reds_Logo.svg.png",
+        "Western Force": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Waratahs_logo.svg/100px-Waratahs_logo.svg.png",
+
+        "Bath Rugby": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/Bath_Rugby_Logo.svg/100px-Bath_Rugby_Logo.svg.png",
+        "Bristol Bears": "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Bristol_Bears_Logo.svg/100px-Bristol_Bears_Logo.svg.png",
+        "Saracens": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Saracens_F.C._logo.svg/100px-Saracens_F.C._logo.svg.png",
+        "Stade Toulousain": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Stade_Toulousain.svg/100px-Stade_Toulousain.svg.png",
+        "Leicester Tigers": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Leicester_Tigers_logo.svg/100px-Leicester_Tigers_logo.svg.png",
+        "Harlequins": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Harlequins_Logo.svg/100px-Harlequins_Logo.svg.png",
+        "Gloucester Rugby": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Gloucester_Rugby_Logo.svg/100px-Gloucester_Rugby_Logo.svg.png",
+        "Exeter Harlequins": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/Exeter_Chiefs.svg/100px-Exeter_Chiefs.svg.png",
+        "Exeter Chiefs": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/Exeter_Chiefs.svg/100px-Exeter_Chiefs.svg.png"
     }
 
-    matched = 0
-    
-    for team in sorted(list(unique_teams)):
-        # 1. Custom Match
-        if team in custom_map:
-            cm = custom_map[team]
-            # Try to grab the closest match to our custom map if it's not exact
-            cm_matches = difflib.get_close_matches(cm, logo_keys, n=1, cutoff=0.3)
-            if cm_matches:
-                final_mapping[team] = scraped_logos[cm_matches[0]]
-                matched += 1
-            continue
+    # Iterate through unique fixture teams
+    for team in unique_teams:
+        # Check standard flags for remaining unmapped entries
+        if team not in exact_map:
+            if team + " Flag" in logos:
+                exact_map[team] = logos[team + " Flag"]
+            elif team.replace(" 7s", "") + " Flag" in logos:
+                exact_map[team] = logos[team.replace(" 7s", "") + " Flag"]
+            elif team.replace(" XV", "") + " Flag" in logos:
+                exact_map[team] = logos[team.replace(" XV", "") + " Flag"]
+            
+        # Try to find exactly matched country names against exact URLs
+        if team in exact_map:
+            logos[team] = exact_map[team]
 
-        # 2. Exact match
-        if team in scraped_logos:
-            final_mapping[team] = scraped_logos[team]
-            matched += 1
-            continue
-            
-        # 2. Try without "7s" or "XV"
-        search_name = team.replace(" 7s", "").replace(" XV", "")
-        if search_name in scraped_logos:
-            final_mapping[team] = scraped_logos[search_name]
-            matched += 1
-            continue
-            
-        # 3. Fuzzy matching
-        matches = difflib.get_close_matches(search_name, logo_keys, n=1, cutoff=0.7)
-        if matches:
-            best = matches[0]
-            final_mapping[team] = scraped_logos[best]
-            print(f"Fuzzy Mapped: '{team}' -> '{best}'")
-            matched += 1
-        else:
-            # lower cutoff for fallback checking (just printing)
-            possible = difflib.get_close_matches(search_name, logo_keys, n=3, cutoff=0.4)
-            print(f"NO MATCH: '{team}' (Close? {possible})")
-            
-    print(f"\nSuccessfully matched {matched} out of {len(unique_teams)} teams.")
-    
-    # Merge existing scraped logos just in case they are used elsewhere, but prioritize exact fixture mappings
-    scraped_logos.update(final_mapping)
-    
     with open('team_logos.json', 'w', encoding='utf-8') as f:
-        json.dump(scraped_logos, f, indent=2, ensure_ascii=False)
+        json.dump(logos, f, indent=2, ensure_ascii=False)
+
+    print(f"Applied {len(exact_map)} robust exact mappings (overwriting bad fuzzy math).")
 
 if __name__ == '__main__':
     main()
