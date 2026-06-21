@@ -1111,9 +1111,9 @@
                 if (teamLogos && teamLogos[teamName]) {
                     return teamLogos[teamName];
                 }
-                const nameWithout7s = teamName.replace(/ 7s$/, '');
-                if (teamLogos && teamLogos[nameWithout7s]) {
-                    return teamLogos[nameWithout7s];
+                const baseName = teamName.replace(/ (7s|XV|U20|A)$/, '');
+                if (teamLogos && teamLogos[baseName]) {
+                    return teamLogos[baseName];
                 }
                 return `https://ui-avatars.com/api/?name=${encodeURIComponent(teamName)}&background=random&color=fff&bold=true`;
             };
