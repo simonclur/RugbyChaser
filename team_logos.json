@@ -12,7 +12,11 @@
   "ARC Iuridica": "https://upload.wikimedia.org/wikipedia/en/4/40/ARC_Iuridica_logo.svg",
   "Ajax Wanderers 2013": "https://upload.wikimedia.org/wikipedia/en/3/33/Ajax_Wanderers_2013.jpg",
   "Alamo City Rugby Crest Alamo": "https://upload.wikimedia.org/wikipedia/en/5/5b/Alamo_City_Rugby_Crest_Alamo.jpg",
-  "Algeria": "https://upload.wikimedia.org/wikipedia/en/9/9a/Algeria_national_rugby_union_team.gif",
+  "Algeria": {
+    "name": "Algeria",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ALG.png",
+    "local_path": "images/Algeria.png"
+  },
   "Algerian Rugby Federation (logo)": "https://upload.wikimedia.org/wikipedia/en/5/5b/Algerian_Rugby_Federation_%28logo%29.png",
   "Algerian Rugby Federation -": "https://upload.wikimedia.org/wikipedia/en/c/c8/Algerian_Rugby_Federation_-_logo.png",
   "Amersham and Chiltern": "https://upload.wikimedia.org/wikipedia/en/2/2a/Amersham_and_Chiltern_Rugby_logo.png",
@@ -26,13 +30,17 @@
   "Australia women's national rugby union team (Wallaroos)": "https://upload.wikimedia.org/wikipedia/en/9/94/Australia_women%27s_national_rugby_union_team_%28Wallaroos%29_Logo.png",
   "Australian Rugby Union": "https://upload.wikimedia.org/wikipedia/en/7/79/Australian_Rugby_Union_logo.jpg",
   "Australian Schoolboys Rugby Union": "https://upload.wikimedia.org/wikipedia/en/d/d2/Australian_Schoolboys_Rugby_Union_logo.png",
-  "Austria": "https://upload.wikimedia.org/wikipedia/en/0/0b/Austria_rugby_logo.png",
+  "Austria": {
+    "name": "Austria",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/AUT.png",
+    "local_path": "images/Austria.png"
+  },
   "Autumn Nations Cup": "https://upload.wikimedia.org/wikipedia/en/3/34/Autumn_Nations_Cup_logo.svg",
   "Ballymore Tornadoes": "https://upload.wikimedia.org/wikipedia/en/9/9f/Ballymore_Tornadoes_Logo.jpg",
   "Banbury RUFC": "https://upload.wikimedia.org/wikipedia/en/0/06/Banbury_RUFC_logo.png",
   "Barbados": {
     "name": "Barbados",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/b/be/Barbados_rugby.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BAR.png",
     "local_path": "images/Barbados.png"
   },
   "Barbarians": {
@@ -45,7 +53,11 @@
   "Beckenham": "https://upload.wikimedia.org/wikipedia/en/0/06/Beckenham_RFC_logo.png",
   "Bedford Blues": "https://upload.wikimedia.org/wikipedia/en/e/e8/Bedford_Blues_logo.svg",
   "BelarusRugbyLogo": "https://upload.wikimedia.org/wikipedia/en/7/71/BelarusRugbyLogo.jpg",
-  "Belgium": "https://upload.wikimedia.org/wikipedia/en/8/85/Belgium_national_rugby_union_team.png",
+  "Belgium": {
+    "name": "Belgium",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BEL.png",
+    "local_path": "images/Belgium.png"
+  },
   "Belgium-Rugby-logo": "https://upload.wikimedia.org/wikipedia/en/6/69/Belgium-Rugby-logo.png",
   "Belsize Park": "https://upload.wikimedia.org/wikipedia/en/e/e1/Belsize_Park_RFC_logo.png",
   "Benetton": "https://upload.wikimedia.org/wikipedia/en/a/ac/Benetton_rugby.svg",
@@ -141,7 +153,11 @@
   "Club rugby santander": "https://upload.wikimedia.org/wikipedia/en/5/50/Club_rugby_santander_logo.png",
   "Cobham": "https://upload.wikimedia.org/wikipedia/en/9/9a/Cobham_RFC_logo.png",
   "Colchester": "https://upload.wikimedia.org/wikipedia/en/1/15/Colchester_RFC_logo.png",
-  "Colombia": "https://upload.wikimedia.org/wikipedia/en/2/21/Colombia_rugby_logo.jpg",
+  "Colombia": {
+    "name": "Colombia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/COL.png",
+    "local_path": "images/Colombia.png"
+  },
   "Colomiers": "https://upload.wikimedia.org/wikipedia/en/5/54/Colomiers_rugby_badge.png",
   "Colonial Crusaders": "https://upload.wikimedia.org/wikipedia/en/f/f8/Colonial_Crusaders_Logo.jpg",
   "Colonial Cup": "https://upload.wikimedia.org/wikipedia/en/c/c8/Colonial_Cup.jpg",
@@ -215,7 +231,7 @@
   "Footscray RUFC": "https://upload.wikimedia.org/wikipedia/en/c/c8/Footscray_RUFC_logo.png",
   "France": {
     "name": "France",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/FRA.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FRA.png",
     "local_path": "images/France.png"
   },
   "French Guiana": "https://upload.wikimedia.org/wikipedia/en/1/1e/French_Guiana_Rugby.gif",
@@ -280,7 +296,7 @@
   "Kenilworth": "https://upload.wikimedia.org/wikipedia/en/2/2c/Kenilworth_RFC_logo.png",
   "Kenya": {
     "name": "Kenya",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/2/2b/Kenya_Rugby_logo.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/KEN.png",
     "local_path": "images/Kenya.png"
   },
   "Keyworth": "https://upload.wikimedia.org/wikipedia/en/d/db/Keyworth_RFC_logo.png",
@@ -374,7 +390,7 @@
   "Nerfulogo": "https://upload.wikimedia.org/wikipedia/en/f/f7/Nerfulogo.png",
   "Netherlands": {
     "name": "Netherlands",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/9/92/Netherlands_rugby_logo.jpg",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NED.png",
     "local_path": "images/Netherlands.png"
   },
   "New Caledonia": "https://upload.wikimedia.org/wikipedia/en/a/a8/New_Caledonia_Rugby_logo.png",
@@ -443,7 +459,11 @@
   "Pacific5nations": "https://upload.wikimedia.org/wikipedia/en/e/ef/Pacific5nations.png",
   "Pacificislanderrugbylogo": "https://upload.wikimedia.org/wikipedia/en/a/a7/Pacificislanderrugbylogo.JPG",
   "Paignton": "https://upload.wikimedia.org/wikipedia/en/5/51/Paignton_RFC_logo.png",
-  "Papua New Guinea": "https://upload.wikimedia.org/wikipedia/en/3/36/Papua_New_Guinea_rugby.png",
+  "Papua New Guinea": {
+    "name": "Papua New Guinea",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/PNG.png",
+    "local_path": "images/Papua_New_Guinea.png"
+  },
   "Parramatta Two Blues": "https://upload.wikimedia.org/wikipedia/en/4/4b/Parramatta_Two_Blues.png",
   "PembrokeDockQuins": "https://upload.wikimedia.org/wikipedia/en/3/35/PembrokeDockQuins_logo.jpg",
   "Pembrokerfclogo": "https://upload.wikimedia.org/wikipedia/en/0/03/Pembrokerfclogo.png",
@@ -453,7 +473,11 @@
   "Petersfield R.F.C.": "https://upload.wikimedia.org/wikipedia/en/5/5c/Petersfield_R.F.C._logo.png",
   "Petrovicerugby": "https://upload.wikimedia.org/wikipedia/en/3/32/Petrovicerugby.jpg",
   "Plymouth albion": "https://upload.wikimedia.org/wikipedia/en/a/ad/Plymouth_albion_badge.png",
-  "Poland": "https://upload.wikimedia.org/wikipedia/en/f/ff/Poland_Rugby.svg",
+  "Poland": {
+    "name": "Poland",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/POL.png",
+    "local_path": "images/Poland.png"
+  },
   "Polish Rugby Union": "https://upload.wikimedia.org/wikipedia/en/5/56/Polish_Rugby_Union.svg",
   "Pontefract RUFC": "https://upload.wikimedia.org/wikipedia/en/6/6f/Pontefract_RUFC_logo.png",
   "Pontypridd": "https://upload.wikimedia.org/wikipedia/en/3/3f/Pontypridd_rugby_badge.png",
@@ -536,11 +560,15 @@
   "Shreveport": "https://upload.wikimedia.org/wikipedia/en/5/55/Shreveport_Rugby_Logo.jpg",
   "ShuteShieldLogo": "https://upload.wikimedia.org/wikipedia/en/c/c3/ShuteShieldLogo.jpg",
   "Silhillians RUFC": "https://upload.wikimedia.org/wikipedia/en/9/97/Silhillians_RUFC_logo.png",
-  "Singapore": "https://upload.wikimedia.org/wikipedia/en/1/1b/Singapore_rugby.png",
+  "Singapore": {
+    "name": "Singapore",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SGP.png",
+    "local_path": "images/Singapore.png"
+  },
   "SlaviaRugby": "https://upload.wikimedia.org/wikipedia/en/1/1c/SlaviaRugby.jpg",
   "South Africa": {
     "name": "South Africa",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/RSA.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/RSA.png",
     "local_path": "images/South_Africa.png"
   },
   "South Africa women's": "https://upload.wikimedia.org/wikipedia/en/8/89/South_Africa_women%27s_national_rugby_sevens_team.svg",
@@ -556,7 +584,7 @@
   "Srfclogo": "https://upload.wikimedia.org/wikipedia/en/d/d0/Srfclogo.jpg",
   "Sri Lanka": {
     "name": "Sri Lanka",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/2/2e/Sri_Lanka_national_rugby_union_team.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SRI.png",
     "local_path": "images/Sri_Lanka.png"
   },
   "St Albans": "https://upload.wikimedia.org/wikipedia/en/c/cc/St_Albans_RFC_logo.png",
@@ -748,7 +776,7 @@
   },
   "Hong Kong China": {
     "name": "Hong Kong China",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/HKG.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/HKG.png",
     "local_path": "images/Hong_Kong_China.png"
   },
   "Kenya 7s": {
@@ -768,7 +796,7 @@
   },
   "Mexico": {
     "name": "Mexico",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/0/07/Mexicorugby.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MEX.png",
     "local_path": "images/Mexico.png"
   },
   "Provence Rugby": {
@@ -793,7 +821,7 @@
   },
   "Scotland": {
     "name": "Scotland",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/SCO.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SCO.png",
     "local_path": "images/Scotland.png"
   },
   "Seattle Seawolves": {
@@ -833,7 +861,7 @@
   },
   "Argentina": {
     "name": "Argentina",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/ARG.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ARG.png",
     "local_path": "images/Argentina.png"
   },
   "Argentina 7s": {
@@ -873,7 +901,7 @@
   },
   "Chile": {
     "name": "Chile",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/CHI.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CHI.png",
     "local_path": "images/Chile.png"
   },
   "Crusaders": {
@@ -883,12 +911,12 @@
   },
   "England": {
     "name": "England",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/ENG.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ENG.png",
     "local_path": "images/England.png"
   },
   "Fiji": {
     "name": "Fiji",
-    "source_url": "https://www.world.rugby/wl-assets/flags/squares/FIJ.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FIJ.png",
     "local_path": "images/Fiji.png"
   },
   "Fiji 7s": {
@@ -898,7 +926,7 @@
   },
   "Georgia": {
     "name": "Georgia",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/GEO.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GEO.png",
     "local_path": "images/Georgia.png"
   },
   "Hurricanes": {
@@ -908,7 +936,7 @@
   },
   "Ireland": {
     "name": "Ireland",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/IRE.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/IRE.png",
     "local_path": "images/Ireland.png"
   },
   "Ireland U20": {
@@ -918,12 +946,12 @@
   },
   "Italy": {
     "name": "Italy",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/ITA.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ITA.png",
     "local_path": "images/Italy.png"
   },
   "Japan": {
     "name": "Japan",
-    "source_url": "https://www.world.rugby/wl-assets/flags/squares/JPN.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/JPN.png",
     "local_path": "images/Japan.png"
   },
   "Maori All Blacks": {
@@ -948,17 +976,17 @@
   },
   "Portugal": {
     "name": "Portugal",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/POR.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/POR.png",
     "local_path": "images/Portugal.png"
   },
   "Romania": {
     "name": "Romania",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/ROU.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ROU.png",
     "local_path": "images/Romania.png"
   },
   "Samoa": {
     "name": "Samoa",
-    "source_url": "https://www.world.rugby/wl-assets/flags/squares/SAM.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SAM.png",
     "local_path": "images/Samoa.png"
   },
   "Scotland U20": {
@@ -968,7 +996,7 @@
   },
   "Spain": {
     "name": "Spain",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/ESP.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ESP.png",
     "local_path": "images/Spain.png"
   },
   "USA": {
@@ -978,12 +1006,12 @@
   },
   "Uruguay": {
     "name": "Uruguay",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/URU.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/URU.png",
     "local_path": "images/Uruguay.png"
   },
   "Wales": {
     "name": "Wales",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/WAL.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/WAL.png",
     "local_path": "images/Wales.png"
   },
   "England U20": {
@@ -1068,7 +1096,7 @@
   },
   "Tonga": {
     "name": "Tonga",
-    "source_url": "https://www.world.rugby/wl-assets/flags/squares/TGA.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TGA.png",
     "local_path": "images/Tonga.png"
   },
   "United States Flag": {
@@ -1093,7 +1121,7 @@
   },
   "Zimbabwe": {
     "name": "Zimbabwe",
-    "source_url": "https://www.rugbyworldcup.com/wl-assets/flags/balls/ZIM.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ZIM.png",
     "local_path": "images/Zimbabwe.png"
   },
   "Zimbabwe U20": {
@@ -1343,7 +1371,7 @@
   },
   "Brazil": {
     "name": "Brazil",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/100px-Flag_of_Brazil.svg.png",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BRA.png",
     "local_path": "images/Brazil.png"
   },
   "Brazil 7s": {
@@ -1405,5 +1433,345 @@
     "name": "USA U20",
     "source_url": "https://www.world.rugby/wl-assets/flags/shields/USA.png",
     "local_path": "images/USA_U20.png"
+  },
+  "Russia": {
+    "name": "Russia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/RUS.png",
+    "local_path": "images/Russia.png"
+  },
+  "Kazakhstan": {
+    "name": "Kazakhstan",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/KAZ.png",
+    "local_path": "images/Kazakhstan.png"
+  },
+  "Germany": {
+    "name": "Germany",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GER.png",
+    "local_path": "images/Germany.png"
+  },
+  "Namibia": {
+    "name": "Namibia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NAM.png",
+    "local_path": "images/Namibia.png"
+  },
+  "Switzerland": {
+    "name": "Switzerland",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SUI.png",
+    "local_path": "images/Switzerland.png"
+  },
+  "Czechia": {
+    "name": "Czechia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CZE.png",
+    "local_path": "images/Czechia.png"
+  },
+  "Paraguay": {
+    "name": "Paraguay",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/PAR.png",
+    "local_path": "images/Paraguay.png"
+  },
+  "Korea": {
+    "name": "Korea",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/KOR.png",
+    "local_path": "images/Korea.png"
+  },
+  "Morocco": {
+    "name": "Morocco",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MAR.png",
+    "local_path": "images/Morocco.png"
+  },
+  "United Arab Emirates": {
+    "name": "United Arab Emirates",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/UAE.png",
+    "local_path": "images/United_Arab_Emirates.png"
+  },
+  "Cayman Islands": {
+    "name": "Cayman Islands",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CAY.png",
+    "local_path": "images/Cayman_Islands.png"
+  },
+  "Malta": {
+    "name": "Malta",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MLT.png",
+    "local_path": "images/Malta.png"
+  },
+  "Madagascar": {
+    "name": "Madagascar",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MAD.png",
+    "local_path": "images/Madagascar.png"
+  },
+  "Senegal": {
+    "name": "Senegal",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SEN.png",
+    "local_path": "images/Senegal.png"
+  },
+  "Tunisia": {
+    "name": "Tunisia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TUN.png",
+    "local_path": "images/Tunisia.png"
+  },
+  "Uganda": {
+    "name": "Uganda",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/UGA.png",
+    "local_path": "images/Uganda.png"
+  },
+  "Trinidad & Tobago": {
+    "name": "Trinidad & Tobago",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TTO.png",
+    "local_path": "images/Trinidad___Tobago.png"
+  },
+  "Philippines": {
+    "name": "Philippines",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/PHI.png",
+    "local_path": "images/Philippines.png"
+  },
+  "Malaysia": {
+    "name": "Malaysia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MAS.png",
+    "local_path": "images/Malaysia.png"
+  },
+  "Lithuania": {
+    "name": "Lithuania",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/LTU.png",
+    "local_path": "images/Lithuania.png"
+  },
+  "Croatia": {
+    "name": "Croatia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CRO.png",
+    "local_path": "images/Croatia.png"
+  },
+  "Moldova": {
+    "name": "Moldova",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MDA.png",
+    "local_path": "images/Moldova.png"
+  },
+  "Denmark": {
+    "name": "Denmark",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/DEN.png",
+    "local_path": "images/Denmark.png"
+  },
+  "Jamaica": {
+    "name": "Jamaica",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/JAM.png",
+    "local_path": "images/Jamaica.png"
+  },
+  "Israel": {
+    "name": "Israel",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ISR.png",
+    "local_path": "images/Israel.png"
+  },
+  "Latvia": {
+    "name": "Latvia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/LAT.png",
+    "local_path": "images/Latvia.png"
+  },
+  "Zambia": {
+    "name": "Zambia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ZAM.png",
+    "local_path": "images/Zambia.png"
+  },
+  "Chinese Taipei": {
+    "name": "Chinese Taipei",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TPE.png",
+    "local_path": "images/Chinese_Taipei.png"
+  },
+  "Cook Islands": {
+    "name": "Cook Islands",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/COK.png",
+    "local_path": "images/Cook_Islands.png"
+  },
+  "Cote D'Ivoire": {
+    "name": "Cote D'Ivoire",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CIV.png",
+    "local_path": "images/Cote_D_Ivoire.png"
+  },
+  "Serbia": {
+    "name": "Serbia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SRB.png",
+    "local_path": "images/Serbia.png"
+  },
+  "Bermuda": {
+    "name": "Bermuda",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BER.png",
+    "local_path": "images/Bermuda.png"
+  },
+  "Thailand": {
+    "name": "Thailand",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/THA.png",
+    "local_path": "images/Thailand.png"
+  },
+  "Bulgaria": {
+    "name": "Bulgaria",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BUL.png",
+    "local_path": "images/Bulgaria.png"
+  },
+  "Guyana": {
+    "name": "Guyana",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GUY.png",
+    "local_path": "images/Guyana.png"
+  },
+  "Nigeria": {
+    "name": "Nigeria",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NGR.png",
+    "local_path": "images/Nigeria.png"
+  },
+  "Venezuela": {
+    "name": "Venezuela",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/VEN.png",
+    "local_path": "images/Venezuela.png"
+  },
+  "Finland": {
+    "name": "Finland",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/FIN.png",
+    "local_path": "images/Finland.png"
+  },
+  "Botswana": {
+    "name": "Botswana",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BOT.png",
+    "local_path": "images/Botswana.png"
+  },
+  "Andorra": {
+    "name": "Andorra",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/AND.png",
+    "local_path": "images/Andorra.png"
+  },
+  "Ghana": {
+    "name": "Ghana",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GHA.png",
+    "local_path": "images/Ghana.png"
+  },
+  "Slovenia": {
+    "name": "Slovenia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SLO.png",
+    "local_path": "images/Slovenia.png"
+  },
+  "St Vincent and the Grenadines": {
+    "name": "St Vincent and the Grenadines",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/VIN.png",
+    "local_path": "images/St_Vincent_and_the_Grenadines.png"
+  },
+  "Turkey": {
+    "name": "Turkey",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/TUR.png",
+    "local_path": "images/Turkey.png"
+  },
+  "India": {
+    "name": "India",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/IND.png",
+    "local_path": "images/India.png"
+  },
+  "Hungary": {
+    "name": "Hungary",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/HUN.png",
+    "local_path": "images/Hungary.png"
+  },
+  "Burkina Faso": {
+    "name": "Burkina Faso",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BUR.png",
+    "local_path": "images/Burkina_Faso.png"
+  },
+  "Iran": {
+    "name": "Iran",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/IRI.png",
+    "local_path": "images/Iran.png"
+  },
+  "Costa Rica": {
+    "name": "Costa Rica",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CRC.png",
+    "local_path": "images/Costa_Rica.png"
+  },
+  "China": {
+    "name": "China",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CHN.png",
+    "local_path": "images/China.png"
+  },
+  "Bosnia & Herzegovina": {
+    "name": "Bosnia & Herzegovina",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BIH.png",
+    "local_path": "images/Bosnia___Herzegovina.png"
+  },
+  "St Lucia": {
+    "name": "St Lucia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/LCA.png",
+    "local_path": "images/St_Lucia.png"
+  },
+  "Bahamas": {
+    "name": "Bahamas",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/BAH.png",
+    "local_path": "images/Bahamas.png"
+  },
+  "Qatar": {
+    "name": "Qatar",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/QAT.png",
+    "local_path": "images/Qatar.png"
+  },
+  "Uzbekistan": {
+    "name": "Uzbekistan",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/UZB.png",
+    "local_path": "images/Uzbekistan.png"
+  },
+  "Mauritius": {
+    "name": "Mauritius",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MRI.png",
+    "local_path": "images/Mauritius.png"
+  },
+  "Norway": {
+    "name": "Norway",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NOR.png",
+    "local_path": "images/Norway.png"
+  },
+  "Pakistan": {
+    "name": "Pakistan",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/PAK.png",
+    "local_path": "images/Pakistan.png"
+  },
+  "Laos": {
+    "name": "Laos",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/LAO.png",
+    "local_path": "images/Laos.png"
+  },
+  "Rwanda": {
+    "name": "Rwanda",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/RWA.png",
+    "local_path": "images/Rwanda.png"
+  },
+  "Cameroon": {
+    "name": "Cameroon",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/CMR.png",
+    "local_path": "images/Cameroon.png"
+  },
+  "Niue Island": {
+    "name": "Niue Island",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/NIU.png",
+    "local_path": "images/Niue_Island.png"
+  },
+  "Solomon Islands": {
+    "name": "Solomon Islands",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/SOL.png",
+    "local_path": "images/Solomon_Islands.png"
+  },
+  "Indonesia": {
+    "name": "Indonesia",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/INA.png",
+    "local_path": "images/Indonesia.png"
+  },
+  "Monaco": {
+    "name": "Monaco",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/MON.png",
+    "local_path": "images/Monaco.png"
+  },
+  "Greece": {
+    "name": "Greece",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/GRE.png",
+    "local_path": "images/Greece.png"
+  },
+  "Vanuatu": {
+    "name": "Vanuatu",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/VAN.png",
+    "local_path": "images/Vanuatu.png"
+  },
+  "American Samoa": {
+    "name": "American Samoa",
+    "source_url": "https://www.world.rugby/wl-assets/flags/shields/ASA.png",
+    "local_path": "images/American_Samoa.png"
   }
 }
