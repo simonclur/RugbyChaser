@@ -69,7 +69,8 @@ def main():
         "Union Bordeaux-Begles": "Bordeaux Begles",
         "Fijian Drua Women": "Fijiana Drua Women",
         "Fijian Drua": "Fijiana Drua Women", # Generic fallback since they use the same shield
-        "Fijiana Drua": "Fijiana Drua Women"
+        "Fijiana Drua": "Fijiana Drua Women",
+        "Great Britain 7s": "Great_Britain_national_rugby_sevens_team"
     }
 
     for team in unique_teams:
