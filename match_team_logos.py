@@ -36,6 +36,16 @@ def main():
 
     # Now force-map all fixture teams
     matched_count = 0
+    
+    aliases = {
+        "Dogos": "Dogos de Cordoba",
+        "Tarucas": "Tarucas Rugby",
+        "Pampas": "Pampas XV",
+        "Peñarol": "Penarol Rugby",
+        "Yacare XV": "Yacare",
+        "Cobras": "Cobras Brasil Rugby"
+    }
+
     for team in unique_teams:
         safe_name = re.sub(r'[^a-zA-Z0-9]', '_', team)
         
@@ -44,11 +54,21 @@ def main():
         safe_base = re.sub(r'[^a-zA-Z0-9]', '_', base_name)
         
         found_local = None
+        
+        # Priority 0: Alias mapping
+        if team in aliases:
+            alias_safe = re.sub(r'[^a-zA-Z0-9]', '_', aliases[team])
+            for ext in ['.png', '.gif', '.jpg', '.svg']:
+                if f"{alias_safe}{ext}" in local_images:
+                    found_local = f"images/{alias_safe}{ext}"
+                    break
+
         # Priority 1: Exact match with extension
-        for ext in ['.png', '.gif', '.jpg', '.svg']:
-            if f"{safe_name}{ext}" in local_images:
-                found_local = f"images/{safe_name}{ext}"
-                break
+        if not found_local:
+            for ext in ['.png', '.gif', '.jpg', '.svg']:
+                if f"{safe_name}{ext}" in local_images:
+                    found_local = f"images/{safe_name}{ext}"
+                    break
         
         # Priority 2: Base match with extension (for 7s, U20, etc.)
         if not found_local:

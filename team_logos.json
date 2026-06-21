@@ -2348,5 +2348,20 @@
     "name": "Toyota Cheetahs",
     "source_url": "https://mobiithumbnails.blob.core.windows.net/thumbnails/live/stratus/26dec522-2aeb-4f73-aaa8-ae538c1d1410/large.png",
     "local_path": "images/Toyota_Cheetahs.png"
+  },
+  "Tarucas": {
+    "name": "Tarucas",
+    "source_url": "local_override",
+    "local_path": "images/Tarucas_Rugby.png"
+  },
+  "Pampas": {
+    "name": "Pampas",
+    "source_url": "local_override",
+    "local_path": "images/Pampas_XV.png"
+  },
+  "Dogos": {
+    "name": "Dogos",
+    "source_url": "local_override",
+    "local_path": "images/Dogos_de_Cordoba.png"
   }
 }
