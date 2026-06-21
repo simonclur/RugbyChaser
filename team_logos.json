@@ -76,8 +76,8 @@
   "Blackheath": "https://upload.wikimedia.org/wikipedia/en/2/20/Blackheath_rfc_logo.png",
   "Blues": {
     "name": "Blues",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Blues_%28Super_Rugby%29_logo.svg/120px-Blues_%28Super_Rugby%29_logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/196/5772/thumbs/577222060.gif",
+    "local_path": "images/Blues.gif"
   },
   "Boston RFC (England)": "https://upload.wikimedia.org/wikipedia/en/2/26/Boston_RFC_%28England%29_logo.png",
   "Bournemouth Rugby new": "https://upload.wikimedia.org/wikipedia/en/a/a6/Bournemouth_Rugby_new_logo.png",
@@ -90,8 +90,8 @@
   "Brothers rugby club": "https://upload.wikimedia.org/wikipedia/en/1/17/Brothers_rugby_club_logo.jpg",
   "Brumbies": {
     "name": "Brumbies",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/ACT_Brumbies_logo.svg/120px-ACT_Brumbies_logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/196/5779/thumbs/577938232005.gif",
+    "local_path": "images/Brumbies.gif"
   },
   "Bude": "https://upload.wikimedia.org/wikipedia/en/a/a8/Bude_RFC_logo.png",
   "Buenos Aires CRC": "https://upload.wikimedia.org/wikipedia/en/1/17/Buenos_Aires_CRC_Crest.svg",
@@ -214,8 +214,8 @@
   "European Rugby Cup": "https://upload.wikimedia.org/wikipedia/en/c/c0/European_Rugby_Cup_logo.svg",
   "Exeter Chiefs": {
     "name": "Exeter Chiefs",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/Exeter_Chiefs.svg/120px-Exeter_Chiefs.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/194/5689/thumbs/568968070.gif",
+    "local_path": "images/Exeter_Chiefs.gif"
   },
   "Extraliga ragby XV": "https://upload.wikimedia.org/wikipedia/en/5/58/Extraliga_ragby_XV_logo.png",
   "FC Auch": "https://upload.wikimedia.org/wikipedia/en/2/26/FC_Auch.jpg",
@@ -376,7 +376,11 @@
   "Matson": "https://upload.wikimedia.org/wikipedia/en/e/e5/Matson_RFC_logo.png",
   "Mayotte": "https://upload.wikimedia.org/wikipedia/en/0/05/Mayotte_Rugby_logo.gif",
   "Medway": "https://upload.wikimedia.org/wikipedia/en/4/4e/Medway_RFC_logo.png",
-  "Melbourne Rebels": "https://upload.wikimedia.org/wikipedia/en/9/92/Melbourne_Rebels.jpg",
+  "Melbourne Rebels": {
+    "name": "Melbourne Rebels",
+    "source_url": "https://content.sportslogos.net/logos/196/5783/thumbs/578319902011.gif",
+    "local_path": "images/Melbourne_Rebels.gif"
+  },
   "Mexicorugby": "https://upload.wikimedia.org/wikipedia/en/0/07/Mexicorugby.png",
   "Mongolia Rugby Union": "https://upload.wikimedia.org/wikipedia/en/2/29/Mongolia_Rugby_Union_Logo.png",
   "Montevideo Cricket Club": "https://upload.wikimedia.org/wikipedia/en/e/e6/Montevideo_Cricket_Club_Crest.svg",
@@ -406,7 +410,11 @@
   "Newbold-on-Avon": "https://upload.wikimedia.org/wikipedia/en/7/76/Newbold-on-Avon_RFC_logo.png",
   "Newbury R.F.C.": "https://upload.wikimedia.org/wikipedia/en/4/45/Newbury_R.F.C._logo.png",
   "Newcastle Emlyn RFC - Club": "https://upload.wikimedia.org/wikipedia/en/8/8c/Newcastle_Emlyn_RFC_-_Club_Crest.jpg",
-  "Newcastle Falcons": "https://upload.wikimedia.org/wikipedia/en/4/43/Newcastle_Falcons_logo.svg",
+  "Newcastle Falcons": {
+    "name": "Newcastle Falcons",
+    "source_url": "https://content.sportslogos.net/logos/194/5687/thumbs/568793470.gif",
+    "local_path": "images/Newcastle_Falcons.gif"
+  },
   "Newcastle Red Bulls": {
     "name": "Newcastle Red Bulls",
     "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/8/80/Newcastle_Red_Bulls_logo.png",
@@ -448,7 +456,11 @@
   "Olney": "https://upload.wikimedia.org/wikipedia/en/1/16/Olney_RFC_logo.png",
   "Olympique Marcquois Rugby Lille Métropole": "https://upload.wikimedia.org/wikipedia/en/3/39/Olympique_Marcquois_Rugby_Lille_M%C3%A9tropole_logo.png",
   "Ordizia RE": "https://upload.wikimedia.org/wikipedia/en/6/68/Ordizia_RE.PNG",
-  "Ospreys": "https://upload.wikimedia.org/wikipedia/en/2/2c/Ospreys_Rugby_logo.svg",
+  "Ospreys": {
+    "name": "Ospreys",
+    "source_url": "https://content.sportslogos.net/logos/193/5678/thumbs/567891322010.gif",
+    "local_path": "images/Ospreys.gif"
+  },
   "Ossett RUFC": "https://upload.wikimedia.org/wikipedia/en/0/0d/Ossett_RUFC_logo.png",
   "Ottawa Harlequins": "https://upload.wikimedia.org/wikipedia/en/d/d6/Ottawa_Harlequins.jpg",
   "Oundle": "https://upload.wikimedia.org/wikipedia/en/3/31/Oundle_RFC_logo.png",
@@ -542,7 +554,11 @@
   "Santa Fe Rugby Club": "https://upload.wikimedia.org/wikipedia/en/9/98/Santa_Fe_Rugby_Club_Crest.svg",
   "Santboiana": "https://upload.wikimedia.org/wikipedia/en/9/9c/Santboiana.jpg",
   "Saracens FC": "https://upload.wikimedia.org/wikipedia/en/5/5a/Saracens_FC_logo.svg",
-  "Scarlets": "https://upload.wikimedia.org/wikipedia/en/0/07/Scarlets_logo.svg",
+  "Scarlets": {
+    "name": "Scarlets",
+    "source_url": "https://content.sportslogos.net/logos/193/5679/thumbs/567998612004.gif",
+    "local_path": "images/Scarlets.gif"
+  },
   "Scotland national rugby union team": "https://upload.wikimedia.org/wikipedia/en/a/a2/Scotland_national_rugby_union_team_logo.png",
   "Scottish": "https://upload.wikimedia.org/wikipedia/en/b/b2/Scottish_rugby_logo.svg",
   "Seaford": "https://upload.wikimedia.org/wikipedia/en/5/5a/Seaford_RFC_logo.png",
@@ -576,7 +592,11 @@
   "South Australia Rugby Union": "https://upload.wikimedia.org/wikipedia/en/f/f5/South_Australia_Rugby_Union_logo.svg",
   "South China Tigers": "https://upload.wikimedia.org/wikipedia/en/c/cc/South_China_Tigers_logo.png",
   "Southend": "https://upload.wikimedia.org/wikipedia/en/e/ed/Southend_RFC_logo.png",
-  "Southern Kings": "https://upload.wikimedia.org/wikipedia/en/7/76/Southern_Kings_logo.svg",
+  "Southern Kings": {
+    "name": "Southern Kings",
+    "source_url": "https://content.sportslogos.net/logos/196/5775/thumbs/577563762009.gif",
+    "local_path": "images/Southern_Kings.gif"
+  },
   "Southern districts": "https://upload.wikimedia.org/wikipedia/en/0/0a/Southern_districts_rugby_logo.jpg",
   "Southport": "https://upload.wikimedia.org/wikipedia/en/b/be/Southport_RFC_logo.png",
   "SpartaRugby": "https://upload.wikimedia.org/wikipedia/en/e/ee/SpartaRugby.jpg",
@@ -756,8 +776,8 @@
   },
   "Gloucester Rugby": {
     "name": "Gloucester Rugby",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Gloucester_Rugby_Logo.svg/120px-Gloucester_Rugby_Logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/194/5691/thumbs/569161900.gif",
+    "local_path": "images/Gloucester_Rugby.gif"
   },
   "Gloucester-Hartpury Women": {
     "name": "Gloucester-Hartpury Women",
@@ -771,8 +791,8 @@
   },
   "Harlequins": {
     "name": "Harlequins",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Harlequins_Logo.svg/120px-Harlequins_Logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/194/5685/thumbs/568548680.gif",
+    "local_path": "images/Harlequins.gif"
   },
   "Hong Kong China": {
     "name": "Hong Kong China",
@@ -811,8 +831,8 @@
   },
   "Saracens": {
     "name": "Saracens",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Saracens_F.C._logo.svg/120px-Saracens_F.C._logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/194/5686/thumbs/568624810.gif",
+    "local_path": "images/Saracens.gif"
   },
   "Saracens Women": {
     "name": "Saracens Women",
@@ -896,8 +916,8 @@
   },
   "Chiefs": {
     "name": "Chiefs",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Chiefs_logo.svg/120px-Chiefs_logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/196/5777/thumbs/577718011996.gif",
+    "local_path": "images/Chiefs.gif"
   },
   "Chile": {
     "name": "Chile",
@@ -906,8 +926,8 @@
   },
   "Crusaders": {
     "name": "Crusaders",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Crusaders_logo_2022.svg/120px-Crusaders_logo_2022.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/196/5771/thumbs/577149300.gif",
+    "local_path": "images/Crusaders.gif"
   },
   "England": {
     "name": "England",
@@ -931,8 +951,8 @@
   },
   "Hurricanes": {
     "name": "Hurricanes",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Hurricanes_Rugby_Union_logo.svg/120px-Hurricanes_Rugby_Union_logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/196/5769/thumbs/576923781996.gif",
+    "local_path": "images/Hurricanes.gif"
   },
   "Ireland": {
     "name": "Ireland",
@@ -1421,8 +1441,8 @@
   },
   "Leicester Tigers": {
     "name": "Leicester Tigers",
-    "wikipedia_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Leicester_Tigers_logo.svg/120px-Leicester_Tigers_logo.svg.png",
-    "local_path": null
+    "source_url": "https://content.sportslogos.net/logos/194/5693/thumbs/569353720.gif",
+    "local_path": "images/Leicester_Tigers.gif"
   },
   "Stade Toulousain": {
     "name": "Stade Toulousain",
@@ -1773,5 +1793,135 @@
     "name": "American Samoa",
     "source_url": "https://www.world.rugby/wl-assets/flags/shields/ASA.png",
     "local_path": "images/American_Samoa.png"
+  },
+  "London Welsh": {
+    "name": "London Welsh",
+    "source_url": "https://content.sportslogos.net/logos/194/5690/thumbs/569053310.gif",
+    "local_path": "images/London_Welsh.gif"
+  },
+  "Wasps": {
+    "name": "Wasps",
+    "source_url": "https://content.sportslogos.net/logos/194/5688/thumbs/568811350.gif",
+    "local_path": "images/Wasps.gif"
+  },
+  "Northampton Saints": {
+    "name": "Northampton Saints",
+    "source_url": "https://content.sportslogos.net/logos/194/5684/thumbs/568473960.gif",
+    "local_path": "images/Northampton_Saints.gif"
+  },
+  "Bath": {
+    "name": "Bath",
+    "source_url": "https://content.sportslogos.net/logos/194/5683/thumbs/568397100.gif",
+    "local_path": "images/Bath.gif"
+  },
+  "London Irish": {
+    "name": "London Irish",
+    "source_url": "https://content.sportslogos.net/logos/194/5694/thumbs/569422980.gif",
+    "local_path": "images/London_Irish.gif"
+  },
+  "Aviva Premiership Rugby": {
+    "name": "Aviva Premiership Rugby",
+    "source_url": "https://content.sportslogos.net/logos/194/5682/thumbs/568267932011.gif",
+    "local_path": "images/Aviva_Premiership_Rugby.gif"
+  },
+  "Central Cheetahs": {
+    "name": "Central Cheetahs",
+    "source_url": "https://content.sportslogos.net/logos/196/5770/thumbs/577037232005.gif",
+    "local_path": "images/Central_Cheetahs.gif"
+  },
+  "Queensland Reds": {
+    "name": "Queensland Reds",
+    "source_url": "https://content.sportslogos.net/logos/196/5784/thumbs/578479660.gif",
+    "local_path": "images/Queensland_Reds.gif"
+  },
+  "Bulls": {
+    "name": "Bulls",
+    "source_url": "https://content.sportslogos.net/logos/196/5776/thumbs/577647971997.gif",
+    "local_path": "images/Bulls.gif"
+  },
+  "Highlanders": {
+    "name": "Highlanders",
+    "source_url": "https://content.sportslogos.net/logos/196/5780/thumbs/578028530.gif",
+    "local_path": "images/Highlanders.gif"
+  },
+  "New South Wales Waratahs": {
+    "name": "New South Wales Waratahs",
+    "source_url": "https://content.sportslogos.net/logos/196/5782/thumbs/578230470.gif",
+    "local_path": "images/New_South_Wales_Waratahs.gif"
+  },
+  "Western Force": {
+    "name": "Western Force",
+    "source_url": "https://content.sportslogos.net/logos/196/5773/thumbs/577313322005.gif",
+    "local_path": "images/Western_Force.gif"
+  },
+  "Super Rugby": {
+    "name": "Super Rugby",
+    "source_url": "https://content.sportslogos.net/logos/196/5768/thumbs/576812502011.gif",
+    "local_path": "images/Super_Rugby.gif"
+  },
+  "Connacht Rugby": {
+    "name": "Connacht Rugby",
+    "source_url": "https://content.sportslogos.net/logos/193/5669/thumbs/566984300.gif",
+    "local_path": "images/Connacht_Rugby.gif"
+  },
+  "Leinster Rugby": {
+    "name": "Leinster Rugby",
+    "source_url": "https://content.sportslogos.net/logos/193/5677/thumbs/567745850.gif",
+    "local_path": "images/Leinster_Rugby.gif"
+  },
+  "Benetton Rugby Treviso": {
+    "name": "Benetton Rugby Treviso",
+    "source_url": "https://content.sportslogos.net/logos/193/5667/thumbs/566725340.gif",
+    "local_path": "images/Benetton_Rugby_Treviso.gif"
+  },
+  "Munster Rugby": {
+    "name": "Munster Rugby",
+    "source_url": "https://content.sportslogos.net/logos/193/5672/thumbs/567247850.gif",
+    "local_path": "images/Munster_Rugby.gif"
+  },
+  "Cardiff Blues": {
+    "name": "Cardiff Blues",
+    "source_url": "https://content.sportslogos.net/logos/193/5668/thumbs/566837692004.gif",
+    "local_path": "images/Cardiff_Blues.gif"
+  },
+  "Edinburgh Rugby": {
+    "name": "Edinburgh Rugby",
+    "source_url": "https://content.sportslogos.net/logos/193/5670/thumbs/567019070.gif",
+    "local_path": "images/Edinburgh_Rugby.gif"
+  },
+  "Newport Gwent Dragons": {
+    "name": "Newport Gwent Dragons",
+    "source_url": "https://content.sportslogos.net/logos/193/5673/thumbs/567391912004.gif",
+    "local_path": "images/Newport_Gwent_Dragons.gif"
+  },
+  "Ulster Rugby": {
+    "name": "Ulster Rugby",
+    "source_url": "https://content.sportslogos.net/logos/193/5680/thumbs/568049880.gif",
+    "local_path": "images/Ulster_Rugby.gif"
+  },
+  "Zebre": {
+    "name": "Zebre",
+    "source_url": "https://content.sportslogos.net/logos/193/5681/thumbs/568173832013.gif",
+    "local_path": "images/Zebre.gif"
+  },
+  "Guinness Pro12": {
+    "name": "Guinness Pro12",
+    "source_url": "https://content.sportslogos.net/logos/193/5666/thumbs/566631842015.gif",
+    "local_path": "images/Guinness_Pro12.gif"
+  },
+  "Aironi": {
+    "name": "Aironi",
+    "source_url": "https://content.sportslogos.net/logos/193/5676/thumbs/567621902011.gif",
+    "local_path": "images/Aironi.gif"
+  },
+  "Border Reivers": {
+    "name": "Border Reivers",
+    "source_url": "https://content.sportslogos.net/logos/193/5674/thumbs/567463842003.gif",
+    "local_path": "images/Border_Reivers.gif"
+  },
+  "Celtic Warriors": {
+    "name": "Celtic Warriors",
+    "source_url": "https://content.sportslogos.net/logos/193/5675/thumbs/567563672004.gif",
+    "local_path": "images/Celtic_Warriors.gif"
   }
 }
