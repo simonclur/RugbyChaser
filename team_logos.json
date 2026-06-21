@@ -334,7 +334,7 @@
   "Lions": {
     "name": "Lions",
     "source_url": "local_override",
-    "local_path": "images/Lions.png"
+    "local_path": "images/Fidelity_SecureDrive_Lions.png"
   },
   "Llanelli Scarlets": "https://upload.wikimedia.org/wikipedia/en/4/4f/Llanelli_Scarlets_logo.svg",
   "Lobo bravo": "https://upload.wikimedia.org/wikipedia/en/0/07/Lobo_bravo_logo.png",
@@ -872,7 +872,7 @@
   "Sharks": {
     "name": "Sharks",
     "source_url": "local_override",
-    "local_path": "images/Sharks.png"
+    "local_path": "images/Hollywoodbets_Sharks.png"
   },
   "South Africa 7s": {
     "name": "South Africa 7s",

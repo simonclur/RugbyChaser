@@ -46,6 +46,10 @@ def main():
         "Yacare XV": "Yacare",
         "Cobras": "Cobras Brasil Rugby",
         
+        # South Africa
+        "Sharks": "Hollywoodbets Sharks",
+        "Lions": "Fidelity SecureDrive Lions",
+
         # Internationals & Regions
         "Black Ferns XV": "New Zealand",
         "Maori All Blacks": "New Zealand",
