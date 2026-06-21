@@ -2453,5 +2453,60 @@
     "name": "Maori All Blacks",
     "source_url": "local_override",
     "local_path": "images/New_Zealand.png"
+  },
+  "Cobras": {
+    "name": "Cobras",
+    "source_url": "local_override",
+    "local_path": "images/Cobras.png"
+  },
+  "Peñarol": {
+    "name": "Peñarol",
+    "source_url": "local_override",
+    "local_path": "images/Pe_arol.svg"
+  },
+  "Trailfinders Women": {
+    "name": "Trailfinders Women",
+    "source_url": "local_override",
+    "local_path": "images/Trailfinders_Women.png"
+  },
+  "Stade Bordelais": {
+    "name": "Stade Bordelais",
+    "source_url": "local_override",
+    "local_path": "images/Stade_Bordelais.svg"
+  },
+  "Yacare XV": {
+    "name": "Yacare XV",
+    "source_url": "local_override",
+    "local_path": "images/Yacare_XV.png"
+  },
+  "Great Britain 7s": {
+    "name": "Great Britain 7s",
+    "source_url": "local_override",
+    "local_path": "images/Great_Britain_7s.png"
+  },
+  "Stade Villeneuvois Lille Metropole": {
+    "name": "Stade Villeneuvois Lille Metropole",
+    "source_url": "local_override",
+    "local_path": "images/Stade_Villeneuvois_Lille_Metropole.svg"
+  },
+  "ASM Romagnat Rugby Feminin": {
+    "name": "ASM Romagnat Rugby Feminin",
+    "source_url": "local_override",
+    "local_path": "images/ASM_Romagnat_Rugby_Feminin.svg"
+  },
+  "Blagnac Sporting Club Rugby": {
+    "name": "Blagnac Sporting Club Rugby",
+    "source_url": "local_override",
+    "local_path": "images/Blagnac_Sporting_Club_Rugby.svg"
+  },
+  "AC Bobigny 93 Rugby": {
+    "name": "AC Bobigny 93 Rugby",
+    "source_url": "local_override",
+    "local_path": "images/AC_Bobigny_93_Rugby.png"
+  },
+  "FC Grenoble Amazones": {
+    "name": "FC Grenoble Amazones",
+    "source_url": "local_override",
+    "local_path": "images/FC_Grenoble_Amazones.png"
   }
 }
