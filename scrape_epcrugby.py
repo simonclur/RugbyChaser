@@ -30,7 +30,7 @@ for m in matches:
     alt_text = m.group(2).strip()
 
     # Skip generic site SVGs
-    if alt_text in ["Champions cup", "Challenge cup", "EPCR", "Champions Cup logo"]:
+    if alt_text in ["Champions cup", "Challenge cup", "EPCR", "Champions Cup logo", "incrowd-logo"]:
         continue
     if not img_url.startswith("https://media-cdn.incrowdsports.com"):
         continue
