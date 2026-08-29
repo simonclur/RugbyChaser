@@ -1410,7 +1410,7 @@
                 };
 
                 // Update rwcPoolsData with fetched pts
-                if (window.rwcPoolsData) {
+                if (rwcPoolsData) {
                     for (const [pool, teams] of Object.entries(rwcPoolsData)) {
                         teams.forEach(t => {
                             const mapName = teamNameMap[t.team] || t.team;
@@ -1427,7 +1427,9 @@
                             }
                             
                             if (pts !== undefined) {
-                                t.rankingPts = pts;
+                                t.rankingPts = parseFloat(pts); 
+                            } else {
+                                console.log('Could not find ranking for', mapName);
                             }
                         });
                         // Resort based on live ranking pts
@@ -1439,9 +1441,10 @@
                 const rankingsSection = document.getElementById('rankings-section');
                 if (rankingsSection && data && data.entries) {
                     let tableHTML = `
-                    <div style="overflow-x: auto;">
+                    <div style="overflow-x: auto; overflow-y: auto; max-height: 480px; scrollbar-width: thin;">
                         <table class="pools-table" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                            <thead>
+                            <thead style="position: sticky; top: 0; z-index: 10;">
+                                <tr style="background-color: var(--secondary-bg); text-align: left; font-size: 0.8em; color: var(--muted-text);">
                                 <tr style="background-color: var(--secondary-bg); text-align: left; font-size: 0.8em; color: var(--muted-text);">
                                     <th style="padding: 8px 12px; width: 40px; text-align:center;">Pos</th>
                                     <th style="padding: 8px 12px;">Team</th>
@@ -1451,7 +1454,7 @@
                             <tbody>
                     `;
                     
-                    data.entries.slice(0, 20).forEach((entry, idx) => {
+                    data.entries.forEach((entry, idx) => {
                         if (typeof entry === 'string') return;
                         const name = entry.team.name;
                         const pts = Number(entry.pts).toFixed(2);
@@ -1479,8 +1482,8 @@
                     tableHTML += `
                             </tbody>
                         </table>
-                        <div style="font-size: 0.7em; color: var(--muted-text); text-align: right; padding: 5px;">Showing Top 20 currently.</div>
                     </div>
+                    <div style="font-size: 0.7em; color: var(--muted-text); text-align: center; padding: 5px;">Scroll for more rankings.</div>
                     `;
                     
                     // Replace the loading text wrapper
