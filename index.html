@@ -1095,7 +1095,10 @@
                 
                 const venueOffset = match.time.gmtOffset || 0;
                 const venueDateTime = formatDateTime(match.time.millis, venueOffset);
-                const isTbc = startDate.getUTCHours() === 0 && startDate.getUTCMinutes() === 0 && venueOffset === 0;
+                let isTbc = startDate.getUTCHours() === 0 && startDate.getUTCMinutes() === 0 && venueOffset === 0;
+                if (startDate.getUTCHours() === 22 && startDate.getUTCMinutes() === 0 && venueOffset === 2) {
+                    isTbc = true;
+                }
                 const localTimeText = isTbc ? 'TBC' : `${venueDateTime.dateString} ${venueDateTime.timeString}`;
                 const location = `${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}`;
                 
@@ -2004,6 +2007,17 @@
                 // Detect TBC matches (midnight UTC returning 0.0 offset from API)
                 const d = new Date(match.time.millis);
                 const isTbc = d.getUTCHours() === 0 && d.getUTCMinutes() === 0 && venueOffset === 0;
+                
+                // Safety net fallback for 2026 South Africa vs New Zealand matches! 
+                // The API actually passes through midnight local kickoffs (venue offset 2) for these games for some reason?
+                if (match.time.label && match.time.label.includes("2026-08") || match.time.label?.includes("2026-09")) {
+                    if (d.getUTCHours() === 22 && d.getUTCMinutes() === 0 && venueOffset === 2) {
+                        // The time resolves to 00:00 local time! This is a placeholder time for these specific fixtures which have not confirmed kickoff times!
+                        timeString = "TBC";
+                        venueDateTime.timeString = "TBC";
+                        utcDateTime.timeString = "TBC";
+                    }
+                }
                 if (isTbc) {
                     timeString = "TBC";
                     venueDateTime.timeString = "TBC";
