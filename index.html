@@ -482,14 +482,16 @@
         .team-name {
             /* Memory applied: readable full team names */
             font-weight: 500;
-            font-size: 1.05em;
+            /* Dynamically scale down font size on small viewports so names fit better without wrapping, cap at 1.05em */
+            font-size: clamp(0.8rem, 3.5vw, 1.05rem);
             margin: 0 10px;
-            /* Allow names to wrap onto multiple lines if container horizontal width is restrictive */
+            
+            /* Enforce bounds and ellipsis shortening if still too long */
             flex-shrink: 1;
             min-width: 0;
-            white-space: normal; /* Enable wrapping */
-            word-wrap: break-word; /* Ensure extremely long words don't blow out padding either */
-            line-height: 1.1; /* Keep multi-line blocks tight vertically */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .team-score {
