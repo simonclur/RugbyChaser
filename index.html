@@ -281,13 +281,15 @@
             text-transform: uppercase;
         }
         .live-lineups {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex; /* Grid is rigid on narrow screens, flex can wrap/breathe */
+            flex-direction: row;
+            justify-content: center; /* Center the team blocks */
+            gap: 6px; /* Shrink gap to help fit in bounding box and bring closer */
             margin-top: 20px;
             font-size: 0.85em;
             text-align: left;
-            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap; /* Safety valve for narrow screens */
         }
 
         .lineup-team {
@@ -295,8 +297,10 @@
             padding: 10px;
             border-radius: 6px;
             margin: 0 auto;
-            width: 100%;
-            max-width: 300px;
+            width: calc(50% - 3px); /* 50% minus half the gap space */
+            min-width: 150px; /* Base width */
+            max-width: 180px; /* Restrict width so it comfortably maps two side by side into 350px card limits */
+            box-sizing: border-box;
         }
 
         .lineup-team h4 {
@@ -451,6 +455,7 @@
         .team-block.away-team {
             justify-content: flex-start;
             text-align: left;
+            width: 150px; /* symmetric with home-team */
         }
 
         .match-vs {
@@ -657,7 +662,7 @@
             transition: background-color 0.2s, color 0.2s;
         }
 
-        .nav-tab:hover, .nav-tab:active {
+        .nav-tab:hover, .nav-tab:active, .nav-tab.active-section {
             background-color: var(--accent-color);
             color: white;
             border-color: var(--accent-color);
@@ -795,6 +800,104 @@
                 btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         
+        // ScrollSpy logic to dynamically center nav bar buttons as user scrolls
+        document.addEventListener('scroll', () => {
+            const navTabs = document.querySelectorAll('.bottom-nav .nav-tab');
+            const navContainer = document.querySelector('.bottom-nav');
+            
+            let activeTab = null;
+            let currentMinDistance = window.innerHeight; // threshold
+
+            // Iterate over all tabs to check which section is most central to viewport
+            navTabs.forEach(tab => {
+                const targetId = tab.getAttribute('data-target');
+                if (targetId) {
+                    const section = document.getElementById(targetId);
+                    if (section) {
+                        const rect = section.getBoundingClientRect();
+                        
+                        // Calculate center of section relative to center of viewport
+                        const viewportCenter = window.innerHeight / 2;
+                        const sectionCenter = rect.top + (rect.height / 2);
+                        
+                        const distanceToCenter = Math.abs(viewportCenter - sectionCenter);
+                        
+                        // We check if the section is taking up a significant portion of the screen (top is above center and bottom is below)
+                        // OR if it's the closest to the center
+                        if ((rect.top <= viewportCenter && rect.bottom >= viewportCenter) || distanceToCenter < currentMinDistance) {
+                            currentMinDistance = distanceToCenter;
+                            activeTab = tab;
+                        }
+                    }
+                }
+            });
+
+            if (activeTab) {
+                // Remove active styling from all (optional, depending on if you want visual feedback)
+                navTabs.forEach(t => {
+                    t.style.borderBottom = 'none';
+                    t.classList.remove('active-section');
+                });
+                
+                // Add active styling
+                activeTab.classList.add('active-section');
+                
+                // Calculate centering for the navigation bar itself
+                const containerWidth = navContainer.clientWidth;
+                const scrollWidth = navContainer.scrollWidth;
+                const tabPosition = activeTab.offsetLeft;
+                const tabWidth = activeTab.offsetWidth;
+                
+                let scrollPosition = tabPosition - (containerWidth / 2) + (tabWidth / 2);
+                
+                if (scrollPosition < 0) {
+                    scrollPosition = 0;
+                } else if (scrollPosition > scrollWidth - containerWidth) {
+                    scrollPosition = scrollWidth - containerWidth;
+                }
+
+                // Use smooth scrolling, but debounced inherently by the browser's scroll handling 
+                navContainer.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // Let's attach an event listener to the bottom nav bar tabs.
+        // It will trigger when a nav button is clicked and center it dynamically until it hits the edges.
+        document.addEventListener('DOMContentLoaded', () => {
+            const navTabs = document.querySelectorAll('.bottom-nav .nav-tab');
+            const navContainer = document.querySelector('.bottom-nav');
+            
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    // Get viewport context
+                    const containerWidth = navContainer.clientWidth;
+                    const scrollWidth = navContainer.scrollWidth;
+                    
+                    // Calculate positional anchors of the button relative to the flex container
+                    const tabPosition = this.offsetLeft;
+                    const tabWidth = this.offsetWidth;
+                    
+                    // Center algorithm mapping exactly to flex constraints
+                    let scrollPosition = tabPosition - (containerWidth / 2) + (tabWidth / 2);
+                    
+                    // Cap bounds logically against flex paddings internally
+                    if (scrollPosition < 0) {
+                        scrollPosition = 0;
+                    } else if (scrollPosition > scrollWidth - containerWidth) {
+                        scrollPosition = scrollWidth - containerWidth;
+                    }
+
+                    navContainer.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+
         // Initialize settings from localStorage before loading matches
         setTimeout(() => {
             const savedTheme = localStorage.getItem('rugbychaser-theme');
@@ -823,14 +926,14 @@
 
     </script>
         
-        <a href="javascript:void(0)" onclick="openSettingsAndScroll()" class="nav-tab">⚙️ Settings</a>
-        <a href="javascript:void(0)" onclick="document.getElementById('auto-scroll-target')?.scrollIntoView({behavior: 'smooth', block: 'start'})" class="nav-tab">Live/Next</a>
-        <a href="#rankings-section" class="nav-tab">Rankings</a>
-        <a href="#countdown-section" class="nav-tab">Countdown</a>
-        <a href="#groups-section" class="nav-tab">Pools</a>
-        <a href="#knockout-section" class="nav-tab">Knockout</a>
-        <a href="#points-section" class="nav-tab">Top Scorers</a>
-        <a href="#all-time-points-section" class="nav-tab">All Time</a>
+        <a href="javascript:void(0)" onclick="openSettingsAndScroll()" class="nav-tab" data-target="settings-collapse">⚙️ Settings</a>
+        <a href="javascript:void(0)" onclick="document.getElementById('auto-scroll-target')?.scrollIntoView({behavior: 'smooth', block: 'start'})" class="nav-tab" data-target="matches-container">Live/Next</a>
+        <a href="#rankings-section" class="nav-tab" data-target="rankings-section">Rankings</a>
+        <a href="#countdown-section" class="nav-tab" data-target="countdown-section">Countdown</a>
+        <a href="#groups-section" class="nav-tab" data-target="groups-section">Pools</a>
+        <a href="#knockout-section" class="nav-tab" data-target="knockout-section">Knockout</a>
+        <a href="#points-section" class="nav-tab" data-target="points-section">Top Scorers</a>
+        <a href="#all-time-points-section" class="nav-tab" data-target="all-time-points-section">All Time</a>
     </nav>
 
     <script>
@@ -1145,10 +1248,26 @@
                                 const pName = ev.playerId ? (playerMap[ev.playerId] || 'Unknown Player') : '';
                                 const tName = (ev.teamIndex === 0 || ev.teamIndex === 1) ? teamNames[ev.teamIndex] : '';
                                 
+                                let iconStyle = '';
+                                const typeStr = String(ev.typeLabel || ev.type || '').toLowerCase();
+                                if (typeStr.includes('replacement on') || typeStr.includes('replacementon')) {
+                                    iconStyle = 'color: #22c55e;'; // Green for going on
+                                } else if (typeStr.includes('replacement off') || typeStr.includes('replacementoff')) {
+                                    iconStyle = 'color: #f97316;'; // Orange for going off (distinguish from red card)
+                                } else if (typeStr.includes('yellow')) {
+                                    iconStyle = 'color: #eab308;'; // Gold/Yellow
+                                } else if (typeStr.includes('red')) {
+                                    iconStyle = 'color: #ef4444;'; // Red 
+                                } else if (typeStr.includes('try')) {
+                                    iconStyle = 'color: #3b82f6;'; // Blue
+                                } else if (typeStr.includes('conversion')) {
+                                    iconStyle = 'color: #0ea5e9;'; // Cyan / Light Blue
+                                }
+                                
                                 html += `<div class="timeline-event">
                                     <div class="timeline-time">${timeLabel}</div>
                                     <div class="timeline-content">
-                                        <strong>${ev.typeLabel || ev.type}</strong>
+                                        <strong style="${iconStyle}">${ev.typeLabel || ev.type}</strong>
                                         ${pName ? `<div>${pName}</div>` : ''}
                                         ${tName ? `<div class="timeline-team">${tName}</div>` : ''}
                                     </div>
@@ -2146,18 +2265,11 @@
                         const d = Math.floor(diff / (1000 * 60 * 60 * 24));
                         const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
                         const m = Math.floor((diff / 1000 / 60) % 60);
-                        const s = Math.floor((diff / 1000) % 60);
                         
                         let timeParts = [];
                         if (d > 0) timeParts.push(`${d} days`);
                         if (h > 0) timeParts.push(`${h} hours`);
-                        // Only show seconds if we're under 24 hours to keep the UI clean
-                        if (d === 0) {
-                            timeParts.push(`${m} mins`);
-                            timeParts.push(`${s} s`);
-                        } else {
-                            if (m > 0) timeParts.push(`${m} mins`);
-                        }
+                        if (m > 0 || (d === 0 && h === 0)) timeParts.push(`${m} mins`);
                         
                         el.textContent = `${timeParts.join(' ')}`;
                     } else {
@@ -2187,6 +2299,104 @@
             }
         }, 1000);
     
+        // ScrollSpy logic to dynamically center nav bar buttons as user scrolls
+        document.addEventListener('scroll', () => {
+            const navTabs = document.querySelectorAll('.bottom-nav .nav-tab');
+            const navContainer = document.querySelector('.bottom-nav');
+            
+            let activeTab = null;
+            let currentMinDistance = window.innerHeight; // threshold
+
+            // Iterate over all tabs to check which section is most central to viewport
+            navTabs.forEach(tab => {
+                const targetId = tab.getAttribute('data-target');
+                if (targetId) {
+                    const section = document.getElementById(targetId);
+                    if (section) {
+                        const rect = section.getBoundingClientRect();
+                        
+                        // Calculate center of section relative to center of viewport
+                        const viewportCenter = window.innerHeight / 2;
+                        const sectionCenter = rect.top + (rect.height / 2);
+                        
+                        const distanceToCenter = Math.abs(viewportCenter - sectionCenter);
+                        
+                        // We check if the section is taking up a significant portion of the screen (top is above center and bottom is below)
+                        // OR if it's the closest to the center
+                        if ((rect.top <= viewportCenter && rect.bottom >= viewportCenter) || distanceToCenter < currentMinDistance) {
+                            currentMinDistance = distanceToCenter;
+                            activeTab = tab;
+                        }
+                    }
+                }
+            });
+
+            if (activeTab) {
+                // Remove active styling from all (optional, depending on if you want visual feedback)
+                navTabs.forEach(t => {
+                    t.style.borderBottom = 'none';
+                    t.classList.remove('active-section');
+                });
+                
+                // Add active styling
+                activeTab.classList.add('active-section');
+                
+                // Calculate centering for the navigation bar itself
+                const containerWidth = navContainer.clientWidth;
+                const scrollWidth = navContainer.scrollWidth;
+                const tabPosition = activeTab.offsetLeft;
+                const tabWidth = activeTab.offsetWidth;
+                
+                let scrollPosition = tabPosition - (containerWidth / 2) + (tabWidth / 2);
+                
+                if (scrollPosition < 0) {
+                    scrollPosition = 0;
+                } else if (scrollPosition > scrollWidth - containerWidth) {
+                    scrollPosition = scrollWidth - containerWidth;
+                }
+
+                // Use smooth scrolling, but debounced inherently by the browser's scroll handling 
+                navContainer.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // Let's attach an event listener to the bottom nav bar tabs.
+        // It will trigger when a nav button is clicked and center it dynamically until it hits the edges.
+        document.addEventListener('DOMContentLoaded', () => {
+            const navTabs = document.querySelectorAll('.bottom-nav .nav-tab');
+            const navContainer = document.querySelector('.bottom-nav');
+            
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    // Get viewport context
+                    const containerWidth = navContainer.clientWidth;
+                    const scrollWidth = navContainer.scrollWidth;
+                    
+                    // Calculate positional anchors of the button relative to the flex container
+                    const tabPosition = this.offsetLeft;
+                    const tabWidth = this.offsetWidth;
+                    
+                    // Center algorithm mapping exactly to flex constraints
+                    let scrollPosition = tabPosition - (containerWidth / 2) + (tabWidth / 2);
+                    
+                    // Cap bounds logically against flex paddings internally
+                    if (scrollPosition < 0) {
+                        scrollPosition = 0;
+                    } else if (scrollPosition > scrollWidth - containerWidth) {
+                        scrollPosition = scrollWidth - containerWidth;
+                    }
+
+                    navContainer.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+
         // Initialize settings from localStorage before loading matches
         setTimeout(() => {
             const savedTheme = localStorage.getItem('rugbychaser-theme');
