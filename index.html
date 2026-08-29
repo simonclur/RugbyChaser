@@ -195,12 +195,16 @@
             margin-top: 20px;
             font-size: 0.85em;
             text-align: left;
+            justify-content: center;
         }
 
         .lineup-team {
             background: var(--bg-color);
             padding: 10px;
             border-radius: 6px;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 300px;
         }
 
         .lineup-team h4 {
@@ -209,11 +213,19 @@
             border-bottom: 1px solid var(--card-border);
             padding-bottom: 5px;
         }
+        
+        /* Apply text justification specifically to the headings instead of overriding the grid */
+        .lineup-team strong {
+            display: block;
+            margin-bottom: 5px;
+            text-align: center;
+        }
 
         .player-row {
             display: flex;
             gap: 10px;
             padding: 3px 0;
+            justify-content: flex-start;
         }
         
         .player-num {
@@ -516,25 +528,33 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: var(--card-bg);
+            background-color: #39ff14; /* Neon green background */
             border-top: 1px solid var(--card-border);
             display: flex;
             overflow-x: auto;
+            flex-wrap: nowrap; /* Ensure they stay on a single line */
             z-index: 1000;
-            padding: 8px 5px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            padding: 12px 10px; /* Bit more padding for touch */
+            box-shadow: 0 -4px 12px rgba(57, 255, 20, 0.4); /* Neon green glow */
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            scrollbar-width: thin; /* Make scrollbar visible but thin */
+            scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
         }
+
         .bottom-nav::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome/Safari */
+            height: 4px; /* Show a thin scrollbar on webkit */
+        }
+        
+        .bottom-nav::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
         }
 
         .nav-tab {
             flex: 0 0 auto;
             padding: 8px 16px;
             margin: 0 5px;
-            background-color: var(--bg-color);
+            background-color: var(--card-bg); /* Use card-bg against neon green */
             color: var(--text-color);
             border: 1px solid var(--card-border);
             border-radius: 20px;
@@ -616,8 +636,14 @@
 
             <div id="countdown-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Countdown</div>
-                <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
-                    Men's Rugby World Cup 2027 countdown timer pending...
+                <div class="match-card" style="text-align: center; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <div style="font-size: 1.2em; color: var(--muted-text); margin-bottom: 15px; font-weight: 500;">Men's Rugby World Cup Australia 2027 kick-off:</div>
+                    <div id="rwc-countdown-timer" style="font-size: 2.5em; font-weight: bold; color: var(--accent-color); letter-spacing: -1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); width: 100%; max-width: 600px; display: flex; justify-content: center; gap: 15px;">
+                        <span id="rwc-d" style="display:flex; flex-direction:column; align-items:center; width: 80px;"><span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Days</span>-</span>
+                        <span id="rwc-h" style="display:flex; flex-direction:column; align-items:center; width: 80px;"><span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Hours</span>-</span>
+                        <span id="rwc-m" style="display:flex; flex-direction:column; align-items:center; width: 80px;"><span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Mins</span>-</span>
+                        <span id="rwc-s" style="display:flex; flex-direction:column; align-items:center; width: 80px;"><span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Secs</span>-</span>
+                    </div>
                 </div>
             </div>
 
@@ -663,6 +689,19 @@
 
     <!-- Bottom Tab Navigation -->
     <nav class="bottom-nav">
+        <script>
+            function openSettingsAndScroll() {
+                const panel = document.getElementById('settings-panel');
+                const btn = document.getElementById('settings-toggle');
+                
+                if (!panel.classList.contains('active')) {
+                    toggleSettings();
+                }
+                btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        </script>
+        
+        <a href="javascript:void(0)" onclick="openSettingsAndScroll()" class="nav-tab">⚙️ Settings</a>
         <a href="javascript:void(0)" onclick="document.getElementById('auto-scroll-target')?.scrollIntoView({behavior: 'smooth', block: 'start'})" class="nav-tab">Live/Next</a>
         <a href="#rankings-section" class="nav-tab">Rankings</a>
         <a href="#countdown-section" class="nav-tab">Countdown</a>
@@ -753,6 +792,113 @@
             } catch(e) {}
         }
 
+        function addToCalendar(team1, team2, millis, location, localTimeText, compName, selectedTimezone) {
+            const startDate = new Date(millis);
+            const endDate = new Date(millis + (2 * 60 * 60 * 1000)); // Assume 2 hours running time
+            const now = new Date();
+
+            const formatICSDate = (date) => {
+                return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+            };
+
+            const formatICSText = (text) => {
+                return (text || '').replace(/,/g, '\\,').replace(/;/g, '\\;');
+            };
+
+            const title = `${team1} vs ${team2} - ${compName}`;
+            const description = `Rugby match between ${team1} and ${team2}\\nCompetition: ${compName}\\nLocal Kick-off: ${localTimeText}\\nYour Timezone: ${selectedTimezone}`;
+            const uid = `${Date.now()}@rugbychaser`;
+            
+            const icsData = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//RugbyChaser//EN',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'BEGIN:VEVENT',
+                `SUMMARY:${formatICSText(title)}`,
+                `DTSTART:${formatICSDate(startDate)}`,
+                `DTEND:${formatICSDate(endDate)}`,
+                `DTSTAMP:${formatICSDate(now)}`,
+                `UID:${uid}`,
+                `LOCATION:${formatICSText(location)}`,
+                `DESCRIPTION:${formatICSText(description)}`,
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', `${team1}-vs-${team2}.ics`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function addCompToCalendar(compName) {
+            const matches = allMatches.filter(m => (m.events?.[0]?.label || m.competition || 'International Fixture') === compName);
+            const now = new Date();
+            
+            const formatICSDate = (date) => {
+                return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+            };
+
+            const formatICSText = (text) => {
+                return (text || '').replace(/,/g, '\\,').replace(/;/g, '\\;');
+            };
+
+            let icsData = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//RugbyChaser//EN',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH'
+            ];
+
+            matches.forEach(match => {
+                const startDate = new Date(match.time.millis);
+                const endDate = new Date(match.time.millis + (2 * 60 * 60 * 1000));
+                
+                const venueOffset = match.time.gmtOffset || 0;
+                const venueDateTime = formatDateTime(match.time.millis, venueOffset);
+                const isTbc = startDate.getUTCHours() === 0 && startDate.getUTCMinutes() === 0 && venueOffset === 0;
+                const localTimeText = isTbc ? 'TBC' : `${venueDateTime.dateString} ${venueDateTime.timeString}`;
+                const location = `${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}`;
+                
+                const team1 = match.teams[0].name;
+                const team2 = match.teams[1].name;
+                const title = `${team1} vs ${team2} - ${compName}`;
+                
+                const tzLabel = document.getElementById('timezone-select')?.options[document.getElementById('timezone-select').selectedIndex]?.text || '';
+                const description = `Rugby match between ${team1} and ${team2}\\nCompetition: ${compName}\\nLocal Kick-off: ${localTimeText}\\nYour Timezone: ${tzLabel}`;
+                
+                const uid = `${match.matchId || Date.now()}@rugbychaser`;
+
+                icsData.push(
+                    'BEGIN:VEVENT',
+                    `SUMMARY:${formatICSText(title)}`,
+                    `DTSTART:${formatICSDate(startDate)}`,
+                    `DTEND:${formatICSDate(endDate)}`,
+                    `DTSTAMP:${formatICSDate(now)}`,
+                    `UID:${uid}`,
+                    `LOCATION:${formatICSText(location)}`,
+                    `DESCRIPTION:${formatICSText(description)}`,
+                    'END:VEVENT'
+                );
+            });
+
+            icsData.push('END:VCALENDAR');
+            
+            const blob = new Blob([icsData.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', `${compName}-fixtures.ics`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         async function toggleMatchDetails(matchId) {
             const badge = document.getElementById(`badge-${matchId}`);
             const containerOuter = document.getElementById(`extended-outer-${matchId}`);
@@ -768,7 +914,17 @@
             badge.textContent = 'See less';
 
             if (loadedMatchDetails[matchId]) return;
+            
+            await performLoadMatchDetails(matchId, container, true);
+        }
 
+        async function loadNextMatchDetails(matchId) {
+            if (loadedMatchDetails[matchId]) return;
+            const container = document.getElementById(`extended-${matchId}`);
+            await performLoadMatchDetails(matchId, container, false);
+        }
+
+        async function performLoadMatchDetails(matchId, container, includeTimeline) {
             try {
                 let summaryData = preloadedMatchDetails[matchId];
                 if (!summaryData) {
@@ -780,23 +936,29 @@
                 }
 
                 let timelineEvents = [];
-                try {
-                    const tlRes = await fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/timeline?t=${cacheBust}`);
-                    if (tlRes.ok) {
-                        const tlData = await tlRes.json();
-                        if (tlData && tlData.timeline) {
-                            timelineEvents = tlData.timeline.sort((a,b) => (a.time?.secs || 0) - (b.time?.secs || 0));
+                if (includeTimeline) {
+                    try {
+                        const cacheBust = Date.now();
+                        const tlRes = await fetch(`https://api.wr-rims-prod.pulselive.com/rugby/v3/match/${matchId}/timeline?t=${cacheBust}`);
+                        if (tlRes.ok) {
+                            const tlData = await tlRes.json();
+                            if (tlData && tlData.timeline) {
+                                timelineEvents = tlData.timeline.sort((a,b) => (a.time?.secs || 0) - (b.time?.secs || 0));
+                            }
                         }
-                    }
-                } catch(e) {}
+                    } catch(e) {}
+                }
 
                 if (summaryData && summaryData.teams && summaryData.teams.length > 0) {
                     const playerMap = {};
                     const teamNames = [];
                     [0, 1].forEach(tIdx => {
                         const tm = summaryData.teams[tIdx];
+                        const matchTeam = summaryData.match?.teams[tIdx];
+                        const displayTeamName = (matchTeam && matchTeam.name) ? matchTeam.name : (tm ? tm.name : 'Team ' + (tIdx+1));
+                        
                         if (tm) {
-                            teamNames[tIdx] = tm.name || 'Team ' + (tIdx+1);
+                            teamNames[tIdx] = displayTeamName;
                             if (tm.teamList?.list) {
                                 tm.teamList.list.forEach(p => {
                                     playerMap[p.player?.id] = p.player?.name?.display || 'Unknown Player';
@@ -804,11 +966,17 @@
                             }
                         }
                     });
-
-                    let html = `<div class="live-details"><div class="live-lineups">`;
+                    
+                    let html = '';
+                    if (includeTimeline) {
+                        html += `<div class="live-details">`;
+                    }
+                    
+                    html += `<div class="live-lineups">`;
                     [0, 1].forEach(tIdx => {
                         const tm = summaryData.teams[tIdx];
-                        html += `<div class="lineup-team"><h4>${tm ? tm.name || 'Team ' + (tIdx+1) : 'Team ' + (tIdx+1)}</h4>`;
+                        const displayTeamName = teamNames[tIdx] || 'Team ' + (tIdx+1);
+                        html += `<div class="lineup-team"><h4>${displayTeamName}</h4>`;
                         
                         if (tm && tm.teamList && tm.teamList.list && tm.teamList.list.length > 0) {
                             // Splitting into starting and reserves
@@ -846,27 +1014,29 @@
                     });
                     html += `</div>`;
                     
-                    // Build timeline DOM
-                    html += `<div class="match-timeline-container"><h4>Match Events</h4>`;
-                    if (timelineEvents.length > 0) {
-                        timelineEvents.forEach(ev => {
-                            const timeLabel = ev.time?.label || "00:00";
-                            const pName = ev.playerId ? (playerMap[ev.playerId] || 'Unknown Player') : '';
-                            const tName = (ev.teamIndex === 0 || ev.teamIndex === 1) ? teamNames[ev.teamIndex] : '';
-                            
-                            html += `<div class="timeline-event">
-                                <div class="timeline-time">${timeLabel}</div>
-                                <div class="timeline-content">
-                                    <strong>${ev.typeLabel || ev.type}</strong>
-                                    ${pName ? `<div>${pName}</div>` : ''}
-                                    ${tName ? `<div class="timeline-team">${tName}</div>` : ''}
-                                </div>
-                            </div>`;
-                        });
-                    } else {
-                        html += `<div style="color: var(--muted-text);">No events recorded yet.</div>`;
-                    }
-                    html += `</div></div>`; // close match-timeline-container and live-details
+                    if (includeTimeline) {
+                        // Build timeline DOM
+                        html += `<div class="match-timeline-container"><h4>Match Events</h4>`;
+                        if (timelineEvents.length > 0) {
+                            timelineEvents.forEach(ev => {
+                                const timeLabel = ev.time?.label || "00:00";
+                                const pName = ev.playerId ? (playerMap[ev.playerId] || 'Unknown Player') : '';
+                                const tName = (ev.teamIndex === 0 || ev.teamIndex === 1) ? teamNames[ev.teamIndex] : '';
+                                
+                                html += `<div class="timeline-event">
+                                    <div class="timeline-time">${timeLabel}</div>
+                                    <div class="timeline-content">
+                                        <strong>${ev.typeLabel || ev.type}</strong>
+                                        ${pName ? `<div>${pName}</div>` : ''}
+                                        ${tName ? `<div class="timeline-team">${tName}</div>` : ''}
+                                    </div>
+                                </div>`;
+                            });
+                            html += `</div></div>`; // close match-timeline-container and live-details
+                        } else {
+                            html += `<div style="color: var(--muted-text);">No events recorded yet.</div></div></div>`; // close match-timeline-container and live-details
+                        }
+                    } 
                     
                     container.innerHTML = html;
                     loadedMatchDetails[matchId] = true;
@@ -1187,7 +1357,7 @@
                             <div class="live-clock">${clock}</div>
                             <div class="live-scoreline">
                                 <div style="flex:1; text-align:right">${t1.name}</div>
-                                <div style="font-size: 1.2em; background: var(--bg-color); padding: 5px 15px; border-radius: 6px;">
+                                <div style="font-size: 1.2em; background: var(--bg-color); padding: 5px 15px; border-radius: 6px; cursor: pointer;" class="score-haze" onclick="this.classList.toggle('score-haze')" title="Click to reveal/hide score">
                                     ${mData.scores[0]} - ${mData.scores[1]}
                                 </div>
                                 <div style="flex:1; text-align:left">${t2.name}</div>
@@ -1338,36 +1508,73 @@
                 const isUpcoming = status === 'U';
                 const isComplete = status === 'C';
 
-                // If we cross into the first upcoming/live game, we want to anchor here
-                const anchorClass = (!foundNext && (isUpcoming || isLive)) ? 'scroll-target' : '';
-                if (anchorClass) {
-                    foundNext = true;
-                    // Inject a visual anchor div
-                    html += `<div id="auto-scroll-target" class="scroll-target"></div>`;
-                }
-
                 // Competition grouping check
                 if (compName !== currentComp) {
                     if (currentComp !== '') {
                         html += `</div>`; // Close previous comp group
                     }
                     html += `<div class="competition-group">`;
-                    html += `<div class="competition-header">${compName}</div>`;
+                    html += `<div class="competition-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>${compName}</span>
+                                <span title="Add ${compName} to Calendar" onclick="addCompToCalendar('${compName.replace(/'/g, "\\'")}')" style="cursor: pointer; font-size: 1.2em; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">📅</span>
+                             </div>`;
                     currentComp = compName;
                     currentDate = ''; // Reset date grouping within competition
                 }
 
+                // If we cross into the first upcoming/live game, we want to anchor here
+                const anchorClass = (!foundNext && (isUpcoming || isLive)) ? 'scroll-target' : '';
+                if (anchorClass) {
+                    foundNext = true;
+                    // Inject a visual anchor div
+                    html += `<div id="auto-scroll-target" class="scroll-target"></div>`;
+                    
+                    const { dateString: todayDate, timeString: todayTime } = formatDateTime(Date.now(), offsetH);
+                    html += `<div style="text-align: center; margin: 15px 0; padding: 10px; background-color: rgba(239, 68, 68, 0.15); border: none; border-radius: 8px; font-weight: bold; color: var(--text-color);">TODAY (Current Time): <span id="live-today-time">${todayDate} ${todayTime}</span></div>`;
+                }
+                
+                // Add weekend gap indicators for future matches
+                if (isUpcoming && !isLive) {
+                    let prevMatchDate = null;
+                    const currentIndex = matchesToRender.indexOf(match);
+                    if (currentIndex > 0) {
+                        for (let i = currentIndex - 1; i >= 0; i--) {
+                            // Find previous match in same comp that is also upcoming
+                            // This ensures the gap logic only applies between future matches within a comp
+                            const prevMatch = matchesToRender[i];
+                            const prevCompName = prevMatch.events?.[0]?.label || prevMatch.competition || 'International Fixture';
+                            const prevStatus = getMatchStatus(prevMatch);
+                            
+                            if (prevCompName === compName && prevStatus === 'U') {
+                                prevMatchDate = prevMatch.time.millis;
+                                break;
+                            }
+                        }
+                        
+                        if (prevMatchDate) {
+                            const timeDiff = match.time.millis - prevMatchDate;
+                            const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                            
+                            // If gap is more than 3 days, it's likely a different weekend/round
+                            if (daysDiff > 3) {
+                                html += `<div style="text-align: center; margin: 15px 0; color: var(--muted-text); font-style: italic; border-top: 1px dashed var(--card-border); padding-top: 10px;">+${daysDiff} days</div>`;
+                            }
+                        }
+                    }
+                }
+
                 // Date grouping inside competition
                 if (dateString !== currentDate) {
-                    html += `<div class="date-divider">${dateString}</div>`;
                     currentDate = dateString;
                 }
 
                 let isNextScheduled = false;
                 let countdownStr = '';
-                if (isUpcoming && !isLive && !foundNextUpcoming) {
-                    isNextScheduled = true;
-                    foundNextUpcoming = true;
+                if (isUpcoming && !isLive) {
+                    if (!foundNextUpcoming) {
+                        isNextScheduled = true;
+                        foundNextUpcoming = true;
+                    }
                     
                     if (!isTbc) {
                         const nowMillis = Date.now();
@@ -1376,14 +1583,33 @@
                             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
                             const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
                             const m = Math.floor((diff / 1000 / 60) % 60);
-                            countdownStr = ` (in ${d}d ${h}h ${m}m)`;
+                            
+                            let timeParts = [];
+                            if (d > 0) timeParts.push(`${d} days`);
+                            if (h > 0) timeParts.push(`${h} hours`);
+                            if (m > 0 || (d === 0 && h === 0)) timeParts.push(`${m} mins`);
+                            
+                            countdownStr = `${timeParts.join(' ')}`;
                         }
                     }
                 }
 
                 const isCompletedOrCancelled = status === 'C' || status === 'CC';
                 const statusClass = isCompletedOrCancelled ? 'completed' : (status === 'L' ? 'live' : (isNextScheduled ? 'next-scheduled' : 'upcoming'));
-                const statusLabel = status === 'C' ? 'FT' : (status === 'CC' ? 'CANC' : (status === 'L' ? 'LIVE' : (isNextScheduled ? 'NEXT: ' + timeString + countdownStr : timeString)));
+                
+                // Format the time text including timezone
+                let timeText = timeString;
+                if (!isCompletedOrCancelled && status !== 'L' && !isTbc) {
+                    timeText += ` <sup style="font-size: 0.7em; font-weight: normal; margin-left: 2px;">(${tzLabel})</sup>`;
+                }
+                
+                const statusLabel = status === 'C' ? 'FT' : (status === 'CC' ? 'CANC' : (status === 'L' ? 'LIVE' : ''));
+                
+                let countdownHtml = '';
+                if (isUpcoming && !isLive && countdownStr) {
+                    countdownHtml = `<span class="dynamic-countdown" data-millis="${match.time.millis}">${countdownStr}</span>`;
+                }
+
                 const badgeClass = isNextScheduled ? 'N' : status;
 
                 const involvesTeam = !filterAllTeams && (selectedTeams.includes(match.teams[0].name) || selectedTeams.includes(match.teams[1].name));
@@ -1398,18 +1624,27 @@
                     const highlightClass = involvesTeam ? 'highlighted-team' : '';
                     const daysSinceMatch = (Date.now() - match.time.millis) / (1000 * 60 * 60 * 24);
                     const hazeClass = (!isUpcoming || isLive) && daysSinceMatch <= 5 ? 'score-haze' : '';
+                    
+                    const isNextMatch = isNextScheduled;
+                    
                     html += `
                         <div class="match-card ${statusClass} ${highlightClass}" style="flex-direction: column; align-items: stretch;">
                             <div style="display: flex; justify-content: space-between; width: 100%; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 12px;">
-                                <div style="flex: 0 0 50%; padding-right: 10px; font-size: 0.85em; color: var(--muted-text); align-content: center;">
-                                    ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}
+                                <div style="flex: 0 0 50%; padding-right: 10px; font-size: 0.85em; color: var(--muted-text); display: flex; flex-direction: column; justify-content: center;">
+                                    <div style="margin-bottom: 3px;">Location: ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}</div>
+                                    <div style="font-size: 0.9em;">Local kick-off: ${isTbc ? 'TBC' : venueDateTime.dateString + ' ' + venueDateTime.timeString} </div>
                                 </div>
                                 <div style="flex: 0 0 50%; text-align: right; display: flex; flex-direction: column; justify-content: center;">
                                     <div style="font-size: 0.9em; font-weight: 500; color: var(--text-color); margin-bottom: 3px;">${dateString}</div>
+                                    ${!isCompletedOrCancelled && status !== 'L' ? `<div style="font-size: 0.9em; font-weight: bold; color: var(--text-color);">${timeText}</div>` : ''}
+                                    ${isUpcoming ? `<div title="Add to Calendar" onclick="addToCalendar('${match.teams[0].name.replace(/'/g, "\\'")}', '${match.teams[1].name.replace(/'/g, "\\'")}', ${match.time.millis}, '${((match.venue?.name || 'TBA') + (match.venue?.city ? ', ' + match.venue.city : '')).replace(/'/g, "\\'")}', '${venueDateTime.dateString + ' ' + venueDateTime.timeString}', '${compName.replace(/'/g, "\\'")}', '${tzLabel}')" style="margin-top: 4px; cursor: pointer; font-size: 1.2em; opacity: 0.6; transition: opacity 0.2s; align-self: flex-end;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6" class="calendar-icon">📅</div>` : ''}
                                 </div>
                             </div>
                             <div style="text-align: center; margin-bottom: 12px;">
-                                <div class="status-badge ${badgeClass}" style="position: static; display: inline-block; padding: 4px 12px; font-size: 1.05em; font-weight: 600; border-radius: 4px;">${statusLabel}${tzLabel !== 'UTC' && status !== 'C' && status !== 'CC' && status !== 'L' ? '<sup style="font-size: 0.65em; font-weight: normal; margin-left: 3px;">(' + tzLabel + ')</sup>' : ''}</div>
+                                <div class="status-badge ${badgeClass}" style="position: static; display: inline-block; padding: 4px 12px; font-size: 1.05em; font-weight: 600; border-radius: 4px;">
+                                    ${statusLabel}
+                                    ${countdownHtml}
+                                </div>
                             </div>
                             <div class="match-primary-content" style="flex-basis: auto;">
                                 <div class="match-main" style="width: 100%;">
@@ -1429,9 +1664,9 @@
                                 </div>
                             </div>
                             <div style="flex-basis: 100%;">
-                                <div class="see-more-badge" id="badge-${match.matchId}" onclick="toggleMatchDetails('${match.matchId}')">See more</div>
+                                <div class="see-more-badge" id="badge-${match.matchId}" onclick="toggleMatchDetails('${match.matchId}')">${isNextMatch ? 'See less' : 'See more'}</div>
                             </div>
-                            <div class="extended-container" id="extended-outer-${match.matchId}">
+                            <div class="extended-container" id="extended-outer-${match.matchId}" style="display: ${isNextMatch ? 'block' : 'none'};">
                                 <div style="font-size: 0.85em; text-align: center; margin-bottom: 15px; color: var(--muted-text); padding-bottom: 10px; border-bottom: 1px dashed var(--card-border);">
                                     <strong>Local:</strong> ${venueDateTime.dateString} ${venueDateTime.timeString} 
                                     <br>
@@ -1443,6 +1678,13 @@
                             </div>
                         </div>
                     `;
+                    
+                    if (isNextMatch) {
+                        setTimeout(() => {
+                            // Only fetching but avoiding toggle flip logic since it's already forced visible by initial HTML
+                            loadNextMatchDetails(match.matchId);
+                        }, 50);
+                    }
                 }
             });
 
@@ -1503,6 +1745,65 @@
 
         // Run
         fetchFixtures();
+        
+        // Live exact time clock & dynamic countdowns
+        setInterval(() => {
+            const timeElem = document.getElementById('live-today-time');
+            const now = Date.now();
+            if (timeElem && !isInitialUI) {
+                const offsetH = parseFloat(tzSelect.value || "0");
+                const { dateString, timeString } = formatDateTime(now, offsetH);
+                timeElem.textContent = `${dateString} ${timeString}`;
+            }
+            
+            if (!isInitialUI) {
+                document.querySelectorAll('.dynamic-countdown').forEach(el => {
+                    const millis = parseInt(el.getAttribute('data-millis'));
+                    const diff = millis - now;
+                    if (diff > 0) {
+                        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                        const m = Math.floor((diff / 1000 / 60) % 60);
+                        const s = Math.floor((diff / 1000) % 60);
+                        
+                        let timeParts = [];
+                        if (d > 0) timeParts.push(`${d} days`);
+                        if (h > 0) timeParts.push(`${h} hours`);
+                        // Only show seconds if we're under 24 hours to keep the UI clean
+                        if (d === 0) {
+                            timeParts.push(`${m} mins`);
+                            timeParts.push(`${s} s`);
+                        } else {
+                            if (m > 0) timeParts.push(`${m} mins`);
+                        }
+                        
+                        el.textContent = `${timeParts.join(' ')}`;
+                    } else {
+                        // Game has theoretically started
+                        el.textContent = '';
+                    }
+                });
+                
+                // RWC 2027 Countdown (Starts roughly 1st Oct 2027 Australia time - Using an estimated UTC time)
+                const rwcStartDate = new Date(Date.UTC(2027, 9, 1, 9, 0, 0)).getTime();
+                const rwcDiff = rwcStartDate - now;
+                
+                if (rwcDiff > 0) {
+                    const days = Math.floor(rwcDiff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((rwcDiff / (1000 * 60 * 60)) % 24);
+                    const minutes = Math.floor((rwcDiff / 1000 / 60) % 60);
+                    const seconds = Math.floor((rwcDiff / 1000) % 60);
+                    
+                    const elD = document.getElementById('rwc-d');
+                    if (elD) {
+                        elD.innerHTML = `<span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Days</span>${days}`;
+                        document.getElementById('rwc-h').innerHTML = `<span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Hours</span>${hours.toString().padStart(2, '0')}`;
+                        document.getElementById('rwc-m').innerHTML = `<span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Mins</span>${minutes.toString().padStart(2, '0')}`;
+                        document.getElementById('rwc-s').innerHTML = `<span style="font-size: 0.4em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted-text);">Secs</span>${seconds.toString().padStart(2, '0')}`;
+                    }
+                }
+            }
+        }, 1000);
     </script>
 </body>
 </html>
