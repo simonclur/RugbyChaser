@@ -1,0 +1,926 @@
+{
+  "mru": [
+    {
+      "name": "New Zealand",
+      "pts": 94.03188738856736,
+      "pos": 1
+    },
+    {
+      "name": "South Africa",
+      "pts": 92.2063093167397,
+      "pos": 2
+    },
+    {
+      "name": "Ireland",
+      "pts": 88.07507891841169,
+      "pos": 3
+    },
+    {
+      "name": "France",
+      "pts": 87.42548925673894,
+      "pos": 4
+    },
+    {
+      "name": "England",
+      "pts": 85.68341259649182,
+      "pos": 5
+    },
+    {
+      "name": "Scotland",
+      "pts": 84.78186415091567,
+      "pos": 6
+    },
+    {
+      "name": "Argentina",
+      "pts": 83.12751898107165,
+      "pos": 7
+    },
+    {
+      "name": "Australia",
+      "pts": 82.6667677535991,
+      "pos": 8
+    },
+    {
+      "name": "Fiji",
+      "pts": 77.9968714945602,
+      "pos": 9
+    },
+    {
+      "name": "Wales",
+      "pts": 76.38404174832975,
+      "pos": 10
+    },
+    {
+      "name": "Italy",
+      "pts": 76.30355101890964,
+      "pos": 11
+    },
+    {
+      "name": "Japan",
+      "pts": 75.36289228336973,
+      "pos": 12
+    },
+    {
+      "name": "Georgia",
+      "pts": 73.94398014603844,
+      "pos": 13
+    },
+    {
+      "name": "USA",
+      "pts": 70.22362919223937,
+      "pos": 14
+    },
+    {
+      "name": "Portugal",
+      "pts": 69.39199864910687,
+      "pos": 15
+    },
+    {
+      "name": "Chile",
+      "pts": 66.94252638883145,
+      "pos": 16
+    },
+    {
+      "name": "Spain",
+      "pts": 66.83418362427102,
+      "pos": 17
+    },
+    {
+      "name": "Uruguay",
+      "pts": 65.74672464145856,
+      "pos": 18
+    },
+    {
+      "name": "Tonga",
+      "pts": 65.13556291165912,
+      "pos": 19
+    },
+    {
+      "name": "Samoa",
+      "pts": 64.73354475680023,
+      "pos": 20
+    },
+    {
+      "name": "Romania",
+      "pts": 62.452210665064264,
+      "pos": 21
+    },
+    {
+      "name": "Belgium",
+      "pts": 61.02664182407006,
+      "pos": 22
+    },
+    {
+      "name": "Hong Kong China",
+      "pts": 60.7381881340569,
+      "pos": 23
+    },
+    {
+      "name": "Canada",
+      "pts": 60.37407164466846,
+      "pos": 24
+    },
+    {
+      "name": "Zimbabwe",
+      "pts": 57.676648055618614,
+      "pos": 25
+    },
+    {
+      "name": "Namibia",
+      "pts": 56.95622323902014,
+      "pos": 26
+    },
+    {
+      "name": "Netherlands",
+      "pts": 56.44477741279684,
+      "pos": 27
+    },
+    {
+      "name": "Switzerland",
+      "pts": 55.47280651404568,
+      "pos": 28
+    },
+    {
+      "name": "Czechia",
+      "pts": 54.78328514781327,
+      "pos": 29
+    },
+    {
+      "name": "Poland",
+      "pts": 54.53706216126246,
+      "pos": 30
+    },
+    {
+      "name": "Paraguay",
+      "pts": 52.15194540907321,
+      "pos": 31
+    },
+    {
+      "name": "Russia",
+      "pts": 52.06119262441148,
+      "pos": 32
+    },
+    {
+      "name": "Brazil",
+      "pts": 51.49706521014096,
+      "pos": 33
+    },
+    {
+      "name": "Sweden",
+      "pts": 51.10979264740453,
+      "pos": 34
+    },
+    {
+      "name": "Germany",
+      "pts": 50.9200299745633,
+      "pos": 35
+    },
+    {
+      "name": "Kenya",
+      "pts": 50.08791644542441,
+      "pos": 36
+    },
+    {
+      "name": "Mexico",
+      "pts": 49.97383911441897,
+      "pos": 37
+    },
+    {
+      "name": "Korea",
+      "pts": 49.29101317272516,
+      "pos": 38
+    },
+    {
+      "name": "Morocco",
+      "pts": 47.537319971755046,
+      "pos": 39
+    },
+    {
+      "name": "United Arab Emirates",
+      "pts": 47.44613636493621,
+      "pos": 40
+    },
+    {
+      "name": "Colombia",
+      "pts": 47.10509415230885,
+      "pos": 41
+    },
+    {
+      "name": "Cayman Islands",
+      "pts": 46.51990388837325,
+      "pos": 42
+    },
+    {
+      "name": "Philippines",
+      "pts": 46.350505133794606,
+      "pos": 43
+    },
+    {
+      "name": "Malta",
+      "pts": 45.83053156566738,
+      "pos": 44
+    },
+    {
+      "name": "Algeria",
+      "pts": 45.8244435014771,
+      "pos": 45
+    },
+    {
+      "name": "Madagascar",
+      "pts": 45.7587432874345,
+      "pos": 46
+    },
+    {
+      "name": "Senegal",
+      "pts": 45.719659885327474,
+      "pos": 47
+    },
+    {
+      "name": "Tunisia",
+      "pts": 45.55773510819324,
+      "pos": 48
+    },
+    {
+      "name": "Sri Lanka",
+      "pts": 45.527949884454415,
+      "pos": 49
+    },
+    {
+      "name": "Uganda",
+      "pts": 45.12219420744046,
+      "pos": 50
+    },
+    {
+      "name": "Ukraine",
+      "pts": 44.99086837844635,
+      "pos": 51
+    },
+    {
+      "name": "Trinidad & Tobago",
+      "pts": 44.26720683414673,
+      "pos": 52
+    },
+    {
+      "name": "Luxembourg",
+      "pts": 43.08779183191246,
+      "pos": 53
+    },
+    {
+      "name": "Lithuania",
+      "pts": 43.018744999194595,
+      "pos": 54
+    },
+    {
+      "name": "Malaysia",
+      "pts": 42.93281134348533,
+      "pos": 55
+    },
+    {
+      "name": "Croatia",
+      "pts": 41.80246128867699,
+      "pos": 56
+    },
+    {
+      "name": "Moldova",
+      "pts": 41.10958231183353,
+      "pos": 57
+    },
+    {
+      "name": "Denmark",
+      "pts": 40.9354176282707,
+      "pos": 58
+    },
+    {
+      "name": "Kazakhstan",
+      "pts": 40.49407695763477,
+      "pos": 59
+    },
+    {
+      "name": "Barbados",
+      "pts": 40.426248171821435,
+      "pos": 60
+    },
+    {
+      "name": "Chinese Taipei",
+      "pts": 40.26611741292254,
+      "pos": 61
+    },
+    {
+      "name": "Jamaica",
+      "pts": 40.00466139351325,
+      "pos": 62
+    },
+    {
+      "name": "Israel",
+      "pts": 39.966663999822906,
+      "pos": 63
+    },
+    {
+      "name": "Austria",
+      "pts": 39.73693493335291,
+      "pos": 64
+    },
+    {
+      "name": "Latvia",
+      "pts": 39.6293167945877,
+      "pos": 65
+    },
+    {
+      "name": "Zambia",
+      "pts": 39.24481986983414,
+      "pos": 66
+    },
+    {
+      "name": "Cook Islands",
+      "pts": 39.106883747652994,
+      "pos": 67
+    },
+    {
+      "name": "Cote D'Ivoire",
+      "pts": 39.06230545669446,
+      "pos": 68
+    },
+    {
+      "name": "Serbia",
+      "pts": 38.693663052827304,
+      "pos": 69
+    },
+    {
+      "name": "Bermuda",
+      "pts": 37.73875085753291,
+      "pos": 70
+    },
+    {
+      "name": "Thailand",
+      "pts": 37.546367247906964,
+      "pos": 71
+    },
+    {
+      "name": "Singapore",
+      "pts": 37.300787484919454,
+      "pos": 72
+    },
+    {
+      "name": "Bulgaria",
+      "pts": 37.26257847740003,
+      "pos": 73
+    },
+    {
+      "name": "Guyana",
+      "pts": 36.84887872020798,
+      "pos": 74
+    },
+    {
+      "name": "Nigeria",
+      "pts": 36.816623595983124,
+      "pos": 75
+    },
+    {
+      "name": "Venezuela",
+      "pts": 36.780649109864626,
+      "pos": 76
+    },
+    {
+      "name": "Finland",
+      "pts": 36.35262908571864,
+      "pos": 77
+    },
+    {
+      "name": "Botswana",
+      "pts": 36.21395294232694,
+      "pos": 78
+    },
+    {
+      "name": "Andorra",
+      "pts": 35.15201111872708,
+      "pos": 79
+    },
+    {
+      "name": "Peru",
+      "pts": 35.049415446168545,
+      "pos": 80
+    },
+    {
+      "name": "Ghana",
+      "pts": 34.378756738469534,
+      "pos": 81
+    },
+    {
+      "name": "Slovenia",
+      "pts": 34.187755003307565,
+      "pos": 82
+    },
+    {
+      "name": "St Vincent and the Grenadines",
+      "pts": 33.61582755897451,
+      "pos": 83
+    },
+    {
+      "name": "Turkey",
+      "pts": 32.14521740189857,
+      "pos": 84
+    },
+    {
+      "name": "India",
+      "pts": 31.834276964261466,
+      "pos": 85
+    },
+    {
+      "name": "Hungary",
+      "pts": 31.288998006525762,
+      "pos": 86
+    },
+    {
+      "name": "Burkina Faso",
+      "pts": 31.05,
+      "pos": 87
+    },
+    {
+      "name": "Guam",
+      "pts": 30.51176505075062,
+      "pos": 88
+    },
+    {
+      "name": "Lesotho",
+      "pts": 30.456155217261962,
+      "pos": 89
+    },
+    {
+      "name": "Iran",
+      "pts": 30.0,
+      "pos": 90
+    },
+    {
+      "name": "Costa Rica",
+      "pts": 29.748294784966305,
+      "pos": 91
+    },
+    {
+      "name": "China",
+      "pts": 28.914189759612665,
+      "pos": 92
+    },
+    {
+      "name": "Bosnia & Herzegovina",
+      "pts": 28.357396560873354,
+      "pos": 93
+    },
+    {
+      "name": "Papua New Guinea",
+      "pts": 27.68373495485308,
+      "pos": 94
+    },
+    {
+      "name": "St Lucia",
+      "pts": 27.58374610838924,
+      "pos": 95
+    },
+    {
+      "name": "Bahamas",
+      "pts": 27.45696466947975,
+      "pos": 96
+    },
+    {
+      "name": "Eswatini",
+      "pts": 25.584879564484446,
+      "pos": 97
+    },
+    {
+      "name": "Qatar",
+      "pts": 25.31491966269572,
+      "pos": 98
+    },
+    {
+      "name": "Uzbekistan",
+      "pts": 25.2828007869781,
+      "pos": 99
+    },
+    {
+      "name": "Mauritius",
+      "pts": 24.5580989461403,
+      "pos": 100
+    },
+    {
+      "name": "Norway",
+      "pts": 24.49986059821276,
+      "pos": 101
+    },
+    {
+      "name": "Pakistan",
+      "pts": 24.131830833302693,
+      "pos": 102
+    },
+    {
+      "name": "Nepal",
+      "pts": 24.0,
+      "pos": 103
+    },
+    {
+      "name": "Rwanda",
+      "pts": 23.783758194069794,
+      "pos": 104
+    },
+    {
+      "name": "Laos",
+      "pts": 23.38442912660305,
+      "pos": 105
+    },
+    {
+      "name": "Cameroon",
+      "pts": 23.1200853709647,
+      "pos": 106
+    },
+    {
+      "name": "Niue Island",
+      "pts": 22.62618599821591,
+      "pos": 107
+    },
+    {
+      "name": "Burundi",
+      "pts": 20.15648565369965,
+      "pos": 108
+    },
+    {
+      "name": "Solomon Islands",
+      "pts": 17.972960374916912,
+      "pos": 109
+    },
+    {
+      "name": "Indonesia",
+      "pts": 15.948198798661993,
+      "pos": 110
+    },
+    {
+      "name": "Monaco",
+      "pts": 11.171558073802641,
+      "pos": 111
+    },
+    {
+      "name": "Greece",
+      "pts": 10.546451727059399,
+      "pos": 112
+    },
+    {
+      "name": "Vanuatu",
+      "pts": 9.289167657403121,
+      "pos": 113
+    },
+    {
+      "name": "American Samoa",
+      "pts": 7.532106726695797,
+      "pos": 114
+    }
+  ],
+  "wru": [
+    {
+      "name": "England",
+      "pts": 98.09009362214766,
+      "pos": 1
+    },
+    {
+      "name": "New Zealand",
+      "pts": 91.60199715933658,
+      "pos": 2
+    },
+    {
+      "name": "Canada",
+      "pts": 89.77697213208329,
+      "pos": 3
+    },
+    {
+      "name": "France",
+      "pts": 84.59379312631235,
+      "pos": 4
+    },
+    {
+      "name": "Ireland",
+      "pts": 78.69037027146493,
+      "pos": 5
+    },
+    {
+      "name": "Italy",
+      "pts": 74.78720734452614,
+      "pos": 6
+    },
+    {
+      "name": "Scotland",
+      "pts": 74.40024486750077,
+      "pos": 7
+    },
+    {
+      "name": "USA",
+      "pts": 74.0492299920907,
+      "pos": 8
+    },
+    {
+      "name": "Australia",
+      "pts": 74.02624851273843,
+      "pos": 9
+    },
+    {
+      "name": "South Africa",
+      "pts": 72.45681967271335,
+      "pos": 10
+    },
+    {
+      "name": "Japan",
+      "pts": 69.72237650737479,
+      "pos": 11
+    },
+    {
+      "name": "Wales",
+      "pts": 65.2166349619796,
+      "pos": 12
+    },
+    {
+      "name": "Fiji",
+      "pts": 63.846040835795485,
+      "pos": 13
+    },
+    {
+      "name": "Spain",
+      "pts": 63.681643992659176,
+      "pos": 14
+    },
+    {
+      "name": "Samoa",
+      "pts": 59.30752623037949,
+      "pos": 15
+    },
+    {
+      "name": "Hong Kong China",
+      "pts": 57.48951429250105,
+      "pos": 16
+    },
+    {
+      "name": "Netherlands",
+      "pts": 56.58647637781899,
+      "pos": 17
+    },
+    {
+      "name": "Russia",
+      "pts": 55.10250617015461,
+      "pos": 18
+    },
+    {
+      "name": "Kazakhstan",
+      "pts": 53.945572514922624,
+      "pos": 19
+    },
+    {
+      "name": "Germany",
+      "pts": 51.10357976431578,
+      "pos": 20
+    },
+    {
+      "name": "Kenya",
+      "pts": 50.68239790602417,
+      "pos": 21
+    },
+    {
+      "name": "Sweden",
+      "pts": 47.784123725241685,
+      "pos": 22
+    },
+    {
+      "name": "Belgium",
+      "pts": 47.67882580408316,
+      "pos": 23
+    },
+    {
+      "name": "Portugal",
+      "pts": 47.289570977538155,
+      "pos": 24
+    },
+    {
+      "name": "Brazil",
+      "pts": 45.956276447513645,
+      "pos": 25
+    },
+    {
+      "name": "Uganda",
+      "pts": 44.128080895455504,
+      "pos": 26
+    },
+    {
+      "name": "Georgia",
+      "pts": 43.88402386609375,
+      "pos": 27
+    },
+    {
+      "name": "Tonga",
+      "pts": 43.528487427,
+      "pos": 28
+    },
+    {
+      "name": "Mexico",
+      "pts": 43.338937765479415,
+      "pos": 29
+    },
+    {
+      "name": "China",
+      "pts": 43.33608816862912,
+      "pos": 30
+    },
+    {
+      "name": "Colombia",
+      "pts": 42.95947182081501,
+      "pos": 31
+    },
+    {
+      "name": "Andorra",
+      "pts": 42.70932620099219,
+      "pos": 32
+    },
+    {
+      "name": "Trinidad & Tobago",
+      "pts": 42.15760592454876,
+      "pos": 33
+    },
+    {
+      "name": "Tunisia",
+      "pts": 41.76399475750026,
+      "pos": 34
+    },
+    {
+      "name": "Finland",
+      "pts": 41.23426860459524,
+      "pos": 35
+    },
+    {
+      "name": "Madagascar",
+      "pts": 40.89313813058174,
+      "pos": 36
+    },
+    {
+      "name": "Cameroon",
+      "pts": 40.704781381862055,
+      "pos": 37
+    },
+    {
+      "name": "Austria",
+      "pts": 40.556229090027024,
+      "pos": 38
+    },
+    {
+      "name": "Latvia",
+      "pts": 39.113255753033116,
+      "pos": 39
+    },
+    {
+      "name": "Malaysia",
+      "pts": 39.105521360482385,
+      "pos": 40
+    },
+    {
+      "name": "Morocco",
+      "pts": 39.07599907485299,
+      "pos": 41
+    },
+    {
+      "name": "Jamaica",
+      "pts": 38.836362293310565,
+      "pos": 42
+    },
+    {
+      "name": "Croatia",
+      "pts": 38.18784847228906,
+      "pos": 43
+    },
+    {
+      "name": "Czechia",
+      "pts": 38.00606181024322,
+      "pos": 44
+    },
+    {
+      "name": "Romania",
+      "pts": 37.934392594375,
+      "pos": 45
+    },
+    {
+      "name": "Denmark",
+      "pts": 36.6169054797912,
+      "pos": 46
+    },
+    {
+      "name": "Bulgaria",
+      "pts": 36.23189861625,
+      "pos": 47
+    },
+    {
+      "name": "Papua New Guinea",
+      "pts": 35.406843823,
+      "pos": 48
+    },
+    {
+      "name": "Singapore",
+      "pts": 35.28069063744763,
+      "pos": 49
+    },
+    {
+      "name": "Norway",
+      "pts": 34.785711470106584,
+      "pos": 50
+    },
+    {
+      "name": "Zambia",
+      "pts": 33.94839363612513,
+      "pos": 51
+    },
+    {
+      "name": "Guyana",
+      "pts": 33.632796,
+      "pos": 52
+    },
+    {
+      "name": "Senegal",
+      "pts": 33.164668539667474,
+      "pos": 53
+    },
+    {
+      "name": "Zimbabwe",
+      "pts": 32.712537157203556,
+      "pos": 54
+    },
+    {
+      "name": "Bosnia & Herzegovina",
+      "pts": 32.0,
+      "pos": 55
+    },
+    {
+      "name": "India",
+      "pts": 31.602211500159346,
+      "pos": 56
+    },
+    {
+      "name": "Thailand",
+      "pts": 30.34631708006737,
+      "pos": 57
+    },
+    {
+      "name": "Cote D'Ivoire",
+      "pts": 29.84508810432264,
+      "pos": 58
+    },
+    {
+      "name": "Switzerland",
+      "pts": 29.456265778638272,
+      "pos": 59
+    },
+    {
+      "name": "Uzbekistan",
+      "pts": 29.400492057961305,
+      "pos": 60
+    },
+    {
+      "name": "Burkina Faso",
+      "pts": 29.31522625,
+      "pos": 61
+    },
+    {
+      "name": "Cayman Islands",
+      "pts": 28.951497790288123,
+      "pos": 62
+    },
+    {
+      "name": "Botswana",
+      "pts": 27.3,
+      "pos": 63
+    },
+    {
+      "name": "Luxembourg",
+      "pts": 26.8319875,
+      "pos": 64
+    },
+    {
+      "name": "Philippines",
+      "pts": 26.825349805276428,
+      "pos": 65
+    },
+    {
+      "name": "Namibia",
+      "pts": 26.137922015726577,
+      "pos": 66
+    },
+    {
+      "name": "Serbia",
+      "pts": 25.788625,
+      "pos": 67
+    },
+    {
+      "name": "Barbados",
+      "pts": 24.062013271819875,
+      "pos": 68
+    },
+    {
+      "name": "St Vincent and the Grenadines",
+      "pts": 22.712641002212624,
+      "pos": 69
+    },
+    {
+      "name": "Bahamas",
+      "pts": 21.669024142768357,
+      "pos": 70
+    }
+  ]
+}
