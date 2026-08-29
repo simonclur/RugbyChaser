@@ -1250,14 +1250,12 @@
         }
 
 
+        
         function renderRWCKnockout() {
             const container = document.getElementById('rwc-knockout-container');
             if (!container || !rwcPoolsData) return;
 
             // RWC 2027 Format: 6 Pool winners + 6 runner ups + 4 best 3rd placed -> Round of 16
-            // We'll scaffold a static Round of 16 projection mapping
-            
-            // Build pseudo standings to infer qualifiers
             const allTeams = [];
             for (const [poolName, teams] of Object.entries(rwcPoolsData)) {
                 teams.forEach(t => {
@@ -1265,79 +1263,125 @@
                         ...t,
                         pool: poolName,
                         pts: parseInt(t.points) || 0,
-                        gd: parseInt(t.points_diff) || 0
+                        gd: parseInt(t.points_diff) || 0,
+                        rankingPts: parseFloat(t.rankingPts) || 0
                     });
                 });
             }
 
-            const getTeam = (pool, pos) => {
-                const p = allTeams.filter(t => t.pool === pool).sort((a,b) => b.pts - a.pts || b.gd - a.gd);
-                return p[pos - 1]?.team || 'TBD';
+            // Given a pool and position, return full team object 
+            const getTeamObj = (pool, pos) => {
+                const p = allTeams.filter(t => t.pool === pool).sort((a,b) => b.pts - a.pts || b.gd - a.gd || b.rankingPts - a.rankingPts);
+                return p[pos - 1] || { team: 'TBD', rankingPts: 0 };
             };
+            
+            const pools = ['Pool A', 'Pool B', 'Pool C', 'Pool D', 'Pool E', 'Pool F'];
+            const thirds = pools.map(p => getTeamObj(p, 3)).sort((a,b) => b.pts - a.pts || b.gd - a.gd || b.rankingPts - a.rankingPts);
+            
+            const best3 = (idx) => thirds[idx] || { team: 'TBD', rankingPts: 0 };
 
-            const tbdNode = (name) => {
-                const flagSrc = getTeamLogoUrl(name);
+            // Determine winner of a match based on ranking prediction
+            function predictWinner(t1, t2) {
+                if (t1.team === 'TBD' && t2.team === 'TBD') return { team: 'TBD', rankingPts: 0 };
+                if (t1.team === 'TBD') return t2;
+                if (t2.team === 'TBD') return t1;
+                // Higher ranking points progresses
+                return (t1.rankingPts >= t2.rankingPts) ? t1 : t2;
+            }
+
+            const tbdNode = (tObj, isPredicted = true) => {
+                const name = tObj.team || 'TBD';
+                const flagSrc = name !== 'TBD' ? getTeamLogoUrl(name) : '';
+                const opacity = isPredicted && name !== 'TBD' ? '0.5' : '1'; // lowered to 0.5 for predictive fade
+                
+                const imgWrap = name === 'TBD' ? 
+                    `<img class="flag" src="https://ui-avatars.com/api/?name=TBD&background=e0e0e0&color=666&bold=true">` :
+                    `<img class="flag" src="${flagSrc}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&bold=true'">`;
+                    
                 return `
-                <div class="bracket-team">
-                    <img class="flag" src="${flagSrc}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'TBD')}&background=random&color=fff&bold=true'">
+                <div class="bracket-team" style="opacity: ${opacity}">
+                    ${imgWrap}
                     <span class="bracket-team-name">${name}</span>
                 </div>`;
             };
 
-            // RWC 2027 Provisional Bracket Layout
-            // Ro16 -> QF -> SF -> Final
-            const rounds = [
-                {
-                    title: 'Round of 16',
-                    matches: [
-                        [getTeam('Pool A', 1), "Best 3rd #1"],
-                        [getTeam('Pool D', 2), getTeam('Pool E', 2)],
-                        [getTeam('Pool B', 1), "Best 3rd #2"],
-                        [getTeam('Pool C', 2), getTeam('Pool F', 2)],
-                        [getTeam('Pool C', 1), "Best 3rd #3"],
-                        [getTeam('Pool A', 2), getTeam('Pool B', 2)],
-                        [getTeam('Pool D', 1), "Best 3rd #4"],
-                        [getTeam('Pool E', 1), getTeam('Pool F', 1)]
-                    ]
-                },
-                {
-                    title: 'Quarter-Finals',
-                    matches: Array(4).fill(['TBD', 'TBD'])
-                },
-                {
-                    title: 'Semi-Finals',
-                    matches: Array(2).fill(['TBD', 'TBD'])
-                },
-                {
-                    title: 'Final',
-                    matches: [['TBD', 'TBD']]
-                }
+            // Ro16
+            const ro16 = [
+                [getTeamObj('Pool A', 1), best3(0)],
+                [getTeamObj('Pool D', 2), getTeamObj('Pool E', 2)],
+                [getTeamObj('Pool B', 1), best3(1)],
+                [getTeamObj('Pool C', 2), getTeamObj('Pool F', 2)],
+                [getTeamObj('Pool C', 1), best3(2)],
+                [getTeamObj('Pool A', 2), getTeamObj('Pool B', 2)],
+                [getTeamObj('Pool D', 1), best3(3)],
+                [getTeamObj('Pool E', 1), getTeamObj('Pool F', 1)]
+            ];
+            
+            // QF predictions
+            const qf = [
+                [predictWinner(ro16[0][0], ro16[0][1]), predictWinner(ro16[1][0], ro16[1][1])],
+                [predictWinner(ro16[2][0], ro16[2][1]), predictWinner(ro16[3][0], ro16[3][1])],
+                [predictWinner(ro16[4][0], ro16[4][1]), predictWinner(ro16[5][0], ro16[5][1])],
+                [predictWinner(ro16[6][0], ro16[6][1]), predictWinner(ro16[7][0], ro16[7][1])]
+            ];
+            
+            // Semi predictions
+            const semi = [
+                [predictWinner(qf[0][0], qf[0][1]), predictWinner(qf[1][0], qf[1][1])],
+                [predictWinner(qf[2][0], qf[2][1]), predictWinner(qf[3][0], qf[3][1])]
+            ];
+            
+            // Final prediction
+            const final = [
+                [predictWinner(semi[0][0], semi[0][1]), predictWinner(semi[1][0], semi[1][1])]
             ];
 
-            let html = '';
+            const rounds = [
+                { title: 'Round of 16', matches: ro16, isPredicted: true },
+                { title: 'Quarter-Finals', matches: qf, isPredicted: true },
+                { title: 'Semi-Finals', matches: semi, isPredicted: true },
+                { title: 'Final', matches: final, isPredicted: true }
+            ];
+
+            let htmlString = '';
             rounds.forEach((round, rIdx) => {
-                html += `<div class="bracket-col">`;
-                html += `<div class="bracket-col-title">${round.title}</div>`;
-                html += `<div class="bracket-col-matches" ${rIdx === 3 ? 'style="justify-content: center;"' : ''}>`;
+                htmlString += `<div class="bracket-col">`;
+                htmlString += `<div class="bracket-col-title">${round.title}</div>`;
+                htmlString += `<div class="bracket-col-matches" ${rIdx === 3 ? 'style="justify-content: center;"' : ''}>`;
                 
                 round.matches.forEach((m, i) => {
                     const tag = rIdx === 1 ? `<div style="font-size:0.65rem;text-align:center;color:var(--muted-text);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;">Quarter ${i+1}</div>` : 
                                 rIdx === 2 ? `<div style="font-size:0.65rem;text-align:center;color:var(--muted-text);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;">Semi ${i+1}</div>` : '';
                     
-                    html += `
+                    htmlString += `
                     <div class="bracket-match-wrapper" ${rIdx===3 ? 'style="flex: 0 0 auto; padding: 10px 0;"' : ''}>
                         ${tag}
-                        <div class="bracket-match">
-                            ${tbdNode(m[0])}
-                            ${tbdNode(m[1])}
+                        <div class="bracket-match" ${round.isPredicted ? 'style="border: 1px dashed rgba(160,160,160,0.5);"' : ''}>
+                            ${tbdNode(m[0], round.isPredicted)}
+                            ${tbdNode(m[1], round.isPredicted)}
                         </div>
                     </div>`;
                 });
                 
-                html += `</div></div>`;
+                htmlString += `</div></div>`;
             });
+            
+            // Optional Final Winner explicit callout
+            const rwcWinner = predictWinner(final[0][0], final[0][1]);
+            if (rwcWinner.team !== 'TBD') {
+                 htmlString += `
+                 <div class="bracket-col" style="justify-content: center; min-width: 100px;">
+                    <div class="bracket-col-title">Predicted Winner</div>
+                    <div class="bracket-match-wrapper" style="flex: 0 0 auto;">
+                        <div class="bracket-match" style="border: 2px solid var(--accent-color); transform: scale(1.1); margin-top:20px;">
+                            ${tbdNode(rwcWinner, false)}
+                        </div>
+                    </div>
+                 </div>
+                 `;
+            }
 
-            container.innerHTML = html;
+            container.innerHTML = htmlString;
         }
 
 
@@ -1383,11 +1427,11 @@
                             }
                             
                             if (pts !== undefined) {
-                                t.points = pts;
+                                t.rankingPts = pts;
                             }
                         });
                         // Resort based on live ranking pts
-                        teams.sort((a,b) => parseFloat(b.points || 0) - parseFloat(a.points || 0));
+                        teams.sort((a,b) => (parseFloat(b.points || 0) - parseFloat(a.points || 0)) || (parseFloat(b.rankingPts || 0) - parseFloat(a.rankingPts || 0)));
                     }
                 }
 
