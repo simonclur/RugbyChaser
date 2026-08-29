@@ -281,26 +281,26 @@
             text-transform: uppercase;
         }
         .live-lineups {
-            display: flex; /* Grid is rigid on narrow screens, flex can wrap/breathe */
+            display: flex; 
             flex-direction: row;
-            justify-content: center; /* Center the team blocks */
-            gap: 6px; /* Shrink gap to help fit in bounding box and bring closer */
-            margin-top: 20px;
-            font-size: 0.85em;
+            justify-content: space-between; /* Match the outermost constraints */
+            gap: 4px; /* Tiny gap */
+            margin-top: 15px;
+            font-size: 0.82em; /* Shrink font subtly */
             text-align: left;
             width: 100%;
-            flex-wrap: wrap; /* Safety valve for narrow screens */
         }
 
         .lineup-team {
             background: var(--bg-color);
-            padding: 10px;
-            border-radius: 6px;
-            margin: 0 auto;
-            width: calc(50% - 3px); /* 50% minus half the gap space */
-            min-width: 150px; /* Base width */
-            max-width: 180px; /* Restrict width so it comfortably maps two side by side into 350px card limits */
+            padding: 8px; /* Slightly less padding to maximize interior text space */
+            border-radius: 4px;
+            margin: 0; 
+            width: calc(50% - 2px); /* Let them stretch directly against the 4px gap center */
             box-sizing: border-box;
+            flex: 1; /* Stretch aggressively */
+            max-width: calc(50% - 2px);
+            min-width: 0; /* Let flex scale them downward */
         }
 
         .lineup-team h4 {
@@ -484,6 +484,12 @@
             font-weight: 500;
             font-size: 1.05em;
             margin: 0 10px;
+            /* Allow names to scale tightly within bounds */
+            flex-shrink: 1;
+            min-width: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .team-score {
