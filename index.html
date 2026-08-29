@@ -699,7 +699,7 @@
                 </div>
                 <div class="settings-group">
                     <label>Highlight Teams</label>
-                    <select id="team-filter" multiple onchange="renderMatches(true)">
+                    <select id="team-filter" multiple onchange="localStorage.setItem('rugbychaser-tz', this.value); renderMatches(true)">
                         <option value="ALL" selected>Highlight Team (None)</option>
                     </select>
                 </div>
@@ -707,7 +707,7 @@
             <div class="settings-row" style="justify-content: flex-end; align-items: center;">
                 <div class="settings-group" style="flex: 0; min-width: auto; margin-right: 15px;">
                     <label>Local Timezone</label>
-                    <select id="timezone-select" onchange="renderMatches(true)"></select>
+                    <select id="timezone-select" onchange="localStorage.setItem('rugbychaser-tz', this.value); renderMatches(true)"></select>
                 </div>
                 <div class="settings-group" style="flex: 0; min-width: auto;">
                     <label>Theme</label>
@@ -794,7 +794,34 @@
                 }
                 btn.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        </script>
+        
+        // Initialize settings from localStorage before loading matches
+        setTimeout(() => {
+            const savedTheme = localStorage.getItem('rugbychaser-theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+
+            const savedSport = localStorage.getItem('rugbychaser-sport');
+            if (savedSport) {
+                const sportElem = document.getElementById('sport-filter');
+                if (sportElem) sportElem.value = savedSport;
+            }
+
+            const savedTz = localStorage.getItem('rugbychaser-tz');
+            if (savedTz) {
+                const tzElem = document.getElementById('timezone-select');
+                if (tzElem) tzElem.value = savedTz;
+            }
+            
+            if (savedTz || savedSport) {
+                if (typeof handleSportChange === "function") handleSportChange();
+                if (typeof renderMatches === "function") renderMatches(true);
+            }
+
+        }, 100);
+
+    </script>
         
         <a href="javascript:void(0)" onclick="openSettingsAndScroll()" class="nav-tab">⚙️ Settings</a>
         <a href="javascript:void(0)" onclick="document.getElementById('auto-scroll-target')?.scrollIntoView({behavior: 'smooth', block: 'start'})" class="nav-tab">Live/Next</a>
@@ -1151,7 +1178,9 @@
 
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('rugbychaser-theme', newTheme);
         }
 
         // Initialize timezone dropdown
@@ -1168,6 +1197,7 @@
         tzSelect.value = Math.round(localOffsetHours); // closest rounded hour
 
         function handleSportChange() {
+            localStorage.setItem('rugbychaser-sport', document.getElementById('sport-filter').value);
             populateCompFilter();
             populateTeamFilter();
             renderMatches(true);
@@ -2156,6 +2186,33 @@
                 }
             }
         }, 1000);
+    
+        // Initialize settings from localStorage before loading matches
+        setTimeout(() => {
+            const savedTheme = localStorage.getItem('rugbychaser-theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+
+            const savedSport = localStorage.getItem('rugbychaser-sport');
+            if (savedSport) {
+                const sportElem = document.getElementById('sport-filter');
+                if (sportElem) sportElem.value = savedSport;
+            }
+
+            const savedTz = localStorage.getItem('rugbychaser-tz');
+            if (savedTz) {
+                const tzElem = document.getElementById('timezone-select');
+                if (tzElem) tzElem.value = savedTz;
+            }
+            
+            if (savedTz || savedSport) {
+                if (typeof handleSportChange === "function") handleSportChange();
+                if (typeof renderMatches === "function") renderMatches(true);
+            }
+
+        }, 100);
+
     </script>
 </body>
 </html>
