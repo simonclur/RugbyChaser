@@ -338,14 +338,15 @@
         .competition-header {
             font-size: 1.1em;
             font-weight: bold;
-            padding: 8px 12px;
-            background-color: var(--accent-color);
+            padding: 10px 15px;
+            background-color: #000000; /* Black background instead of neon blue accent */
             color: white;
-            border-radius: 6px;
-            margin-bottom: 10px;
+            border-radius: 0; /* Remove rounded corners to sit flush */
+            margin: 0 -15px 15px -15px; /* Pull it out to fill full width of parent container ignoring standard container padding */
             position: sticky;
-            top: 10px;
-            z-index: 10;
+            top: 0; /* Snap directly to the very top edge without a gap */
+            z-index: 20; /* Ensure it floats over other elements */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Add subtle shadow to distinguish when floating */
         }
 
         .match-card {
@@ -633,14 +634,14 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: #39ff14; /* Neon green background */
+            background-color: #000033; /* Neon green background */
             border-top: 1px solid var(--card-border);
             display: flex;
             overflow-x: auto;
             flex-wrap: nowrap; /* Ensure they stay on a single line */
             z-index: 1000;
             padding: 12px 10px; /* Bit more padding for touch */
-            box-shadow: 0 -4px 12px rgba(57, 255, 20, 0.4); /* Neon green glow */
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.4); /* Neon green glow */
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin; /* Make scrollbar visible but thin */
             scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
@@ -659,9 +660,9 @@
             flex: 0 0 auto;
             padding: 8px 16px;
             margin: 0 5px;
-            background-color: var(--card-bg); /* Use card-bg against neon green */
-            color: var(--text-color);
-            border: 1px solid var(--card-border);
+            background-color: rgba(255,255,255,0.1); /* Use card-bg against neon green */
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.7);
             border-radius: 20px;
             font-size: 0.85em;
             font-weight: 600;
@@ -671,9 +672,9 @@
         }
 
         .nav-tab:hover, .nav-tab:active, .nav-tab.active-section {
-            background-color: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
+            background-color: #ffffff;
+            color: #000033;
+            border-color: #ffffff;
         }
 
         /* Padding adjustment for the bottom nav bar */
@@ -733,14 +734,14 @@
 
         <div id="extra-sections-container">
             <div id="rankings-section" class="competition-group" style="margin-top: 40px;">
-                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">World Rugby Rankings</div>
+                <div class="competition-header">World Rugby Rankings</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     Men's & Women's live rugby rankings data loading...
                 </div>
             </div>
 
             <div id="countdown-section" class="competition-group">
-                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Countdown</div>
+                <div class="competition-header">Rugby World Cup 2027 - Countdown</div>
                 <div class="match-card" style="text-align: center; padding: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                     <div style="font-size: 1.2em; color: var(--muted-text); margin-bottom: 15px; font-weight: 500;">Men's Rugby World Cup Australia 2027 kick-off:</div>
                     <div id="rwc-countdown-timer" style="font-size: 2.5em; font-weight: bold; color: var(--accent-color); letter-spacing: -1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); width: 100%; max-width: 600px; display: flex; justify-content: center; gap: 15px;">
@@ -753,14 +754,14 @@
             </div>
 
             <div id="groups-section" class="competition-group">
-                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">Rugby World Cup 2027 - Group Tables</div>
+                <div class="competition-header">Rugby World Cup 2027 - Group Tables</div>
                 <div id="rwc-pools-container" class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     World cup group standing tables configuration pending...
                 </div>
             </div>
 
             <div id="knockout-section" class="competition-group">
-                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 Knockout</div>
+                <div class="competition-header">RWC2027 Knockout</div>
                 <div class="match-card" style="padding: 10px; overflow-x: auto; text-align: center;">
                     <img src="https://resources.worldrugby-rims.pulselive.com/photo-resources/2026/03/09/1b9b34b6-6291-429a-b784-f3bf69ff7dda/RWC27_KO_Bracket.png?width=1667" alt="RWC 2027 Ladder" style="max-width: 100%; height: auto; border-radius: 4px; margin-bottom: 15px;">
                     <div id="rwc-knockout-container" class="bracket-container">
@@ -770,14 +771,14 @@
             </div>
 
             <div id="points-section" class="competition-group">
-                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 - Top Points Scorer</div>
+                <div class="competition-header">RWC2027 - Top Points Scorer</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     RWC27 live tournament points scorer leaderboard pending...
                 </div>
             </div>
 
             <div id="all-time-points-section" class="competition-group">
-                <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC All Time Points Scorer</div>
+                <div class="competition-header">RWC All Time Points Scorer</div>
                 <div class="match-card" style="text-align: center; padding: 25px; color: var(--muted-text); font-style: italic;">
                     Historical RWC top points scorer leaderboard data...
                 </div>
@@ -2037,7 +2038,7 @@
                         html += `</div>`; // Close previous comp group
                     }
                     html += `<div class="competition-group">`;
-                    html += `<div class="competition-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    html += `<div class="competition-header">
                                 <span>${compName}</span>
                                 <span title="Add ${compName} to Calendar" onclick="addCompToCalendar('${compName.replace(/'/g, "\\'")}')" style="cursor: pointer; font-size: 1.2em; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">📅</span>
                              </div>`;
@@ -2154,7 +2155,7 @@
                         <div class="match-card ${statusClass} ${highlightClass}" style="flex-direction: column; align-items: stretch;">
                             <div style="display: flex; justify-content: space-between; width: 100%; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 12px;">
                                 <div style="flex: 0 0 50%; padding-right: 10px; font-size: 0.85em; color: var(--muted-text); display: flex; flex-direction: column; justify-content: center;">
-                                    <div style="margin-bottom: 3px;">Location: ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}</div>
+                                    <div style="margin-bottom: 3px;"> ${match.venue?.name || 'TBA'}, ${match.venue?.city || ''}</div>
                                     <div style="font-size: 0.9em;">Local kick-off: ${isTbc ? 'TBC' : venueDateTime.dateString + ' ' + venueDateTime.timeString} </div>
                                 </div>
                                 <div style="flex: 0 0 50%; text-align: right; display: flex; flex-direction: column; justify-content: center;">
