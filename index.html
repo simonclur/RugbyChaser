@@ -484,12 +484,12 @@
             font-weight: 500;
             font-size: 1.05em;
             margin: 0 10px;
-            /* Allow names to scale tightly within bounds */
+            /* Allow names to wrap onto multiple lines if container horizontal width is restrictive */
             flex-shrink: 1;
             min-width: 0;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
+            white-space: normal; /* Enable wrapping */
+            word-wrap: break-word; /* Ensure extremely long words don't blow out padding either */
+            line-height: 1.1; /* Keep multi-line blocks tight vertically */
         }
 
         .team-score {
