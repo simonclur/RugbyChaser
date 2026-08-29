@@ -5,6 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rugby Fixtures & Results</title>
     <style>
+
+        /* Knockout Bracket Styles */
+        .bracket-container {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            scrollbar-width: thin;
+            border-radius: 6px;
+            padding: 14px;
+        }
+
+        .bracket-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            min-width: 140px;
+            flex: 1;
+        }
+
+        .bracket-col-matches {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .bracket-match-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            padding: 4px 6px;
+        }
+
+        .bracket-col-title {
+            font-size: 0.75rem;
+            color: var(--muted-text);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .bracket-match {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            font-size: 0.8rem;
+        }
+
+        .bracket-team {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .bracket-team:last-child {
+            border-bottom: none;
+        }
+
+        .bracket-team img.flag {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .bracket-team-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 80px;
+        }
+        
+        @media (max-width: 480px) {
+            .bracket-container { gap: 0.35rem; padding: 10px; }
+            .bracket-col { min-width: 36px; }
+            .bracket-match-wrapper { padding: 4px 0; }
+            .bracket-col-title { font-size: 0.55rem; padding-bottom: 2px; }
+            .bracket-team-name { display: none; }
+            .bracket-team { justify-content: center; }
+        }
+
         :root {
             --bg-color: #f0f2f5;
             --text-color: #1a1a1a;
@@ -657,7 +749,10 @@
             <div id="knockout-section" class="competition-group">
                 <div class="competition-header" style="background-color: var(--accent-color); color: white; padding: 10px 15px; border-radius: 6px; font-weight: bold; margin-bottom: 10px;">RWC2027 Knockout</div>
                 <div class="match-card" style="padding: 10px; overflow-x: auto; text-align: center;">
-                    <img src="https://resources.worldrugby-rims.pulselive.com/photo-resources/2026/03/09/1b9b34b6-6291-429a-b784-f3bf69ff7dda/RWC27_KO_Bracket.png?width=1667" alt="RWC 2027 Ladder" style="max-width: 100%; height: auto; border-radius: 4px;">
+                    <img src="https://resources.worldrugby-rims.pulselive.com/photo-resources/2026/03/09/1b9b34b6-6291-429a-b784-f3bf69ff7dda/RWC27_KO_Bracket.png?width=1667" alt="RWC 2027 Ladder" style="max-width: 100%; height: auto; border-radius: 4px; margin-bottom: 15px;">
+                    <div id="rwc-knockout-container" class="bracket-container">
+                        <!-- Dynamic ladder rendering here -->
+                    </div>
                 </div>
             </div>
 
@@ -1154,6 +1249,97 @@
             if (teamSelect.selectedOptions.length === 0) teamSelect.options[0].selected = true;
         }
 
+
+        function renderRWCKnockout() {
+            const container = document.getElementById('rwc-knockout-container');
+            if (!container || !rwcPoolsData) return;
+
+            // RWC 2027 Format: 6 Pool winners + 6 runner ups + 4 best 3rd placed -> Round of 16
+            // We'll scaffold a static Round of 16 projection mapping
+            
+            // Build pseudo standings to infer qualifiers
+            const allTeams = [];
+            for (const [poolName, teams] of Object.entries(rwcPoolsData)) {
+                teams.forEach(t => {
+                    allTeams.push({
+                        ...t,
+                        pool: poolName,
+                        pts: parseInt(t.points) || 0,
+                        gd: parseInt(t.points_diff) || 0
+                    });
+                });
+            }
+
+            const getTeam = (pool, pos) => {
+                const p = allTeams.filter(t => t.pool === pool).sort((a,b) => b.pts - a.pts || b.gd - a.gd);
+                return p[pos - 1]?.team || 'TBD';
+            };
+
+            const tbdNode = (name) => {
+                const flagSrc = getTeamLogoUrl(name);
+                return `
+                <div class="bracket-team">
+                    <img class="flag" src="${flagSrc}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'TBD')}&background=random&color=fff&bold=true'">
+                    <span class="bracket-team-name">${name}</span>
+                </div>`;
+            };
+
+            // RWC 2027 Provisional Bracket Layout
+            // Ro16 -> QF -> SF -> Final
+            const rounds = [
+                {
+                    title: 'Round of 16',
+                    matches: [
+                        [getTeam('Pool A', 1), "Best 3rd #1"],
+                        [getTeam('Pool D', 2), getTeam('Pool E', 2)],
+                        [getTeam('Pool B', 1), "Best 3rd #2"],
+                        [getTeam('Pool C', 2), getTeam('Pool F', 2)],
+                        [getTeam('Pool C', 1), "Best 3rd #3"],
+                        [getTeam('Pool A', 2), getTeam('Pool B', 2)],
+                        [getTeam('Pool D', 1), "Best 3rd #4"],
+                        [getTeam('Pool E', 1), getTeam('Pool F', 1)]
+                    ]
+                },
+                {
+                    title: 'Quarter-Finals',
+                    matches: Array(4).fill(['TBD', 'TBD'])
+                },
+                {
+                    title: 'Semi-Finals',
+                    matches: Array(2).fill(['TBD', 'TBD'])
+                },
+                {
+                    title: 'Final',
+                    matches: [['TBD', 'TBD']]
+                }
+            ];
+
+            let html = '';
+            rounds.forEach((round, rIdx) => {
+                html += `<div class="bracket-col">`;
+                html += `<div class="bracket-col-title">${round.title}</div>`;
+                html += `<div class="bracket-col-matches" ${rIdx === 3 ? 'style="justify-content: center;"' : ''}>`;
+                
+                round.matches.forEach((m, i) => {
+                    const tag = rIdx === 1 ? `<div style="font-size:0.65rem;text-align:center;color:var(--muted-text);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;">Quarter ${i+1}</div>` : 
+                                rIdx === 2 ? `<div style="font-size:0.65rem;text-align:center;color:var(--muted-text);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;">Semi ${i+1}</div>` : '';
+                    
+                    html += `
+                    <div class="bracket-match-wrapper" ${rIdx===3 ? 'style="flex: 0 0 auto; padding: 10px 0;"' : ''}>
+                        ${tag}
+                        <div class="bracket-match">
+                            ${tbdNode(m[0])}
+                            ${tbdNode(m[1])}
+                        </div>
+                    </div>`;
+                });
+                
+                html += `</div></div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
         function renderRWCPools() {
             const container = document.getElementById('rwc-pools-container');
             if (!container || !rwcPoolsData) return;
@@ -1242,6 +1428,7 @@
                 if (poolsRes && poolsRes.ok) {
                     rwcPoolsData = await poolsRes.json();
                     renderRWCPools();
+                    renderRWCKnockout();
                 }
                 
                 // Sort ascending chronologically
