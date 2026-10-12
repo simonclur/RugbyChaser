@@ -78,6 +78,37 @@ def normalize_match_times(matches):
     return fixed
 
 
+def count_tries(summary):
+    """Tries per team (same order as match['teams']) from a PulseLive match summary."""
+    teams = summary.get('teams') or []
+    if len(teams) < 2:
+        return None
+    return [len((t.get('scoring') or {}).get('Try') or []) for t in teams[:2]]
+
+
+def attach_try_counts(matches, previous_matches):
+    """Add match['triesScored'] for completed RWC pool matches (needed for the try-difference
+    and try-bonus rules). Reuses values from the previous fixtures.json to avoid refetching."""
+    known = {m['matchId']: m['triesScored'] for m in previous_matches if m.get('triesScored')}
+    for m in matches:
+        label = (m.get('events') or [{}])[0].get('label', '')
+        if m.get('status') != 'C' or 'World Cup' not in label or not str(m['eventPhase']).startswith('Pool'):
+            continue
+        if m['matchId'] in known:
+            m['triesScored'] = known[m['matchId']]
+            continue
+        try:
+            req = urllib.request.Request(
+                f"https://api.wr-rims-prod.pulselive.com/rugby/v3/match/{m['matchId']}/summary",
+                headers={'User-Agent': 'RugbyChaser/1.0'})
+            with urllib.request.urlopen(req) as response:
+                tries = count_tries(json.loads(response.read().decode('utf-8')))
+            if tries:
+                m['triesScored'] = tries
+        except Exception as e:
+            print(f"Could not fetch tries for {m['matchId']}: {e}")
+
+
 def fetch_fixtures():
     start_date = "2026-06-01"
     end_date = "2027-12-31"
@@ -112,6 +143,12 @@ def fetch_fixtures():
             break
 
     normalize_match_times(all_matches)
+    try:
+        with open("fixtures.json") as f:
+            previous = json.load(f).get('matches', [])
+    except Exception:
+        previous = []
+    attach_try_counts(all_matches, previous)
 
     # Construct the final JSON payload
     output = {
