@@ -1433,19 +1433,47 @@
                         pool: poolName,
                         pts: parseInt(t.points) || 0,
                         gd: parseInt(t.points_diff) || 0,
+                        pf: parseInt(t.points_for) || 0,
+                        tf: parseInt(t.tries_for) || 0,
                         rankingPts: parseFloat(t.rankingPts) || 0
                     });
                 });
             }
 
             // Given a pool and position, return full team object 
+            // Head-to-head competition points (win 4, draw 2) between the given teams from completed RWC 2027 matches
+            const isRwc2027 = m => (m.events?.[0]?.label || '').includes('World Cup') && String(m.time?.label || '').startsWith('2027');
+            const h2hPoints = (teamName, groupNames) => {
+                let pts = 0;
+                (typeof allMatches !== 'undefined' ? allMatches : []).forEach(m => {
+                    if (m.status !== 'C' || !isRwc2027(m) || !m.scores || m.teams.length < 2) return;
+                    const idx = m.teams.findIndex(t => t.name === teamName);
+                    if (idx === -1) return;
+                    const opp = m.teams[1 - idx].name;
+                    if (opp === teamName || !groupNames.includes(opp)) return;
+                    if (m.scores[idx] > m.scores[1 - idx]) pts += 4;
+                    else if (m.scores[idx] === m.scores[1 - idx]) pts += 2;
+                });
+                return pts;
+            };
+
+            // Official pool tiebreak: points, head-to-head, points difference, points scored, tries scored, ranking.
+            // (Try difference is skipped: tries conceded are not available in the pool data.)
+            const poolCompare = (a, b) => {
+                if (b.pts !== a.pts) return b.pts - a.pts;
+                const tied = allTeams.filter(t => t.pool === a.pool && t.pts === a.pts).map(t => t.team);
+                return (h2hPoints(b.team, tied) - h2hPoints(a.team, tied)) || b.gd - a.gd || b.pf - a.pf || b.tf - a.tf || b.rankingPts - a.rankingPts;
+            };
+            // Official ranking of third-placed teams: points, points difference, points scored, tries scored, ranking
+            const thirdCompare = (a, b) => b.pts - a.pts || b.gd - a.gd || b.pf - a.pf || b.tf - a.tf || b.rankingPts - a.rankingPts;
+
             const getTeamObj = (pool, pos) => {
-                const p = allTeams.filter(t => t.pool === pool).sort((a,b) => b.pts - a.pts || b.gd - a.gd || b.rankingPts - a.rankingPts);
+                const p = allTeams.filter(t => t.pool === pool).sort(poolCompare);
                 return p[pos - 1] || { team: 'TBD', rankingPts: 0 };
             };
             
             const pools = ['Pool A', 'Pool B', 'Pool C', 'Pool D', 'Pool E', 'Pool F'];
-            const thirds = pools.map(p => getTeamObj(p, 3)).sort((a,b) => b.pts - a.pts || b.gd - a.gd || b.rankingPts - a.rankingPts);
+            const thirds = pools.map(p => getTeamObj(p, 3)).sort(thirdCompare);
             
             const best3 = (idx) => thirds[idx] || { team: 'TBD', rankingPts: 0 };
 
@@ -1474,33 +1502,23 @@
                 </div>`;
             };
 
-            // Ro16 follows the official fixture list (Matches 37-44). Each pool winner's third-placed
-            // opponent must come from the pools listed for that slot, so assign the four qualifying
-            // thirds by backtracking in ranking order.
-            const thirdSlots = {
-                R16_2: ['C', 'E', 'F'], // A winner
-                R16_4: ['D', 'E', 'F'], // B winner
-                R16_5: ['A', 'E', 'F'], // C winner
-                R16_6: ['B', 'E', 'F']  // D winner
+            // Official World Rugby table: which pools' third-placed teams face the A, B, C and D winners,
+            // keyed by the four qualifying pools.
+            const thirdPermutations = {
+                ABCD: ['C', 'D', 'A', 'B'], ABCE: ['C', 'E', 'A', 'B'], ABCF: ['C', 'F', 'A', 'B'],
+                ABDE: ['E', 'D', 'A', 'B'], ABDF: ['F', 'D', 'A', 'B'], ABEF: ['E', 'F', 'A', 'B'],
+                ACDE: ['C', 'D', 'A', 'E'], ACDF: ['C', 'D', 'A', 'F'], ACEF: ['C', 'E', 'A', 'F'],
+                ADEF: ['E', 'D', 'A', 'F'], BCDE: ['C', 'D', 'E', 'B'], BCDF: ['C', 'D', 'F', 'B'],
+                BCEF: ['C', 'E', 'F', 'B'], BDEF: ['E', 'D', 'F', 'B'], CDEF: ['C', 'D', 'E', 'F']
             };
-            const slotKeys = Object.keys(thirdSlots);
             const qualifiedThirds = [best3(0), best3(1), best3(2), best3(3)];
-            const assignThirds = (idx, used, result) => {
-                if (idx === slotKeys.length) return result;
-                for (let i = 0; i < qualifiedThirds.length; i++) {
-                    if (used.has(i)) continue;
-                    const poolLetter = (qualifiedThirds[i].pool || '').slice(-1);
-                    if (poolLetter && !thirdSlots[slotKeys[idx]].includes(poolLetter)) continue;
-                    used.add(i);
-                    result[slotKeys[idx]] = qualifiedThirds[i];
-                    const done = assignThirds(idx + 1, used, result);
-                    if (done) return done;
-                    used.delete(i);
-                }
-                return null;
-            };
-            // Fallback (e.g. data incomplete): ranking order
-            const thirdFor = assignThirds(0, new Set(), {}) || Object.fromEntries(slotKeys.map((k, i) => [k, qualifiedThirds[i]]));
+            const qualifiedKey = qualifiedThirds.map(t => (t.pool || '').slice(-1)).sort().join('');
+            const thirdByPool = Object.fromEntries(qualifiedThirds.map(t => [(t.pool || '').slice(-1), t]));
+            const perm = thirdPermutations[qualifiedKey];
+            const tbd = { team: 'TBD', rankingPts: 0 };
+            // [vs A winner, vs B winner, vs C winner, vs D winner]
+            const [thirdVsA, thirdVsB, thirdVsC, thirdVsD] = perm ? perm.map(l => thirdByPool[l] || tbd) : [tbd, tbd, tbd, tbd];
+            const thirdFor = { R16_2: thirdVsA, R16_4: thirdVsB, R16_5: thirdVsC, R16_6: thirdVsD };
 
             // Ordered so consecutive pairs feed the quarter-finals (QF1: W2 v W4, QF2: W1 v W3, QF3: W5 v W6, QF4: W7 v W8)
             const ro16 = [

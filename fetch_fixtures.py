@@ -156,7 +156,10 @@ def fetch_rwc_pools():
                     "won": clean_html(cells[4]),
                     "drawn": clean_html(cells[5]),
                     "lost": clean_html(cells[6]),
+                    "points_for": clean_html(cells[7]),
+                    "points_against": clean_html(cells[8]),
                     "points_diff": clean_html(cells[9]),
+                    "tries_for": clean_html(cells[10]),
                     "points": clean_html(cells[12])
                 })
             pools[pool_title] = teams
