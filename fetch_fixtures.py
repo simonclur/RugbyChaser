@@ -3,6 +3,81 @@ import json
 from datetime import datetime, timezone
 import time
 
+VENUE_TZ_BY_COUNTRY = {
+    'New Zealand': 'Pacific/Auckland', 'Fiji': 'Pacific/Fiji', 'France': 'Europe/Paris',
+    'England': 'Europe/London', 'Scotland': 'Europe/London', 'Wales': 'Europe/London',
+    'Ireland': 'Europe/Dublin', 'Italy': 'Europe/Rome', 'Georgia': 'Asia/Tbilisi',
+    'Hong Kong China': 'Asia/Hong_Kong', 'Japan': 'Asia/Tokyo', 'Korea': 'Asia/Seoul',
+    'South Africa': 'Africa/Johannesburg', 'Uganda': 'Africa/Kampala',
+    'Argentina': 'America/Argentina/Buenos_Aires', 'Uruguay': 'America/Montevideo',
+    'Chile': 'America/Santiago', 'Barbados': 'America/Barbados', 'Cayman Islands': 'America/Cayman',
+}
+
+# Countries spanning several zones, matched on a substring of the venue city.
+VENUE_TZ_BY_CITY = {
+    'Australia': [('Perth', 'Australia/Perth'), ('Adelaide', 'Australia/Adelaide'),
+                  ('Brisbane', 'Australia/Brisbane'), ('Townsville', 'Australia/Brisbane'),
+                  ('Melbourne', 'Australia/Melbourne'), ('Sydney', 'Australia/Sydney'),
+                  ('Newcastle', 'Australia/Sydney'), ('Canberra', 'Australia/Sydney')],
+    'Canada': [('Edmonton', 'America/Edmonton'), ('Winnipeg', 'America/Winnipeg'),
+               ('Ottawa', 'America/Toronto'), ('Toronto', 'America/Toronto')],
+    'United States': [('Seattle', 'America/Los_Angeles'), ('Denver', 'America/Denver'),
+                      ('Chicago', 'America/Chicago')],
+}
+VENUE_TZ_DEFAULT = {'United States': 'America/New_York'}
+
+
+# Matches whose feed millis was verified against the official kickoff time while the feed's
+# gmtOffset was wrong: keep millis and only fix the offset.
+FEED_MILLIS_VERIFIED = {'e92fb0a4-c60d-4f7b-a123-fb85ee0bca06'}  # Force Women v Waratahs Women, 2026-06-27
+
+
+def venue_timezone(venue):
+    if not venue:
+        return None
+    country, city = venue.get('country'), venue.get('city') or ''
+    for key, tz in VENUE_TZ_BY_CITY.get(country, []):
+        if key in city:
+            return tz
+    return VENUE_TZ_BY_COUNTRY.get(country) or VENUE_TZ_DEFAULT.get(country)
+
+
+def normalize_match_times(matches):
+    """Re-derive millis/gmtOffset from the feed's local wall-clock time using the venue's
+    IANA timezone, so DST (and any other offset change) is applied for the kickoff date.
+
+    The feed sometimes ships a stale/standard-time gmtOffset (e.g. NZ matches during NZDT),
+    which makes millis wrong. The local wall-clock (millis + gmtOffset) is the reliable part.
+    Midnight wall-clock times are TBC placeholders and are left untouched.
+    """
+    from zoneinfo import ZoneInfo
+    from datetime import timedelta
+    fixed = 0
+    for m in matches:
+        t = m.get('time') or {}
+        tz_name = venue_timezone(m.get('venue'))
+        if not tz_name or t.get('millis') is None or t.get('gmtOffset') is None:
+            continue
+        if m.get('matchId') in FEED_MILLIS_VERIFIED:
+            instant = datetime.fromtimestamp(t['millis'] / 1000, timezone.utc).astimezone(ZoneInfo(tz_name))
+            t['gmtOffset'] = instant.utcoffset().total_seconds() / 3600
+            continue
+        wall = datetime.fromtimestamp(t['millis'] / 1000 + t['gmtOffset'] * 3600, timezone.utc).replace(tzinfo=None)
+        if wall.hour == 0 and wall.minute == 0:
+            continue
+        local = wall.replace(tzinfo=ZoneInfo(tz_name))
+        offset = local.utcoffset().total_seconds() / 3600
+        if offset == t['gmtOffset']:
+            continue
+        new_millis = int(local.timestamp() * 1000)
+        print(f"Corrected {t.get('label')} {(m.get('venue') or {}).get('city')}: "
+              f"offset {t['gmtOffset']} -> {offset}, millis {t['millis']} -> {new_millis}")
+        t['feedMillis'], t['feedGmtOffset'] = t['millis'], t['gmtOffset']
+        t['millis'], t['gmtOffset'] = new_millis, offset
+        fixed += 1
+    return fixed
+
+
 def fetch_fixtures():
     start_date = "2026-06-01"
     end_date = "2027-12-31"
@@ -35,6 +110,8 @@ def fetch_fixtures():
         except Exception as e:
             print(f"Error fetching page {page}: {e}")
             break
+
+    normalize_match_times(all_matches)
 
     # Construct the final JSON payload
     output = {

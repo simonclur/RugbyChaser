@@ -1324,8 +1324,16 @@
             tzSelect.appendChild(option);
         }
         // Set default to user's local offset (in hours)
-        const localOffsetHours = -(new Date().getTimezoneOffset() / 60);
-        tzSelect.value = Math.round(localOffsetHours); // closest rounded hour
+        const autoOption = document.createElement('option');
+        autoOption.value = 'auto';
+        autoOption.textContent = 'Auto (device)';
+        tzSelect.insertBefore(autoOption, tzSelect.firstChild);
+        tzSelect.value = 'auto';
+
+        // Numeric offset, or 'auto' when following the device timezone (resolved per match)
+        function getSelectedOffset() {
+            return tzSelect.value === 'auto' ? 'auto' : parseFloat(tzSelect.value);
+        }
 
         function handleSportChange() {
             localStorage.setItem('rugbychaser-sport', document.getElementById('sport-filter').value);
@@ -1769,18 +1777,17 @@
         }
 
         function formatDateTime(millis, offsetH) {
-            const date = new Date(millis);
-            // Apply absolute UTC offset
-            const offsetMillis = offsetH * 60 * 60 * 1000;
-            const utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
-            const localDate = new Date(utcTime + offsetMillis);
+            // 'auto' follows the device timezone, resolved per match so DST changes are honoured
+            if (offsetH === 'auto' || Number.isNaN(offsetH)) offsetH = -new Date(millis).getTimezoneOffset() / 60;
+            // Shift the instant and format it as UTC so the device timezone/DST cannot interfere
+            const localDate = new Date(millis + offsetH * 60 * 60 * 1000);
 
             const optionsDate = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
             const optionsTime = { hour: '2-digit', minute: '2-digit' };
             
             return {
-                dateString: localDate.toLocaleDateString(undefined, optionsDate),
-                timeString: localDate.toLocaleTimeString(undefined, optionsTime)
+                dateString: localDate.toLocaleDateString(undefined, { ...optionsDate, timeZone: 'UTC' }),
+                timeString: localDate.toLocaleTimeString(undefined, { ...optionsTime, timeZone: 'UTC' })
             };
         }
 
@@ -1817,7 +1824,7 @@
             }
 
             const activeMatch = allMatches.find(m => m.matchId === matchId);
-            const { dateString, timeString } = formatDateTime(activeMatch.time.millis, parseFloat(document.getElementById('timezone-select').value));
+            const { dateString, timeString } = formatDateTime(activeMatch.time.millis, getSelectedOffset());
             const koDisplay = `${dateString} ${timeString}`;
 
             // Show loading initially
@@ -1951,7 +1958,7 @@
 
         function renderMatches(skipScroll = false) {
             const container = document.getElementById('matches-container');
-            const offsetH = parseFloat(tzSelect.value);
+            const offsetH = getSelectedOffset();
             const tzLabel = tzSelect.options[tzSelect.selectedIndex].text;
             
             const compSelect = document.getElementById('comp-filter');
@@ -2275,7 +2282,7 @@
             const timeElem = document.getElementById('live-today-time');
             const now = Date.now();
             if (timeElem && !isInitialUI) {
-                const offsetH = parseFloat(tzSelect.value || "0");
+                const offsetH = getSelectedOffset();
                 const { dateString, timeString } = formatDateTime(now, offsetH);
                 timeElem.textContent = `${dateString} ${timeString}`;
             }

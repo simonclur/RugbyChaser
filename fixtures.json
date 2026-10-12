@@ -12564,7 +12564,7 @@
       },
       "time": {
         "millis": 1782540300000,
-        "gmtOffset": 7.0,
+        "gmtOffset": 8.0,
         "label": "2026-06-27"
       },
       "attendance": null,
@@ -14906,9 +14906,11 @@
         "country": "South Africa"
       },
       "time": {
-        "millis": 1783161000000,
-        "gmtOffset": 3.0,
-        "label": "2026-07-04"
+        "millis": 1783164600000,
+        "gmtOffset": 2.0,
+        "label": "2026-07-04",
+        "feedMillis": 1783161000000,
+        "feedGmtOffset": 3.0
       },
       "attendance": null,
       "teams": [
@@ -17055,9 +17057,11 @@
         "country": "South Africa"
       },
       "time": {
-        "millis": 1783765800000,
-        "gmtOffset": 3.0,
-        "label": "2026-07-11"
+        "millis": 1783769400000,
+        "gmtOffset": 2.0,
+        "label": "2026-07-11",
+        "feedMillis": 1783765800000,
+        "feedGmtOffset": 3.0
       },
       "attendance": null,
       "teams": [
@@ -24744,9 +24748,11 @@
         "country": "New Zealand"
       },
       "time": {
-        "millis": 1791616200000,
-        "gmtOffset": 12.0,
-        "label": "2026-10-10"
+        "millis": 1791612600000,
+        "gmtOffset": 13.0,
+        "label": "2026-10-10",
+        "feedMillis": 1791616200000,
+        "feedGmtOffset": 12.0
       },
       "attendance": null,
       "teams": [
@@ -24999,9 +25005,11 @@
         "country": "Australia"
       },
       "time": {
-        "millis": 1792215900000,
-        "gmtOffset": 10.0,
-        "label": "2026-10-17"
+        "millis": 1792212300000,
+        "gmtOffset": 11.0,
+        "label": "2026-10-17",
+        "feedMillis": 1792215900000,
+        "feedGmtOffset": 10.0
       },
       "attendance": null,
       "teams": [
