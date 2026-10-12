@@ -1474,16 +1474,44 @@
                 </div>`;
             };
 
-            // Ro16
+            // Ro16 follows the official fixture list (Matches 37-44). Each pool winner's third-placed
+            // opponent must come from the pools listed for that slot, so assign the four qualifying
+            // thirds by backtracking in ranking order.
+            const thirdSlots = {
+                R16_2: ['C', 'E', 'F'], // A winner
+                R16_4: ['D', 'E', 'F'], // B winner
+                R16_5: ['A', 'E', 'F'], // C winner
+                R16_6: ['B', 'E', 'F']  // D winner
+            };
+            const slotKeys = Object.keys(thirdSlots);
+            const qualifiedThirds = [best3(0), best3(1), best3(2), best3(3)];
+            const assignThirds = (idx, used, result) => {
+                if (idx === slotKeys.length) return result;
+                for (let i = 0; i < qualifiedThirds.length; i++) {
+                    if (used.has(i)) continue;
+                    const poolLetter = (qualifiedThirds[i].pool || '').slice(-1);
+                    if (poolLetter && !thirdSlots[slotKeys[idx]].includes(poolLetter)) continue;
+                    used.add(i);
+                    result[slotKeys[idx]] = qualifiedThirds[i];
+                    const done = assignThirds(idx + 1, used, result);
+                    if (done) return done;
+                    used.delete(i);
+                }
+                return null;
+            };
+            // Fallback (e.g. data incomplete): ranking order
+            const thirdFor = assignThirds(0, new Set(), {}) || Object.fromEntries(slotKeys.map((k, i) => [k, qualifiedThirds[i]]));
+
+            // Ordered so consecutive pairs feed the quarter-finals (QF1: W2 v W4, QF2: W1 v W3, QF3: W5 v W6, QF4: W7 v W8)
             const ro16 = [
-                [getTeamObj('Pool A', 1), best3(0)],
-                [getTeamObj('Pool D', 2), getTeamObj('Pool E', 2)],
-                [getTeamObj('Pool B', 1), best3(1)],
-                [getTeamObj('Pool C', 2), getTeamObj('Pool F', 2)],
-                [getTeamObj('Pool C', 1), best3(2)],
-                [getTeamObj('Pool A', 2), getTeamObj('Pool B', 2)],
-                [getTeamObj('Pool D', 1), best3(3)],
-                [getTeamObj('Pool E', 1), getTeamObj('Pool F', 1)]
+                [getTeamObj('Pool A', 1), thirdFor.R16_2],             // Match 38 (R16 2)
+                [getTeamObj('Pool B', 1), thirdFor.R16_4],             // Match 40 (R16 4)
+                [getTeamObj('Pool C', 2), getTeamObj('Pool F', 2)],    // Match 37 (R16 1)
+                [getTeamObj('Pool E', 1), getTeamObj('Pool D', 2)],    // Match 39 (R16 3)
+                [getTeamObj('Pool C', 1), thirdFor.R16_5],             // Match 41 (R16 5)
+                [getTeamObj('Pool D', 1), thirdFor.R16_6],             // Match 42 (R16 6)
+                [getTeamObj('Pool A', 2), getTeamObj('Pool E', 2)],    // Match 43 (R16 7)
+                [getTeamObj('Pool F', 1), getTeamObj('Pool B', 2)]     // Match 44 (R16 8)
             ];
             
             // QF predictions
