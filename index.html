@@ -1441,7 +1441,8 @@
             }
 
             // Given a pool and position, return full team object 
-            // Head-to-head competition points (win 4, draw 2) between the given teams from completed RWC 2027 matches
+            // Head-to-head match points (win 4, draw 2, losing bonus 1) among the given teams, from completed
+            // RWC 2027 matches. Try bonus is not included: tries per match are not in the feed.
             const isRwc2027 = m => (m.events?.[0]?.label || '').includes('World Cup') && String(m.time?.label || '').startsWith('2027');
             const h2hPoints = (teamName, groupNames) => {
                 let pts = 0;
@@ -1451,24 +1452,45 @@
                     if (idx === -1) return;
                     const opp = m.teams[1 - idx].name;
                     if (opp === teamName || !groupNames.includes(opp)) return;
-                    if (m.scores[idx] > m.scores[1 - idx]) pts += 4;
-                    else if (m.scores[idx] === m.scores[1 - idx]) pts += 2;
+                    const mine = m.scores[idx], theirs = m.scores[1 - idx];
+                    if (mine > theirs) pts += 4;
+                    else if (mine === theirs) pts += 2;
+                    else if (theirs - mine <= 7) pts += 1;
                 });
                 return pts;
             };
 
-            // Official pool tiebreak: points, head-to-head, points difference, points scored, tries scored, ranking.
+            // Official pool ranking: match points, then for level teams head-to-head (re-applied to any
+            // still-tied subset), then points difference, points scored, tries scored, ranking.
             // (Try difference is skipped: tries conceded are not available in the pool data.)
-            const poolCompare = (a, b) => {
-                if (b.pts !== a.pts) return b.pts - a.pts;
-                const tied = allTeams.filter(t => t.pool === a.pool && t.pts === a.pts).map(t => t.team);
-                return (h2hPoints(b.team, tied) - h2hPoints(a.team, tied)) || b.gd - a.gd || b.pf - a.pf || b.tf - a.tf || b.rankingPts - a.rankingPts;
+            const sortPool = (teams) => {
+                const overallKey = t => [t.gd, t.pf, t.tf, t.rankingPts];
+                const cmpKeys = (ka, kb) => { for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return kb[i] - ka[i]; return 0; };
+                const splitBlocks = (sorted, keyOf) => {
+                    const blocks = [];
+                    sorted.forEach(t => {
+                        const last = blocks[blocks.length - 1];
+                        if (last && cmpKeys(keyOf(last[0]), keyOf(t)) === 0) last.push(t); else blocks.push([t]);
+                    });
+                    return blocks;
+                };
+                const resolve = (tied, allowH2h) => {
+                    if (tied.length === 1) return tied;
+                    const names = tied.map(t => t.team);
+                    const keyOf = allowH2h ? (t => [h2hPoints(t.team, names), ...overallKey(t)]) : overallKey;
+                    const sorted = tied.slice().sort((a, b) => cmpKeys(keyOf(a), keyOf(b)));
+                    return splitBlocks(sorted, keyOf).flatMap(block =>
+                        block.length === 1 || block.length === tied.length && !allowH2h ? block
+                            : resolve(block, allowH2h && block.length < tied.length));
+                };
+                const byPts = teams.slice().sort((a, b) => b.pts - a.pts);
+                return splitBlocks(byPts, t => [t.pts]).flatMap(block => resolve(block, true));
             };
             // Official ranking of third-placed teams: points, points difference, points scored, tries scored, ranking
             const thirdCompare = (a, b) => b.pts - a.pts || b.gd - a.gd || b.pf - a.pf || b.tf - a.tf || b.rankingPts - a.rankingPts;
 
             const getTeamObj = (pool, pos) => {
-                const p = allTeams.filter(t => t.pool === pool).sort(poolCompare);
+                const p = sortPool(allTeams.filter(t => t.pool === pool));
                 return p[pos - 1] || { team: 'TBD', rankingPts: 0 };
             };
             
